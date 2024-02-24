@@ -15,6 +15,8 @@ import 'package:keswaty/view/Login_Resiter/Forget_Password/ForgetPasswordWidgets
 import 'package:keswaty/view/navigationbar/nav.dart';
 import 'package:provider/provider.dart';
 
+import '../Sgin_up/sgin_up.dart';
+
 
 
 
@@ -47,15 +49,16 @@ class _LoginState extends State<Login> {
       textDirection: language == 'AR' ? TextDirection.rtl : TextDirection.ltr,
 
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor:
         Theme.of(context).brightness == Brightness.dark
-            ?  Color.fromRGBO(33, 37, 25, 1)
-            :  Color.fromRGBO(240, 242, 245, 1),
+            ?  const Color.fromRGBO(33, 37, 25, 1)
+            :  const Color.fromRGBO(240, 242, 245, 1),
 
         appBar: AppBar(
           backgroundColor: Theme.of(context).brightness == Brightness.dark
-              ?  Color.fromRGBO(33, 37, 25, 1)
-              :  Color.fromRGBO(240, 242, 245, 1),
+              ?  const Color.fromRGBO(33, 37, 25, 1)
+              :  const Color.fromRGBO(240, 242, 245, 1),
           elevation: 0,
           title:  Text(_language.tWelcomBack(),
               style: TextStyle(
@@ -82,187 +85,194 @@ class _LoginState extends State<Login> {
               :
           ListView(
               children: [
-                SafeArea(
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: SingleChildScrollView(
 
-                            SizedBox(height: 20,),
-                            Text(
-                                _language.tWelcomBack(),
-                                textAlign: TextAlign.center,
-                                style: headingStyle
-                            ),
-                            SizedBox(height: 5,),
-                            Text(
-                                _language.tSgininwithyouremail(),
-                                textAlign: TextAlign.center,
-                                style: TextStyleGray
-                            ),
-                            Form(
-                              key: _formkey,
-                              child: Column(
-                                  children: [
-                                    SizedBox(height: 60),
-                                    Container(
-                                        width: screenWidth,
 
-                                        //-------------------------============================================----------------------------------------------------
-                                        child: EmailField(
-                                          controller1: emailcontroller,
-                                        )
-                                    ),
-                                    SizedBox(height: 20),
-                                    Container(
-                                        width: screenWidth,
+                      scrollDirection: Axis.vertical,
+                     child: SizedBox(
+                       height: MediaQuery.of(context).size.height-MediaQuery.of(context).padding.top,
+                       child: Column(
+                         crossAxisAlignment: CrossAxisAlignment.center,
+                         children: [
 
-                                        //-------------------------============================================----------------------------------------------------
+                          const SizedBox(height: 20,),
+                          Text(
+                              _language.tWelcomBack(),
+                              textAlign: TextAlign.center,
+                              style: headingStyle
+                          ),
+                          const SizedBox(height: 5,),
+                          Text(
+                              _language.tSgininwithyouremail(),
+                              textAlign: TextAlign.center,
+                              style: TextStyleGray
+                          ),
+                          Form(
+                            key: _formkey,
+                            child: Column(
+                                children: [
+                                  const SizedBox(height: 60),
+                                  SizedBox(
+                                      width: screenWidth,
 
-                                        child: PassWordField(
-                                          controller1: passwordcontroller,
-                                        )
-                                    ),
-                                    SizedBox(height: 0),
-                                    Container(
-                                      child: Row(
-                                        children: [
+                                      //-------------------------============================================----------------------------------------------------
+                                      child: EmailField(
+                                        controller1: emailcontroller,
+                                      )
+                                  ),
+                                  const SizedBox(height: 20),
+                                  SizedBox(
+                                      width: screenWidth,
 
-                                         SizedBox(width: 20),
-                                          GestureDetector(
-                                            onTap: ()=>  Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ForgetPasswordPage())),
-                                            child: Text(
+                                      //-------------------------============================================----------------------------------------------------
 
-                                              _language.tForgetPassword(),
-                                              style: TextStyle(
-                                                  decoration: TextDecoration.underline,
-                                                  color: kblack38
-                                              ),
-                                            ),
+                                      child: PassWordField(
+                                        controller1: passwordcontroller,
+                                      )
+                                  ),
+                                  const SizedBox(height: 0),
+                                  Row(
+                                    children: [
+
+                                      const SizedBox(width: 20),
+                                      GestureDetector(
+                                        onTap: ()=>  Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const ForgetPasswordPage())),
+                                        child: Text(
+
+                                          _language.tForgetPassword(),
+                                          style: const TextStyle(
+                                              decoration: TextDecoration.underline,
+                                              color: kblack38
                                           ),
-
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(height: 40),
-                                    Consumer<LoginProvider>(builder: (context,loginpro,child) {
-                                      return loginpro.isloading ? Center(child: CircularProgressIndicator(),) :
-                                      Container(
-                                          width: screenWidth,
-                                          child: DefaultButton(
-                                            bkground: kblueColor,
-                                            press: () async {
-                                              if (_formkey.currentState!.validate()) {
-                                                _formkey.currentState!.save();
-                                                setState(() async{
-                                                  await Provider.of<ResetAccountProvider>(context, listen: false).login(emailcontroller.text);
-                                                  if(resetAccountPro.userlist3.length > 0){
-                                                    if(resetAccountPro.userlist3.last.password.toString()==passwordcontroller.text.toString()){
 
-                                                      AwesomeDialog(
-                                                              dialogBackgroundColor: Theme.of(context).brightness == Brightness.dark
-                                                                  ? Color.fromRGBO(41, 45, 33, 1)
-                                                                  : kwhait,
-                                                        context: context,
-                                                        dialogType: DialogType.noHeader,
-                                                        animType: AnimType.topSlide,
-                                                        showCloseIcon: true,
-                                                        title: _language.tHello(),
-                                                        desc: _language.tWelcome() + InitSharedPreferences.getNameUser()!,
-                                                              descTextStyle: TextStyle(
-                                                                  fontWeight: FontWeight.bold),
-                                                              btnOkOnPress: () {
-                                                                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>nav()));
-                                                              },
-                                                              btnOkColor: kblueColor,
-                                                              btnOkIcon: Icons.check_circle,
-                                                            ).show();
+                                    ],
+                                  ),
+                                  const SizedBox(height: 40),
+                                  Consumer<LoginProvider>(builder: (context,loginpro,child) {
+                                    return loginpro.isloading ? const Center(child: CircularProgressIndicator(),) :
+                                    SizedBox(
+                                        width: screenWidth,
+                                        child: DefaultButton(
+                                          bkground: kblueColor,
+                                          press: () async {
+                                            if (_formkey.currentState!.validate()) {
+                                              _formkey.currentState!.save();
+                                              setState(() async{
+                                                await Provider.of<ResetAccountProvider>(context, listen: false).login(emailcontroller.text);
+                                                if(resetAccountPro.userlist3.isNotEmpty){
+                                                  if(resetAccountPro.userlist3.last.password.toString()==passwordcontroller.text.toString()){
 
-                                                    }else {
-                                                      AwesomeDialog(
-                                                          context: context,
-                                                          dialogType: DialogType
-                                                              .error,
-                                                          animType: AnimType
-                                                              .topSlide,
-                                                          showCloseIcon: true,
-                                                          // title: _language.tAlertUnCompleted(),
-                                                          desc: _language
-                                                              .wrongpass(),
-                                                          btnOkText: _language
-                                                              .tbtnYse(),
-                                                          btnOkColor: kblueColor,
-                                                          btnOkIcon: Icons
-                                                              .check,
-                                                          buttonsBorderRadius: BorderRadius
-                                                              .all(
-                                                              Radius.circular(
-                                                                  10)),
-                                                          btnOkOnPress: () {
+                                                    AwesomeDialog(
+                                                      dialogBackgroundColor: Theme.of(context).brightness == Brightness.dark
+                                                          ? Color.fromRGBO(41, 45, 33, 1)
+                                                          : kwhait,
+                                                      context: context,
+                                                      dialogType: DialogType.noHeader,
+                                                      animType: AnimType.topSlide,
+                                                      showCloseIcon: true,
+                                                      title: _language.tHello(),
+                                                      desc: _language.tWelcome() + InitSharedPreferences.getNameUser()!,
+                                                      descTextStyle: TextStyle(
+                                                          fontWeight: FontWeight.bold),
+                                                      btnOkOnPress: () {
+                                                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>nav()));
+                                                      },
+                                                      btnOkColor: kblueColor,
+                                                      btnOkIcon: Icons.check_circle,
+                                                    ).show();
 
-                                                          }
-                                                      ).show();
-                                                    }
-                                                  }else{
+                                                  }else {
                                                     AwesomeDialog(
                                                         context: context,
-                                                        dialogType: DialogType.error,
-                                                        animType: AnimType.topSlide,
+                                                        dialogType: DialogType
+                                                            .error,
+                                                        animType: AnimType
+                                                            .topSlide,
                                                         showCloseIcon: true,
                                                         // title: _language.tAlertUnCompleted(),
-                                                        desc: _language.wrongemail(),
-                                                        btnOkText: _language.tbtnYse(),
+                                                        desc: _language
+                                                            .wrongpass(),
+                                                        btnOkText: _language
+                                                            .tbtnYse(),
                                                         btnOkColor: kblueColor,
-                                                        btnOkIcon: Icons.check,
-                                                        buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
-                                                        btnOkOnPress: (){
+                                                        btnOkIcon: Icons
+                                                            .check,
+                                                        buttonsBorderRadius: BorderRadius
+                                                            .all(
+                                                            Radius.circular(
+                                                                10)),
+                                                        btnOkOnPress: () {
 
                                                         }
                                                     ).show();
                                                   }
-                                                });
+                                                }else{
+                                                  AwesomeDialog(
+                                                      context: context,
+                                                      dialogType: DialogType.error,
+                                                      animType: AnimType.topSlide,
+                                                      showCloseIcon: true,
+                                                      // title: _language.tAlertUnCompleted(),
+                                                      desc: _language.wrongemail(),
+                                                      btnOkText: _language.tbtnYse(),
+                                                      btnOkColor: kblueColor,
+                                                      btnOkIcon: Icons.check,
+                                                      buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                      btnOkOnPress: (){
+
+                                                      }
+                                                  ).show();
+                                                }
+                                              });
 
 
-                                              }
-                                            },
-                                            text: _language.tlogin(),
-                                            txtstyle: TextStyle(fontSize: 17,color: kwhait),
-                                            icon: Icon(Icons.login, color: kwhait),)
-                                      );
+                                            }
+                                          },
+                                          text: _language.tlogin(),
+                                          txtstyle: const TextStyle(fontSize: 17,color: kwhait),
+                                          icon: const Icon(Icons.login, color: kwhait),)
+                                    );
 
-                                    })
+                                  })
 
-                                  ]
-                              ),
+                                ]
                             ),
+                          ),
+
+                          const SizedBox(height: 10,)
+                      ,
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.center,
+                             crossAxisAlignment: CrossAxisAlignment.center,
+                             children: [
+                               Text(
+                                 _language.donthaveaccount(),style: const TextStyle(fontSize: 15,color: kblack38),textAlign: TextAlign.center,
+                               ),
+                               GestureDetector(
+                                 onTap: ()=> {
+
+                                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SginUpPage(),))
+                                 },
+                                 child:Text(
+                                   _language.signup(),style: const TextStyle(fontSize: 15,color: kblueColor),
+                                 ),
+                               ),
+                             ],
+                           ),
 
 
-
-                            SizedBox(height: 40),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-
-                                Container(
-                                  width:screenWidth - 50,
-                                  child: NoAccountText(
-                                    text1: _language.donthaveaccount(),
-                                    text2: _language.signup(),
-                                  ),
-                                ),
-
-                              ],
-                            ),
-                            SizedBox(height: 40),
-                          ],
-                        ),
-                      ),
+                          // SizedBox(height: 40),
+                        ],
+                       ),
+                     ),
                     ),
                   ),
-
                 ),
               ]
           );
