@@ -153,16 +153,7 @@ class _NewsPageState extends State<NewsPage> {
                                                     Row(
                                                       children: [
 
-                                                        Flexible(
-                                                          child: Text(
-                                                            newsypro.newslist[index].hdLine.toString(),
-                                                            maxLines: 1,
-                                                            overflow: TextOverflow.ellipsis,
-                                                            textAlign: TextAlign.justify,
-                                                            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,
-                                                            ),
-                                                          ),
-                                                        ),
+
                                                       ],
                                                     ),
                                                     SizedBox(height: 3),

@@ -221,8 +221,8 @@ class _donationState extends State<donation> {
                                                                 children: [
 
 
-                                                                  Flexible(child: Text(
-                                                                    donationbsktpro.donationbsktlist[index].bsktDscr.toString(),style: TextStyle(color: kblueColor), )),
+                                                                  Text(
+                                                                    donationbsktpro.donationbsktlist[index].bsktDscr.toString(),style: TextStyle(color: kblueColor), ),
 
 
                                                                  donationbsktpro.donationbsktlist[index].dontnStatus! < 3 ?

@@ -18,10 +18,13 @@ class LoginProvider extends ChangeNotifier{
   bool islogin =false;
    bool isloading =false;
    String message_error ="";
-
+Future<void> stoploading() async{
+  isloading=false;
+  notifyListeners();
+}
   Future<void> login (String email , String password)async{
 
-    // isloading =true;
+    isloading =true;
     notifyListeners();
     ApiResponse apiResponse = await loginRepo.login(email, password);
 
@@ -32,51 +35,40 @@ class LoginProvider extends ChangeNotifier{
 
 
     if(apiResponse.response != null&&apiResponse.response?.statusCode ==200){
-      print(email);
-      print(apiResponse.response!.data);
-      Map<String, dynamic> map = apiResponse.response?.data[0];
-      // const arr=[];
-      // map.forEach((key, value) =>arr[key:value]);
-      // print(arr);
-      print(map);
-      if(map['id'] != null){
-        // print(map);
-        isloading = false;
-        // notifyListeners();
-// Obtain shared preferences.
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-         await prefs.setInt('id',  map["id"]);
-//
-// // Save an integer value to 'counter' key.
-        await InitSharedPreferences.setPhoneUser(map["PhoneNo"]);
+      try {
+        print(apiResponse.response);
+        // if(apiResponse.response.toString().contains(""))
+        Map<String, dynamic> map = apiResponse.response?.data[0];
 
-// // Save an boolean value to 'repeat' key.
-//         await prefs.setBool('repeat', true);
-// // Save an double value to 'decimal' key.
-//         await prefs.setDouble('decimal', 1.5);
-// // Save an String value to 'action' key.
-        await InitSharedPreferences.setEmailUser(map["Email"]);
-        await InitSharedPreferences.setPassUser( map["password"]);
-        await InitSharedPreferences.setNameUser(map["UserName"]);
-        await InitSharedPreferences.setAddressUser( map["Adrs"]);
-        // await InitSharedPreferences.setDateUser( map["AddingTime"]);
+        if(map['id'] != null){
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setInt('id',  map["id"]);
+          await InitSharedPreferences.setPhoneUser(map["PhoneNo"]);
+          await InitSharedPreferences.setEmailUser(map["Email"]);
+          await InitSharedPreferences.setPassUser( map["password"]);
+          await InitSharedPreferences.setNameUser(map["UserName"]);
+          await InitSharedPreferences.setAddressUser( map["Adrs"]);
+          // await InitSharedPreferences.setDateUser( map["AddingTime"]);
 
-        islogin =true;
-       loginRepo!.setEmail(map["Email"]);
+          loginRepo!.setEmail(map["Email"]);
+          islogin =true;
+          isloading = false;
+          notifyListeners();
+        }else{
+          islogin =false;
+          isloading =false;
+          message_error = map["message"]!;
+        }
+      } on  Exception catch(_){
 
-      }else{
-        islogin =false;
-        message_error = map["message"]!;
+        isloading =false;
+        notifyListeners();
       }
-    }else{
-
-
-print("-----------------------------");
 
     }
-
-    isloading =false;
-    notifyListeners();
+    //
+    // isloading =false;
+    // notifyListeners();
 }
 
 

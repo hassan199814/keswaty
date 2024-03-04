@@ -265,86 +265,110 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                           icon: Icon(Icons.location_on_outlined,
                                               color: Colors.white),
                                           onPressed: () async {
-                                            AddLocationLocationModelNavigationBar
-                                                .Show(
-                                                    context,
-                                                    LocationModel(
-                                                        latitude: 15.37031780931026,
-                                                        longitude:
-                                                            44.191657147476455),
-                                                    () async {
-                                              Location location = new Location();
+                                            await  AwesomeDialog(
+                                                context: context,
+                                                dialogType: DialogType
+                                                    .warning,
+                                                animType: AnimType
+                                                    .leftSlide,
+                                                showCloseIcon: true,
+                                                // title: _language.tAlertUnCompleted(),
+                                                desc: _language
+                                                    .locationpermission() +"\n"+_language.locationpermission2(),
+                                                btnOkText: _language
+                                                    .agree(),
 
-                                              bool _serviceEnabled;
-                                              PermissionStatus _permissionGranted;
-                                              LocationData _locationData;
+                                                btnCancelText:_language.cancel() ,
+                                                btnOkColor: kblueColor,
+                                                btnOkIcon: Icons
+                                                    .check,
+                                                // btnCancelIcon: Icons.cancel_outlined,
+                                                buttonsBorderRadius: const BorderRadius
+                                                    .all(
+                                                    Radius.circular(
+                                                        10)),
+                                                btnOkOnPress: () {
+                                                  AddLocationLocationModelNavigationBar
+                                                      .Show(
+                                                      context,
+                                                      LocationModel(
+                                                          latitude: 15.37031780931026,
+                                                          longitude:
+                                                          44.191657147476455),
+                                                          () async {
+                                                        Location location = new Location();
 
-                                              _serviceEnabled =
-                                                  await location.serviceEnabled();
-                                              if (!_serviceEnabled) {
-                                                _serviceEnabled =
-                                                    await location.requestService();
-                                                if (!_serviceEnabled) {
-                                                  return;
+                                                        bool serviceEnabled;
+                                                        PermissionStatus permissionGranted;
+                                                        LocationData locationData;
+
+                                                        serviceEnabled =
+                                                        await location.serviceEnabled();
+                                                        if (!serviceEnabled) {
+                                                          serviceEnabled =
+                                                          await location.requestService();
+                                                          if (!serviceEnabled) {
+                                                            return;
+                                                          }
+                                                        }
+
+                                                        permissionGranted =
+                                                        await location.hasPermission();
+                                                        if (permissionGranted ==
+                                                            PermissionStatus.denied) {
+                                                          permissionGranted = await location
+                                                              .requestPermission();
+                                                          if (permissionGranted !=
+                                                              PermissionStatus.granted) {
+                                                            return;
+                                                          }
+                                                        }
+
+                                                        locationData =
+                                                        await location.getLocation();
+
+                                                        setState(() {
+                                                          lngtd = locationData!.longitude
+                                                              .toString();
+                                                          latud = locationData!.latitude
+                                                              .toString();
+                                                          controllerLong.text = lngtd!;
+                                                          controllerLat.text = latud!;
+                                                        });
+
+                                                      }, () async {
+                                                    final result = await Navigator.of(
+                                                        context)
+                                                        .push(MaterialPageRoute(
+                                                        builder: (_) =>
+                                                            AddLocatonGoogleMapScreen(
+                                                              locationModel: LocationModel(
+                                                                  latitude:
+                                                                  15.37031780931026,
+                                                                  longitude:
+                                                                  44.191657147476455),
+                                                            )));
+                                                    if (result != null) {
+                                                      final LocationModel? locationModel =
+                                                          result;
+                                                      setState(() {
+                                                        lngtd = locationModel!.longitude
+                                                            .toString();
+                                                        latud = locationModel!.latitude
+                                                            .toString();
+                                                        controllerLong.text = lngtd!;
+                                                        controllerLat.text = latud!;
+                                                      });
+
+                                                    }
+                                                  });
                                                 }
-                                              }
+                                            ).show();
 
-                                              _permissionGranted =
-                                                  await location.hasPermission();
-                                              if (_permissionGranted ==
-                                                  PermissionStatus.denied) {
-                                                _permissionGranted = await location
-                                                    .requestPermission();
-                                                if (_permissionGranted !=
-                                                    PermissionStatus.granted) {
-                                                  return;
-                                                }
-                                              }
-
-                                              _locationData =
-                                                  await location.getLocation();
-
-                                              setState(() {
-                                                lngtd = _locationData!.longitude
-                                                    .toString();
-                                                latud = _locationData!.latitude
-                                                    .toString();
-                                                controllerLong.text = lngtd!;
-                                                controllerLat.text = latud!;
-                                              });
-                                              print(lngtd);
-                                              print(latud);
-                                            }, () async {
-                                              final result = await Navigator.of(
-                                                      context)
-                                                  .push(MaterialPageRoute(
-                                                      builder: (_) =>
-                                                          AddLocatonGoogleMapScreen(
-                                                            locationModel: LocationModel(
-                                                                latitude:
-                                                                    15.37031780931026,
-                                                                longitude:
-                                                                    44.191657147476455),
-                                                          )));
-                                              if (result != null) {
-                                                final LocationModel? locationModel =
-                                                    result;
-                                                setState(() {
-                                                  lngtd = locationModel!.longitude
-                                                      .toString();
-                                                  latud = locationModel!.latitude
-                                                      .toString();
-                                                  controllerLong.text = lngtd!;
-                                                  controllerLat.text = latud!;
-                                                });
-                                                print(lngtd);
-                                                print(latud);
-                                              }
-                                            });
                                           },
                                           label: Text(
                                             _language.Determinedeliverylocation(),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 18,
                                               color: Colors.white,
                                             ),
@@ -353,7 +377,7 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                         //DefaultButton(text: "Map", press: (){}, icon: Icon(Icons.add_circle, color: Colors.white),),
 
                                         ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 20,
                                     ),
                                     Row(

@@ -386,11 +386,30 @@ class Language extends ChangeNotifier{
   }
   String wrongpass(){
     if (getLanguage() == 'AR') {
-      return "كلمة المرور خاطئة";
+      return "كلمة المرور خاطئة او البريد الالكتروني غير صحيح";
     } else if (getLanguage() == 'EN') {
-      return "Password is wrong !";
+      return "Password is wrong or Email is wrong!";
     }else {
-      return "Password is wrong !";
+      return "Password is wrong or Email is wrong!";
+    }
+  }
+
+  String locationpermission(){
+    if (getLanguage() == 'AR') {
+      return "      يجمع هذا التطبيق بيانات المواقع لتمكين موقع المتبرع وموقع نقطة التبرع حتى عندما يكون التطبيق مغلقًا أو غير مستخدم.";
+    } else if (getLanguage() == 'EN') {
+      return "this app collects locations data to enable Donater Location and Donation Point Location even when the app is closed or not in use !";
+    }else {
+      return "this app collects locations data to enable Donater Location and Donation Point Location even when the app is closed or not in use !";
+    }
+  }
+  String locationpermission2(){
+    if (getLanguage() == 'AR') {
+      return "this app collects locations data to enable Donater Location and Donation Point Location even when the app is closed or not in use !";
+    } else if (getLanguage() == 'EN') {
+      return "this app collects locations data to enable Donater Location and Donation Point Location even when the app is closed or not in use !";
+    }else {
+      return "this app collects locations data to enable Donater Location and Donation Point Location even when the app is closed or not in use !";
     }
   }
   String tpasschanged(){
@@ -859,6 +878,24 @@ class Language extends ChangeNotifier{
       return "Ok";
     }else {
       return "Ok";
+    }
+  }
+  String cancel(){
+    if (getLanguage() == 'AR') {
+      return "رفض ";
+    } else if (getLanguage() == 'EN') {
+      return "Cancel";
+    }else {
+      return "Cancel";
+    }
+  }
+  String agree(){
+    if (getLanguage() == 'AR') {
+      return "تأكيد وموافقة";
+    } else if (getLanguage() == 'EN') {
+      return "Agree";
+    }else {
+      return "Agree";
     }
   }
   String tconus(){

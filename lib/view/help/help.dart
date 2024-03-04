@@ -52,11 +52,7 @@ class _HelpPageState extends State<HelpPage> {
 
 
               Container(
-                    child: Flexible(
-
-                        child:
-                        Text(_language.helptitle(),style: TextStyle(fontSize: 20),textAlign: TextAlign.center,)
-                    ),
+                    child: Text(_language.helptitle(),style: TextStyle(fontSize: 20),textAlign: TextAlign.center,),
                   ),
 
               SizedBox(height: 40),

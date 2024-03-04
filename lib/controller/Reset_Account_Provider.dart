@@ -4,6 +4,7 @@ import 'package:keswaty/data/ini_shard.dart';
 import 'package:keswaty/data/models/base/api_response.dart';
 import 'package:keswaty/data/models/sginup_model.dart';
 import 'package:keswaty/data/repository/inset_sginup_repo.dart';
+import 'package:keswaty/data/repository/login_repo.dart';
 import 'package:keswaty/data/repository/reset_accunt_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -88,11 +89,12 @@ class ResetAccountProvider extends ChangeNotifier{
 
 
     ApiResponse apiResponse = await resetAccountRepo!.reset_account(email);
-    print(apiResponse.response);
+    // ApiResponse apiResponse = await LoginRepo
+    // print(apiResponse.response);
     if(apiResponse.response != null&&apiResponse.response?.statusCode ==200){
 
       for (var item in apiResponse.response?.data){
-        print(item);
+        // print(item);
         var encodedString = jsonEncode(item);
 
         Map<String, dynamic> valueMap = json.decode(encodedString);
@@ -106,11 +108,7 @@ class ResetAccountProvider extends ChangeNotifier{
 // // Save an integer value to 'counter' key.
       await InitSharedPreferences.setPhoneUser(userlist3.last.phoneNo!);
 
-// // Save an boolean value to 'repeat' key.
-//         await prefs.setBool('repeat', true);
-// // Save an double value to 'decimal' key.
-//         await prefs.setDouble('decimal', 1.5);
-// // Save an String value to 'action' key.
+
       await InitSharedPreferences.setEmailUser(userlist3.last.Email!);
       await InitSharedPreferences.setPassUser( userlist3.last.password!);
       await InitSharedPreferences.setNameUser(userlist3.last.userName!);
@@ -122,8 +120,7 @@ class ResetAccountProvider extends ChangeNotifier{
     }else{
 
 
-      print("-----------------------------");
-      print(apiResponse.response);
+      islogin =false;
     }
 
     isloading =false;

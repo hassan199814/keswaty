@@ -96,323 +96,323 @@ class _AddDonationPageState extends State<AddDonationPage> {
                         )
                       :
                   ListView(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                //----------------------------------------------------------------------------------------------------------------------------------------------------------
-                                Center(
-                                  child: Material(
-                                      color: Theme.of(context).brightness ==
-                                              Brightness.dark
-                                          ? Color.fromRGBO(41, 45, 33, 1)
-                                          : Color.fromRGBO(240, 242, 245, 1),
-                                      elevation: 0,
-                                      borderRadius: BorderRadius.circular(5),
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      child: Column(
-                                        // mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: Colors.transparent,
-                                                  //  border: Border.all(color: kblueColor),
-                                                  borderRadius: BorderRadius.only(
-                                                      topRight: Radius.circular(5),
-                                                      topLeft: Radius.circular(5)),
-                                                ),
-                                                child: Icon(
-                                                  MingCute.hand_heart_line,
-                                                  color: greenColor,
-                                                  size: 40,
-                                                ),
-                                                // Ink.image(image: AssetImage("images/found.png"),
-                                                height: 40,
-                                                width: screenWidth - 20,
-                                                // fit: BoxFit.cover,
-                                              ),
-                                              SizedBox(height: 6),
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          //----------------------------------------------------------------------------------------------------------------------------------------------------------
+                          Center(
+                            child: Material(
+                                color: Theme.of(context).brightness ==
+                                    Brightness.dark
+                                    ? Color.fromRGBO(41, 45, 33, 1)
+                                    : Color.fromRGBO(240, 242, 245, 1),
+                                elevation: 0,
+                                borderRadius: BorderRadius.circular(5),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: Column(
+                                  // mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.transparent,
+                                            //  border: Border.all(color: kblueColor),
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(5),
+                                                topLeft: Radius.circular(5)),
+                                          ),
+                                          child: Icon(
+                                            MingCute.hand_heart_line,
+                                            color: greenColor,
+                                            size: 40,
+                                          ),
+                                          // Ink.image(image: AssetImage("images/found.png"),
+                                          height: 40,
+                                          width: screenWidth - 20,
+                                          // fit: BoxFit.cover,
+                                        ),
+                                        SizedBox(height: 6),
 
-                                              // SizedBox(height: 6,)
-                                            ],
-                                          )
-                                        ],
-                                      )),
-                                ),
-                                SizedBox(height: 10),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                    child: Divider(
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? kwhait
-                                      : greenColor,
+                                        // SizedBox(height: 6,)
+                                      ],
+                                    )
+                                  ],
                                 )),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Text(
-                                    _language.Donate(),
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: greenColor,
-                                        fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 10),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                              child: Divider(
+                                color: Theme.of(context).brightness ==
+                                    Brightness.dark
+                                    ? kwhait
+                                    : greenColor,
+                              )),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
+                              _language.Donate(),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: greenColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Expanded(
+                              child: Divider(
+                                color: Theme.of(context).brightness ==
+                                    Brightness.dark
+                                    ? kwhait
+                                    : greenColor,
+                              )),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      //---------------------------------------------------------------------------------------------------------
+                      Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                width: screenWidth - 20,
+
+                                child: DropdownButtonFormField<String>(
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return _language.tPleaseselectType();
+                                    }
+                                  },
+                                  // value: lostfound_type,
+                                  items: donationinsertPro.donationtypedropdownlist!.map((DonationTypeModel element) {
+                                    return DropdownMenuItem(
+                                      value: element.id.toString(),
+                                      child: Text(element.name.toString()),
+                                    );
+
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      id =  value;
+                                    });
+                                  },
+                                  decoration: InputDecoration(
+                                    labelText: _language.tType(),
+                                    hintText: _language.tChooseType(),
                                   ),
                                 ),
-                                Expanded(
-                                    child: Divider(
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? kwhait
-                                      : greenColor,
-                                )),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            //---------------------------------------------------------------------------------------------------------
-                            Form(
-                                key: _formKey,
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      width: screenWidth - 20,
+                              ),
 
-                                      child: DropdownButtonFormField<String>(
-                                        validator: (value) {
-                                          if (value == null) {
-                                            return _language.tPleaseselectType();
-                                          }
-                                        },
-                                         // value: lostfound_type,
-                                        items: donationinsertPro.donationtypedropdownlist!.map((DonationTypeModel element) {
-                                          return DropdownMenuItem(
-                                            value: element.id.toString(),
-                                            child: Text(element.name.toString()),
-                                          );
+                              SizedBox(height: 10),
 
-                                        }).toList(),
-                                        onChanged: (value) {
-                                          setState(() {
-                                             id =  value;
-                                          });
-                                        },
-                                        decoration: InputDecoration(
-                                          labelText: _language.tType(),
-                                          hintText: _language.tChooseType(),
-                                        ),
+                              SizedBox(width: 20),
+                              Text(_language.AddPhoto()),
+                              SizedBox(width: 10),
+
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+
+                                children: [
+
+                                  ElevatedButton.icon(onPressed:  () {
+                                    donationinsertPro.pickCameraImage();
+                                  },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor:  kblueColor,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:BorderRadius.only(
+                                              bottomRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
+                                              topRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
+                                              bottomLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
+                                              topLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
+                                            ),
+                                          )
+                                      ),
+                                      icon:Icon(Icons.camera_alt,color: Colors.white),
+                                      label: Text(_language.Camera(),style: TextStyle(color: Colors.white),)),
+                                  SizedBox(width: 1),
+                                  ElevatedButton.icon(onPressed:  () {
+                                    donationinsertPro.pickMultipleImage();
+                                  },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor:  kblueColor,
+
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:BorderRadius.only(
+                                              bottomRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
+                                              topRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
+                                              bottomLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
+                                              topLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
+                                            ),
+                                          )
+                                      ),
+                                      icon:Icon(Icons.image,color: Colors.white,),
+                                      label: Text(_language.Gallery(),style: TextStyle(color: Colors.white))),
+                                  SizedBox(width: 10),
+                                ],
+                              ),
+
+
+                              GridView.builder(
+                                shrinkWrap: true,
+                                itemCount: donationinsertPro.imageFileList?.length,
+                                padding: const EdgeInsets.all(20),
+                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  childAspectRatio: 1 / 1,
+                                  mainAxisSpacing: 8,
+                                  crossAxisSpacing: 8,
+                                ),
+                                itemBuilder: (context, index) {
+                                  final String? image = donationinsertPro.imageFileList?[index].path ;
+
+                                  return   Container(
+
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: FileImage(File(image!)),
                                       ),
                                     ),
+                                    child:   IconButton(
+                                      iconSize: 25,
+                                      alignment: Alignment.topRight,
+                                      icon: const Icon(HeroIcons.trash,shadows: <Shadow>[Shadow(color: Colors.grey, blurRadius: 5.0)],),
+                                      color: Colors.pink,
+                                      onPressed: () {
+                                        setState(() {
+                                          donationinsertPro.deleteImage(index);
 
-                                    SizedBox(height: 10),
-
-                                    SizedBox(width: 20),
-                                    Text(_language.AddPhoto()),
-                                    SizedBox(width: 10),
-
-
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-
-                                        children: [
-
-                                          ElevatedButton.icon(onPressed:  () {
-                                            donationinsertPro.pickCameraImage();
-                                          },
-                                              style: ElevatedButton.styleFrom(
-                                                  backgroundColor:  kblueColor,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:BorderRadius.only(
-                                                    bottomRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                    topRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                    bottomLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                    topLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                  ),
-                                                )
-                                              ),
-                                              icon:Icon(Icons.camera_alt,color: Colors.white),
-                                              label: Text(_language.Camera(),style: TextStyle(color: Colors.white),)),
-                                          SizedBox(width: 1),
-                                           ElevatedButton.icon(onPressed:  () {
-                                            donationinsertPro.pickMultipleImage();
-                                          },
-                                               style: ElevatedButton.styleFrom(
-                                                 backgroundColor:  kblueColor,
-
-                                                   shape: RoundedRectangleBorder(
-                                                     borderRadius:BorderRadius.only(
-                                                       bottomRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                       topRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                       bottomLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                       topLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                     ),
-                                                   )
-                                               ),
-                                              icon:Icon(Icons.image,color: Colors.white,),
-                                              label: Text(_language.Gallery(),style: TextStyle(color: Colors.white))),
-                                          SizedBox(width: 10),
-                                          ],
-                                      ),
-
-
-                                    GridView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: donationinsertPro.imageFileList?.length,
-                                      padding: const EdgeInsets.all(20),
-                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 3,
-                                        childAspectRatio: 1 / 1,
-                                        mainAxisSpacing: 8,
-                                        crossAxisSpacing: 8,
-                                      ),
-                                      itemBuilder: (context, index) {
-                                        final String? image = donationinsertPro.imageFileList?[index].path ;
-
-                                      return   Container(
-
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(8),
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: FileImage(File(image!)),
-                                          ),
-                                        ),
-                                        child:   IconButton(
-                                          iconSize: 25,
-                                          alignment: Alignment.topRight,
-                                          icon: const Icon(HeroIcons.trash,shadows: <Shadow>[Shadow(color: Colors.grey, blurRadius: 5.0)],),
-                                          color: Colors.pink,
-                                          onPressed: () {
-                                            setState(() {
-                                              donationinsertPro.deleteImage(index);
-
-                                            });
-                                          },
-                                        ),
-                                      );
+                                        });
                                       },
                                     ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    SizedBox(height: 10),
-                                    Container(
-                                      width: screenWidth - 20,
-                                      child:
-                                      DefaultButton(
-                                        bkground: kblueColor,
-                                        press: () {
-                                          //_saveForm;
-                                          if (_formKey.currentState!.validate()) {
-                                            FocusScope.of(context).unfocus();
-                                            _formKey.currentState!.save();
+                                  );
+                                },
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              SizedBox(height: 10),
+                              Container(
+                                width: screenWidth - 20,
+                                child:
+                                DefaultButton(
+                                  bkground: kblueColor,
+                                  press: () {
+                                    //_saveForm;
+                                    if (_formKey.currentState!.validate()) {
+                                      FocusScope.of(context).unfocus();
+                                      _formKey.currentState!.save();
 
 
 
-                                                  if(donationinsertPro.imageFileList!.length > 0 ){
-                                                    donationinsertPro.uploadImage(donationinsertPro.donationbsktadded_item.last.id.toString() ,id!);
+                                      if(donationinsertPro.imageFileList!.length > 0 ){
+                                        donationinsertPro.uploadImage(donationinsertPro.donationbsktadded_item.last.id.toString() ,id!);
 
 
 
-                                                    AwesomeDialog(
-                                                        context: context,
-                                                        dialogType: DialogType.success,
-                                                        animType: AnimType.topSlide,
-                                                        showCloseIcon: true,
-                                                        title: _language.tAlertSuccess(),
-                                                        desc: _language.tAlertAddLostFoundDesc(),
-                                                        btnOkText: _language.tbtnYse(),
-                                                        btnOkColor: kblueColor,
-                                                        btnOkIcon: Icons.check,
-                                                        buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
-                                                        btnOkOnPress: (){
-                                                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => DonationsPage(donation: donationinsertPro.donationbsktadded_item.last)));
-                                                        }
-                                                    ).show();
+                                        AwesomeDialog(
+                                            context: context,
+                                            dialogType: DialogType.success,
+                                            animType: AnimType.topSlide,
+                                            showCloseIcon: true,
+                                            title: _language.tAlertSuccess(),
+                                            desc: _language.tAlertAddLostFoundDesc(),
+                                            btnOkText: _language.tbtnYse(),
+                                            btnOkColor: kblueColor,
+                                            btnOkIcon: Icons.check,
+                                            buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                            btnOkOnPress: (){
+                                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => DonationsPage(donation: donationinsertPro.donationbsktadded_item.last)));
+                                            }
+                                        ).show();
 
-                                                  }else{
-                                                    AwesomeDialog(
-                                                        context: context,
-                                                        dialogType: DialogType.warning,
-                                                        animType: AnimType.topSlide,
-                                                        showCloseIcon: true,
-                                                        // title: _language.tAlertUnCompleted(),
-                                                        desc: _language.imagereq(),
-                                                        btnOkText: _language.tbtnYse(),
-                                                        btnOkColor: kblueColor,
-                                                        btnOkIcon: Icons.check,
-                                                        buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
-                                                        btnOkOnPress: (){
-                                                        }
-                                                    ).show();
-                                                  }
-
-
+                                      }else{
+                                        AwesomeDialog(
+                                            context: context,
+                                            dialogType: DialogType.warning,
+                                            animType: AnimType.topSlide,
+                                            showCloseIcon: true,
+                                            // title: _language.tAlertUnCompleted(),
+                                            desc: _language.imagereq(),
+                                            btnOkText: _language.tbtnYse(),
+                                            btnOkColor: kblueColor,
+                                            btnOkIcon: Icons.check,
+                                            buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                            btnOkOnPress: (){
+                                            }
+                                        ).show();
+                                      }
 
 
-                                            setState(() {
 
 
-                                            // donationinsertPro.imageFileList=[];
-
-                                            // donationinsertPro.uploadPhoto("21","1");
-
-                                            });
-
-                                            // print(donationinsertPro.donationbsktlist);
-                                          }
-                                        },
-                                        text: _language.tadd(),
-                                        txtstyle:
-                                            TextStyle(fontSize: 15, color: kwhait),
-                                        icon: Icon(Icons.add_circle_outline,
-                                            color: Colors.white),
-                                      ),
-                                    ),
+                                      setState(() {
 
 
-                                  ],
-                                )),
+                                        // donationinsertPro.imageFileList=[];
 
-            //------------------------------------------------------------------------------------------
-                            Column(
-                              children: [
-                                SizedBox(height: 20),
-                                Row(
-                                  children: [
-                                    SizedBox(width: 20),
-                                    Expanded(child: Divider()),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10),
-                                      child: Text(
-                                        _language.tNote(),
-                                        style: TextStyle(color: Colors.red),
-                                      ),
-                                    ),
-                                    Expanded(child: Divider()),
-                                    SizedBox(width: 20),
-                                  ],
+                                        // donationinsertPro.uploadPhoto("21","1");
+
+                                      });
+
+                                      // print(donationinsertPro.donationbsktlist);
+                                    }
+                                  },
+                                  text: _language.tadd(),
+                                  txtstyle:
+                                  TextStyle(fontSize: 15, color: kwhait),
+                                  icon: Icon(Icons.add_circle_outline,
+                                      color: Colors.white),
                                 ),
-                                SizedBox(height: 10),
-                                Text(_language.dontnnote(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyleGray),
-                                SizedBox(height: 40),
-                              ],
-                            )
-                          ],
-                        );
+                              ),
+
+
+                            ],
+                          )),
+
+                      //------------------------------------------------------------------------------------------
+                      Column(
+                        children: [
+                          SizedBox(height: 20),
+                          Row(
+                            children: [
+                              SizedBox(width: 20),
+                              Expanded(child: Divider()),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  _language.tNote(),
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
+                              Expanded(child: Divider()),
+                              SizedBox(width: 20),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Text(_language.dontnnote(),
+                              textAlign: TextAlign.center,
+                              style: TextStyleGray),
+                          SizedBox(height: 40),
+                        ],
+                      )
+                    ],
+                  );
                 }
                 )
             ),

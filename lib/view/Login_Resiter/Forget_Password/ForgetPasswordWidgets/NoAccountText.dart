@@ -18,20 +18,16 @@ class NoAccountText extends StatelessWidget {
       Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Flexible(
-          child: Text(
-            text1,style: TextStyle(fontSize: 15,color: kblack38),textAlign: TextAlign.center,
-          ),
+        Text(
+          text1,style: TextStyle(fontSize: 15,color: kblack38),textAlign: TextAlign.center,
         ),
         GestureDetector(
           onTap: ()=> {
 
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SginUpPage(),))
           },
-          child:Flexible(
-            child: Text(
-              text2,style: TextStyle(fontSize: 15,color: kblueColor),
-            ),
+          child:Text(
+            text2,style: TextStyle(fontSize: 15,color: kblueColor),
           ),
         ),
       ],

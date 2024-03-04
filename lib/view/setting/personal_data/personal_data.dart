@@ -190,10 +190,10 @@ class _PersonalDataState extends State<PersonalData> {
                                                                   SizedBox(width: 40),
 
                                                                   if(InitSharedPreferences.getNameUser()!=null&&InitSharedPreferences.getNameUser()!.isNotEmpty)
-                                                                    Flexible(child: Text(
+                                                                    Text(
                                                                       InitSharedPreferences.getNameUser()!, style: TextStyle(fontSize: 13,color: kblack38),
-
-                                                                    ))
+                                                                    
+                                                                    )
                                                                 ],),
                                                               ],
                                                             ),
@@ -215,7 +215,7 @@ class _PersonalDataState extends State<PersonalData> {
                                                                 Row(children: [
                                                                   SizedBox(width: 40),
                                                                   if(InitSharedPreferences.getPhoneUser()!=null&&InitSharedPreferences.getPhoneUser()!.isNotEmpty)
-                                                                    Flexible(child: Text(InitSharedPreferences.getPhoneUser().toString(), style: TextStyle(fontSize: 13,color: kblack38),))
+                                                                    Text(InitSharedPreferences.getPhoneUser().toString(), style: TextStyle(fontSize: 13,color: kblack38),)
                                                                 ],),
                                                               ],
                                                             ),
@@ -237,7 +237,7 @@ class _PersonalDataState extends State<PersonalData> {
                                                                 Row(children: [
                                                                   SizedBox(width: 40),
                                                                   if(InitSharedPreferences.getEmailUser()!=null&&InitSharedPreferences.getEmailUser()!.isNotEmpty)
-                                                                    Flexible(child: Text(InitSharedPreferences.getEmailUser()!, style: TextStyle(fontSize: 13,color: kblack38),))
+                                                                    Text(InitSharedPreferences.getEmailUser()!, style: TextStyle(fontSize: 13,color: kblack38),)
                                                                   //Text("hassan@gmail.com",style: TextStyle(fontSize: 13, color: kblack38)),
                                                                 ],),
                                                               ],
@@ -262,7 +262,7 @@ class _PersonalDataState extends State<PersonalData> {
                                                                 Row(children: [
                                                                   SizedBox(width: 40),
                                                                   if(InitSharedPreferences.getAddressUser()!=null&&InitSharedPreferences.getAddressUser()!.isNotEmpty)
-                                                                    Flexible(child: Text(InitSharedPreferences.getAddressUser()!, style: TextStyle(fontSize: 13,color: kblack38)))
+                                                                    Text(InitSharedPreferences.getAddressUser()!, style: TextStyle(fontSize: 13,color: kblack38))
                                                                   //Text("sana'a al jaraf",style: TextStyle(fontSize: 13,color: kblack38)),
                                                                 ],),
                                                               ],

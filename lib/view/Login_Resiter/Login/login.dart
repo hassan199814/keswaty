@@ -77,8 +77,8 @@ class _LoginState extends State<Login> {
           ),
         ),
 
-        body: Consumer<ResetAccountProvider>(builder: (context, resetAccountPro, child) {
-          return resetAccountPro.isloading
+        body: Consumer<LoginProvider>(builder: (context, loginpro, child) {
+          return loginpro.isloading
               ? Center(
             child: CircularProgressIndicator(),
           )
@@ -154,82 +154,142 @@ class _LoginState extends State<Login> {
                                     ],
                                   ),
                                   const SizedBox(height: 40),
-                                  Consumer<LoginProvider>(builder: (context,loginpro,child) {
-                                    return loginpro.isloading ? const Center(child: CircularProgressIndicator(),) :
+
+                                  // Consumer<LoginProvider>(builder: (context,loginpro2,child) {
+                                  //   return loginpro2.isloading ? const Center(child: CircularProgressIndicator(),) :
                                     SizedBox(
                                         width: screenWidth,
                                         child: DefaultButton(
                                           bkground: kblueColor,
-                                          press: () async {
+                                          press: () async  {
                                             if (_formkey.currentState!.validate()) {
                                               _formkey.currentState!.save();
-                                              setState(() async{
-                                                await Provider.of<ResetAccountProvider>(context, listen: false).login(emailcontroller.text);
-                                                if(resetAccountPro.userlist3.isNotEmpty){
-                                                  if(resetAccountPro.userlist3.last.password.toString()==passwordcontroller.text.toString()){
-
-                                                    AwesomeDialog(
-                                                      dialogBackgroundColor: Theme.of(context).brightness == Brightness.dark
-                                                          ? Color.fromRGBO(41, 45, 33, 1)
-                                                          : kwhait,
-                                                      context: context,
-                                                      dialogType: DialogType.noHeader,
-                                                      animType: AnimType.topSlide,
-                                                      showCloseIcon: true,
-                                                      title: _language.tHello(),
-                                                      desc: _language.tWelcome() + InitSharedPreferences.getNameUser()!,
-                                                      descTextStyle: TextStyle(
-                                                          fontWeight: FontWeight.bold),
-                                                      btnOkOnPress: () {
-                                                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>nav()));
-                                                      },
-                                                      btnOkColor: kblueColor,
-                                                      btnOkIcon: Icons.check_circle,
-                                                    ).show();
-
-                                                  }else {
-                                                    AwesomeDialog(
-                                                        context: context,
-                                                        dialogType: DialogType
-                                                            .error,
-                                                        animType: AnimType
-                                                            .topSlide,
-                                                        showCloseIcon: true,
-                                                        // title: _language.tAlertUnCompleted(),
-                                                        desc: _language
-                                                            .wrongpass(),
-                                                        btnOkText: _language
-                                                            .tbtnYse(),
-                                                        btnOkColor: kblueColor,
-                                                        btnOkIcon: Icons
-                                                            .check,
-                                                        buttonsBorderRadius: BorderRadius
-                                                            .all(
-                                                            Radius.circular(
-                                                                10)),
-                                                        btnOkOnPress: () {
-
-                                                        }
-                                                    ).show();
-                                                  }
-                                                }else{
-                                                  AwesomeDialog(
-                                                      context: context,
-                                                      dialogType: DialogType.error,
-                                                      animType: AnimType.topSlide,
-                                                      showCloseIcon: true,
-                                                      // title: _language.tAlertUnCompleted(),
-                                                      desc: _language.wrongemail(),
-                                                      btnOkText: _language.tbtnYse(),
-                                                      btnOkColor: kblueColor,
-                                                      btnOkIcon: Icons.check,
-                                                      buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
-                                                      btnOkOnPress: (){
-
-                                                      }
-                                                  ).show();
+                                              await Provider.of<
+                                                  LoginProvider>(
+                                                  context, listen: false)
+                                                  .login(
+                                                  emailcontroller.text,passwordcontroller.text)
+                                                  .onError((error, stackTrace) async {
+                                                await  AwesomeDialog(
+                                                context: context,
+                                                dialogType: DialogType
+                                                    .error,
+                                                animType: AnimType
+                                                    .topSlide,
+                                                showCloseIcon: true,
+                                                // title: _language.tAlertUnCompleted(),
+                                                desc: _language
+                                                    .wrongpass() ,
+                                                btnOkText: _language
+                                                    .tbtnYse(),
+                                                btnOkColor: kblueColor,
+                                                btnOkIcon: Icons
+                                                    .check,
+                                                buttonsBorderRadius: const BorderRadius
+                                                    .all(
+                                                    Radius.circular(
+                                                        10)),
+                                                btnOkOnPress: () {
+                                                  loginpro.stoploading();
                                                 }
-                                              });
+                                                ).show();
+                                              })
+                                                  .then((value) async{
+                                                 if(loginpro.islogin){
+                                                  await AwesomeDialog(
+                                                     dialogBackgroundColor: Theme.of(context).brightness == Brightness.dark
+                                                         ? Color.fromRGBO(41, 45, 33, 1)
+                                                         : kwhait,
+                                                     context: context,
+                                                     dialogType: DialogType.noHeader,
+                                                     animType: AnimType.topSlide,
+                                                     showCloseIcon: true,
+                                                     title: _language.tHello(),
+                                                     desc: _language.tWelcome() + InitSharedPreferences.getNameUser()!,
+                                                     descTextStyle: const TextStyle(
+                                                         fontWeight: FontWeight.bold),
+                                                     btnOkOnPress: () {
+                                                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>nav()));
+                                                     },
+                                                     btnOkColor: kblueColor,
+                                                     btnOkIcon: Icons.check_circle,
+                                                   ).show();
+                                                 }
+                                               }
+
+                                               );
+
+
+
+
+
+
+                                              // if(InitSharedPreferences.getNameUser()){
+                                              //   if(resetAccountPro.userlist3.last.password.toString()==passwordcontroller.text.toString()){
+                                              //
+                                              //     AwesomeDialog(
+                                              //       dialogBackgroundColor: Theme.of(context).brightness == Brightness.dark
+                                              //           ? Color.fromRGBO(41, 45, 33, 1)
+                                              //           : kwhait,
+                                              //       context: context,
+                                              //       dialogType: DialogType.noHeader,
+                                              //       animType: AnimType.topSlide,
+                                              //       showCloseIcon: true,
+                                              //       title: _language.tHello(),
+                                              //       desc: _language.tWelcome() + InitSharedPreferences.getNameUser()!,
+                                              //       descTextStyle: const TextStyle(
+                                              //           fontWeight: FontWeight.bold),
+                                              //       btnOkOnPress: () {
+                                              //         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>nav()));
+                                              //       },
+                                              //       btnOkColor: kblueColor,
+                                              //       btnOkIcon: Icons.check_circle,
+                                              //     ).show();
+                                              //
+                                              //   }else {
+                                              //     AwesomeDialog(
+                                              //         context: context,
+                                              //         dialogType: DialogType
+                                              //             .error,
+                                              //         animType: AnimType
+                                              //             .topSlide,
+                                              //         showCloseIcon: true,
+                                              //         // title: _language.tAlertUnCompleted(),
+                                              //         desc: _language
+                                              //             .wrongpass(),
+                                              //         btnOkText: _language
+                                              //             .tbtnYse(),
+                                              //         btnOkColor: kblueColor,
+                                              //         btnOkIcon: Icons
+                                              //             .check,
+                                              //         buttonsBorderRadius: BorderRadius
+                                              //             .all(
+                                              //             Radius.circular(
+                                              //                 10)),
+                                              //         btnOkOnPress: () {
+                                              //
+                                              //         }
+                                              //     ).show();
+                                              //   }
+                                              // }
+                                              // else{
+                                              //   AwesomeDialog(
+                                              //       context: context,
+                                              //       dialogType: DialogType.error,
+                                              //       animType: AnimType.topSlide,
+                                              //       showCloseIcon: true,
+                                              //       // title: _language.tAlertUnCompleted(),
+                                              //       desc: _language.wrongemail(),
+                                              //       btnOkText: _language.tbtnYse(),
+                                              //       btnOkColor: kblueColor,
+                                              //       btnOkIcon: Icons.check,
+                                              //       buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                              //       btnOkOnPress: (){
+                                              //
+                                              //       }
+                                              //   ).show();
+                                              // }
+
 
 
                                             }
@@ -237,10 +297,11 @@ class _LoginState extends State<Login> {
                                           text: _language.tlogin(),
                                           txtstyle: const TextStyle(fontSize: 17,color: kwhait),
                                           icon: const Icon(Icons.login, color: kwhait),)
-                                    );
+                                    )
 
-                                  })
 
+
+,
                                 ]
                             ),
                           ),
