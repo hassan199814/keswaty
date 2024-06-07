@@ -1,0 +1,59 @@
+name: Flutter CI
+
+# This workflow is triggered on pushes to the repository.
+on:
+  workflow_dispatch:
+      inputs:
+        logLevel:
+          description: 'Log level'
+          required: true
+          default: 'warning'
+          type: choice
+          options:
+            - info
+            - warning
+            - debug
+  
+     
+
+    
+# on: push    # Default will running for every branch.
+jobs:
+  main:
+    runs-on: macos-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.10.1
+      - run: flutter pub get
+      - run: flutter pub run build_runner build --delete-conflicting-outputs 
+      - run: flutter build ios --release --no-codesign    
+            # Upload generated ipa to the artifacts.
+      - uses: actions/upload-artifact@v1
+        with:
+          name: release-ipa
+          path: build/ios/iphoneos/Runner.app
+# jobs:
+#   build:
+#     # This job will run on ubuntu virtual machine
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Clone repository
+#         uses: actions/checkout@v4
+#       - name: Set up Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#           flutter-version: 3.10.1
+#       - run: flutter pub get
+#       - run: flutter pub run build_runner build --delete-conflicting-outputs 
+#       - run: flutter build apk
+  
+    
+      # Upload generated apk to the artifacts.
+      - uses: actions/upload-artifact@v1
+        with:
+          name: release-ipa
+          path: build/ios/iphoneos/Runner.app
