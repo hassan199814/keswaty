@@ -30,7 +30,7 @@ jobs:
           # flutter-version: 3.10.1
           channel: stable
       - run: flutter pub get
-      - run: flutter pub run build_runner build --delete-conflicting-outputs 
+      # - run: flutter pub run build_runner build --delete-conflicting-outputs 
       - run: flutter build ios --release --no-codesign    
             # Upload generated ipa to the artifacts.
       - uses: actions/upload-artifact@v1
