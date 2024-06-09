@@ -32,18 +32,18 @@ jobs:
       - run: flutter pub get
       # - run: flutter pub run build_runner build --delete-conflicting-outputs 
       # - run: flutter build ios --no-codesign
-      - run: flutter build ipa --no-codesign
+      - run: flutter build ipa --no-codesign -v
             # Upload generated ipa to the artifacts.
         
-      - uses: actions/upload-artifact@v2
-        with:
-         name: release-ipa
-         # Path to the release files
-         path: build/ios/**/*.ipa
-      # - uses: actions/upload-artifact@v1
+      # - uses: actions/upload-artifact@v2
       #   with:
-      #     name: release-ipa
-      #     path: build/ios/iphoneos/Runner.app
+      #    name: release-ipa
+      #    # Path to the release files
+      #    path: build/ios/**/*.ipa
+      - uses: actions/upload-artifact@v1
+        with:
+          name: release-ipa
+          path: build/ios/iphoneos/Runner.app
 # jobs:
 #   build:
 #     # This job will run on ubuntu virtual machine
