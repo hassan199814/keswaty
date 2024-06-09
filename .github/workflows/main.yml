@@ -29,7 +29,7 @@ jobs:
         with:
           flutter-version: 3.16.3
           # channel: stable
-      # - run: flutter pub upgrade
+      - run: flutter pub upgrade
       - run: flutter pub get
       # - run: flutter pub run build_runner build --delete-conflicting-outputs 
       - run: flutter build ios --no-codesign -v
@@ -44,7 +44,7 @@ jobs:
       #    path: build/ios/**/*.ipa
       - uses: actions/upload-artifact@v1
         with:
-          name: release-ipa
+          name: release-ipa-upgrade
           path: build/ios/iphoneos/Runner.app
       # - uses: actions/upload-artifact@v2
       #   with:
