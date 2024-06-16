@@ -92,7 +92,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
   Stream<List<Placemark>> setlocation() async* {
     
     print("setlocation");
-    yield await placemarkFromCoordinates(lat, long, localeIdentifier: "egy")
+    yield await placemarkFromCoordinates(lat, long)
         .catchError((e, s) {
       
       
@@ -334,7 +334,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
           height: 70,
           padding: const EdgeInsets.all(8.0),
 
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
           alignment: Alignment.center,
 
           child: SizedBox(

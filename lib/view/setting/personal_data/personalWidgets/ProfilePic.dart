@@ -20,7 +20,7 @@ class _ProfilePicState extends State<ProfilePic> {
   // دوال تحميل الصور من الاستوديو والكيمرا
 
   uploadImage() async {
-    var pickedImage = await  imagepicker.getImage(source: ImageSource.gallery);
+    var pickedImage = await  imagepicker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null){
       setState ((){
         image = File(pickedImage.path);
@@ -31,7 +31,7 @@ class _ProfilePicState extends State<ProfilePic> {
     }
   }
   uploadImage2() async {
-    var pickedImage = await imagepicker.getImage(source: ImageSource.camera);
+    var pickedImage = await imagepicker.pickImage(source: ImageSource.camera);
     if (pickedImage != null) {
       setState(() {
         image = File(pickedImage.path);

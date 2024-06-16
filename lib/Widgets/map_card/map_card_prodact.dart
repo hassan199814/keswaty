@@ -113,13 +113,13 @@ class _GoogleMapProdactCardState extends State<GoogleMapProdactCard> {
             child: Icon(
               Icons.location_pin,
               size: 22,
-              color: Theme.of(context).textTheme.bodyText1?.color,
+              color: Theme.of(context).textTheme.bodyLarge?.color,
             ),
           ),
         ),
         Text(
           widget.locationModel!.location_Name!,
-          style: Theme.of(context).textTheme.subtitle1?.copyWith(fontSize: 16),
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 16),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           softWrap: true,

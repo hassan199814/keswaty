@@ -42,7 +42,7 @@ class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
           Text("موقعك الحالي",
               style: Theme.of(context)
                   .textTheme
-                  .bodyText1
+                  .bodySmall
           ),
         ],
       ),
@@ -72,7 +72,7 @@ class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
           Text("تحديد على الخرائط",
               style: Theme.of(context)
                   .textTheme
-                  .bodyText1
+                  .bodySmall
           ),
         ],
       ),
