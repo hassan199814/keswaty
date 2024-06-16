@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:keswaty/Widgets/My_Input_Them.dart';
 import 'package:keswaty/Widgets/colors.dart';
@@ -9,89 +6,76 @@ import 'package:keswaty/data/models/map_model.dart';
 import 'package:keswaty/view/map/add_location_from_map_screan.dart';
 
 class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
-
   Language _language = Language();
-
 
   LocationModel locationModel;
   BuildContext contextLocationModel;
   Function onPressedfromMyLocation;
   Function onPressedfromMapAddLocation;
 
-  _AddLocationLocationModelNavigationBarWidget(this.locationModel,this.contextLocationModel
-      ,this.onPressedfromMyLocation
-      ,this.onPressedfromMapAddLocation
+  _AddLocationLocationModelNavigationBarWidget(
+      this.locationModel,
+      this.contextLocationModel,
+      this.onPressedfromMyLocation,
+      this.onPressedfromMapAddLocation);
 
-
-      );
-  
-  
-  
-
-
-  
-  Widget MyLocationButton(BuildContext context,BuildContext contextLocationModel) => TextButton(
-      child: Row(
-        textDirection: TextDirection.rtl,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Icon(Icons.location_pin,color:Theme.of(context).iconTheme.color),
-          SizedBox(width: 5,),
-          Text("موقعك الحالي",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall
+  Widget MyLocationButton(
+          BuildContext context, BuildContext contextLocationModel) =>
+      TextButton(
+          child: Row(
+            textDirection: TextDirection.rtl,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(Icons.location_pin,
+                  color: Theme.of(context).iconTheme.color),
+              SizedBox(
+                width: 5,
+              ),
+              Text("موقعك الحالي",
+                  style: Theme.of(context).textTheme.bodySmall),
+            ],
           ),
-        ],
-      ),
-      onPressed: () async {
+          onPressed: () async {
+            Navigator.of(
+              context,
+            ).pop();
 
+            onPressedfromMyLocation();
+          });
 
-          Navigator.of(context,
-          ).pop();
-
-         onPressedfromMyLocation();
-
-
-
-        });
-
-
-  Widget CameraButton(BuildContext context,BuildContext contextLocationModel)  => TextButton(
-      child: Row(
-        textDirection: TextDirection.rtl,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Icon(Icons.map,color:Theme.of(context).iconTheme.color),
-          SizedBox(width: 5,),
-
-          Text("تحديد على الخرائط",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall
+  Widget CameraButton(
+          BuildContext context, BuildContext contextLocationModel) =>
+      TextButton(
+          child: Row(
+            textDirection: TextDirection.rtl,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(Icons.map, color: Theme.of(context).iconTheme.color),
+              SizedBox(
+                width: 5,
+              ),
+              Text("تحديد على الخرائط",
+                  style: Theme.of(context).textTheme.bodySmall),
+            ],
           ),
-        ],
-      ),
-      onPressed: () async {
+          onPressed: () async {
+            Navigator.of(
+              context,
+            ).pop();
 
-
-        Navigator.of(context,
-        ).pop();
-
-        onPressedfromMapAddLocation();
-
-
-      }
-    );
+            onPressedfromMapAddLocation();
+          });
 
   Widget headers(BuildContext context, bool isBottom) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context, ).pop();
+        Navigator.of(
+          context,
+        ).pop();
       },
       child: Icon(
         isBottom ? Icons.cancel_outlined : Icons.arrow_back_ios,
@@ -104,23 +88,16 @@ class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
   Widget newAppBar(BuildContext context, bool isBottom) {
     return Container(
       height: 80,
-      
       padding: const EdgeInsets.only(bottom: 10),
       margin: const EdgeInsets.only(bottom: 10),
       width: MediaQuery.of(context).size.width,
-      
       color: const Color(0xFFE3E2E2),
       child: Card(
         elevation: 5,
         semanticContainer: true,
         borderOnForeground: true,
-        
-
         clipBehavior: Clip.none,
-        
         color: Theme.of(context).cardColor,
-        
-
         child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -128,26 +105,26 @@ class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
               child: Row(children: [
                 Navigator.canPop(context)
                     ? Container(
-                    alignment: Alignment.centerRight,
-                    child: headers(context, isBottom))
+                        alignment: Alignment.centerRight,
+                        child: headers(context, isBottom))
                     : Container(),
                 Container(
                   alignment: Navigator.canPop(context)
                       ? Alignment.center
                       : Alignment.centerRight,
                   child: Text(_language.tlocationfrommap()),
-                    width: 170,
-                    height: 70,
-                  ),
-
+                  width: 170,
+                  height: 70,
+                ),
               ]),
             )),
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       width: AppTheme.fullWidth(context),
       height: AppTheme.fullHeight(context),
       child: Column(
@@ -156,35 +133,33 @@ class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(  width: AppTheme.fullWidth(context),height: 25,),
-
-          newAppBar(context,true),
-
-          MyLocationButton(context,contextLocationModel),
-          
-      CameraButton(context,contextLocationModel),
-          SizedBox(height: 60,),
-
+          SizedBox(
+            width: AppTheme.fullWidth(context),
+            height: 25,
+          ),
+          newAppBar(context, true),
+          MyLocationButton(context, contextLocationModel),
+          CameraButton(context, contextLocationModel),
+          SizedBox(
+            height: 60,
+          ),
         ],
       ),
     );
   }
 }
+
 class AddLocationLocationModelNavigationBar {
-
-
-  static Future<LocationModel?> onPressedfromMapAddLocation(BuildContext context, LocationModel locationModel) async {
-    try{
-      LocationModel ? LocationModelActivieReturn;
-      final result = await
-      Navigator.of(context,
-      )
-          .push(MaterialPageRoute(
-          builder: (contextLocationModel) =>
-              AddLocatonGoogleMapScreen(
+  static Future<LocationModel?> onPressedfromMapAddLocation(
+      BuildContext context, LocationModel locationModel) async {
+    try {
+      LocationModel? LocationModelActivieReturn;
+      final result = await Navigator.of(
+        context,
+      ).push(MaterialPageRoute(
+          builder: (contextLocationModel) => AddLocatonGoogleMapScreen(
                 locationModel: locationModel,
-                
-                
+
                 // lat: locationModel.latitude != null &&
                 //     locationModel.latitude != 0.0
                 //     ? locationModel.latitude
@@ -195,85 +170,23 @@ class AddLocationLocationModelNavigationBar {
                 //     locationModel.longitude != 0.0
                 //     ? locationModel.longitude
                 //
-                
-                    // : 42.52408919660993,
+
+                // : 42.52408919660993,
               )));
       print("result.runtimeType");
       print(result.runtimeType);
-      if(result!=null&&result.runtimeType==LocationModel){
-         LocationModelActivieReturn=result;
+      if (result != null && result.runtimeType == LocationModel) {
+        LocationModelActivieReturn = result;
       }
       return LocationModelActivieReturn!;
-    }
-    on ArgumentError catch(e){
-
+    } on ArgumentError catch (e) {
       print(e.message);
-      if(e.message == 'No element'){
-        
-        
-        
-        
-        
-        
-        
-        
-            
-            
-            
-            
-            
-            
-      }
-    }
-    on UnimplementedError catch(e){
+      if (e.message == 'No element') {}
+    } on UnimplementedError catch (e) {
       print(e.message);
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      if(e.message == 'No element'){
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-      }
-    }
-    catch(e){
 
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-
-    }
-
-
+      if (e.message == 'No element') {}
+    } catch (e) {}
   }
 
   // static Future<LocationModel>onPressedfromMyLocation(BuildContext context, LocationModel locationModel) async {
@@ -302,21 +215,6 @@ class AddLocationLocationModelNavigationBar {
   //   print(serviceEnabled);
   //   if(!serviceEnabled)
   //     serviceEnabled=await location.requestService();
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
   //   print("permissionStatus.index");
   //   print(permissionStatus.index);
   //   print("permissionStatus.name");
@@ -429,82 +327,7 @@ class AddLocationLocationModelNavigationBar {
   //       LocationModelActivieReturn=result;
   //     }
   //     return LocationModelActivieReturn!;
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
+
   //   } else{
   //     LocationModel ?LocationModelActivieReturn;
   //     final result = await
@@ -705,44 +528,33 @@ class AddLocationLocationModelNavigationBar {
   //
   //
   // }
-  
-  
-  
-  static Future Show(BuildContext contextLocationModel,
-      LocationModel locationModel,
 
-  Function onPressedfromMyLocation,
-  Function onPressedfromMapAddLocation,
-      )async {
- await  showModalBottomSheet(
+  static Future Show(
+    BuildContext contextLocationModel,
+    LocationModel locationModel,
+    Function onPressedfromMyLocation,
+    Function onPressedfromMapAddLocation,
+  ) async {
+    await showModalBottomSheet(
       context: contextLocationModel,
-      
-      
       isScrollControlled: false,
-      
       isDismissible: false,
-
-      
       elevation: 5,
-
       enableDrag: true,
-
-      
-      constraints:
-      BoxConstraints.loose(Size.fromHeight(AppTheme.fullHeight(contextLocationModel))
-        
-        
-      ),
+      constraints: BoxConstraints.loose(
+          Size.fromHeight(AppTheme.fullHeight(contextLocationModel))),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(34.0), topRight: Radius.circular(34.0)),
       ),
       backgroundColor: const Color(0xFFE3E2E2),
       builder: (BuildContext context) {
-        return _AddLocationLocationModelNavigationBarWidget(locationModel,
-            contextLocationModel,onPressedfromMyLocation,onPressedfromMapAddLocation);
+        return _AddLocationLocationModelNavigationBarWidget(
+            locationModel,
+            contextLocationModel,
+            onPressedfromMyLocation,
+            onPressedfromMapAddLocation);
       },
     );
-
   }
 }

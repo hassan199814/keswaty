@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 import 'dart:io';
 
@@ -17,20 +15,16 @@ import 'package:keswaty/data/models/map_model.dart';
 
 import '../../Widgets/My_Input_Them.dart';
 
-
 // import '../../widgets/My_Input_Them.dart';
 
-
-
-
 double? MyLocationModelat;
-double ?MyLocationModelLong;
+double? MyLocationModelLong;
 
 class AddLocatonGoogleMapScreen extends StatefulWidget {
   // double ? lat;
   // double? long;
   // bool? from_main_my_location;
-  final LocationModel ? locationModel;
+  final LocationModel? locationModel;
   static const String routeName = 'add-locaton-screen';
 
   AddLocatonGoogleMapScreen({
@@ -39,8 +33,6 @@ class AddLocatonGoogleMapScreen extends StatefulWidget {
     required this.locationModel,
     // this.from_main_my_location,
   });
-
-  
 
   @override
   _AddLocatonGoogleMapScreenState createState() =>
@@ -51,119 +43,44 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
   double lat = 15.37031780931026;
   double long = 44.191657147476455;
 
-  
-  
   List<Placemark>? coordinates;
-  GoogleMapController? _controller; 
+  GoogleMapController? _controller;
 
-  
   Set<Marker> markers = {};
 
-  
-
   setlocationOld(BuildContext context) async {
-    
     print("setlocation");
     coordinates = await placemarkFromCoordinates(lat, long);
     try {
-      
-      
-
-      
-      
-      
       print(coordinates!.first.name);
-
-      
-
-      
-      
-    } catch (e) {
-      
-      
-    }
-
-    
-    
-
-    
+    } catch (e) {}
   }
 
   Stream<List<Placemark>> setlocation() async* {
-    
     print("setlocation");
-    yield await placemarkFromCoordinates(lat, long)
-        .catchError((e, s) {
-      
-      
-
-      
+    yield await placemarkFromCoordinates(lat, long).catchError((e, s) {
       return coordinates;
     }).onError((e, s) {
-      
-      
-
-      
       return coordinates!;
     });
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-
-    
   }
 
   Future<List<Placemark>> setlocationTow() async {
-    
     print("setlocation");
     return await placemarkFromCoordinates(
       lat,
       long,
     ).catchError((e, s) {
-      
-      
-
-      
       return coordinates;
     }).onError((e, s) {
-      
-      
-
-      
       return coordinates!;
     });
-    
-    
-
-    
   }
 
   @override
   void initState() {
-    
-
     super.initState();
     if (widget.locationModel?.latitude == 0) {
-
-
       widget.locationModel?.latitude = 15.37031780931026;
       widget.locationModel!.longitude = 44.191657147476455;
     }
@@ -171,7 +88,6 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
       lat = widget.locationModel!.latitude!;
       long = widget.locationModel!.longitude!;
     });
-    
 
     setlocationTow().then((value) {
       if (value != null && value.isNotEmpty)
@@ -181,14 +97,12 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
         });
       return coordinates;
     }).catchError((e, s) {
-
       return coordinates;
     });
   }
 
   int counter = 0;
 
-  
   Future<ui.Image> getImageFromPath(String imagePath) async {
     File imageFile = File(imagePath);
 
@@ -222,7 +136,6 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
 
     final double imageOffset = shadowWidth + borderWidth;
 
-    
     canvas.drawRRect(
         RRect.fromRectAndCorners(
           Rect.fromLTWH(0.0, 0.0, size.width, size.height),
@@ -233,7 +146,6 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
         ),
         shadowPaint);
 
-    
     canvas.drawRRect(
         RRect.fromRectAndCorners(
           Rect.fromLTWH(shadowWidth, shadowWidth,
@@ -245,7 +157,6 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
         ),
         borderPaint);
 
-    
     canvas.drawRRect(
         RRect.fromRectAndCorners(
           Rect.fromLTWH(size.width - tagWidth, 0.0, tagWidth, tagWidth),
@@ -256,7 +167,6 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
         ),
         tagPaint);
 
-    
     TextPainter textPainter = TextPainter(textDirection: TextDirection.ltr);
     textPainter.text = TextSpan(
       text: '1',
@@ -269,24 +179,18 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
         Offset(size.width - tagWidth / 2 - textPainter.width / 2,
             tagWidth / 2 - textPainter.height / 2));
 
-    
     Rect oval = Rect.fromLTWH(imageOffset, imageOffset,
         size.width - (imageOffset * 2), size.height - (imageOffset * 2));
 
-    
     canvas.clipPath(Path()..addOval(oval));
 
-    
-    ui.Image image = await getImageFromPath(
-        imagePath); 
+    ui.Image image = await getImageFromPath(imagePath);
     paintImage(canvas: canvas, image: image, rect: oval, fit: BoxFit.fitWidth);
 
-    
     final ui.Image markerAsImage = await pictureRecorder
         .endRecording()
         .toImage(size.width.toInt(), size.height.toInt());
 
-    
     final ByteData? byteData =
         await markerAsImage.toByteData(format: ui.ImageByteFormat.png);
     final Uint8List uint8List = byteData!.buffer.asUint8List();
@@ -296,14 +200,10 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
-    
-    
-
     markers.add(Marker(
       markerId: MarkerId("1"),
-      position: gm.LatLng(widget.locationModel!.latitude!, widget.locationModel!.longitude!!),
-      
+      position: gm.LatLng(
+          widget.locationModel!.latitude!, widget.locationModel!.longitude!!),
       infoWindow: InfoWindow(title: "بقاله", anchor: Offset(5, 4)),
       icon: BitmapDescriptor.defaultMarkerWithHue(20),
     ));
@@ -313,30 +213,14 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
         resizeToAvoidBottomInset: false,
         primary: true,
         extendBodyBehindAppBar: true,
-        
-        
-        
-        
-        
         drawerEnableOpenDragGesture: false,
         endDrawerEnableOpenDragGesture: false,
-        
-        
-        
-        
-        
-        
-        
-        
         bottomNavigationBar: Container(
           width: AppTheme.fullWidth(context) - 20,
-          
           height: 70,
           padding: const EdgeInsets.all(8.0),
-
           color: Theme.of(context).scaffoldBackgroundColor,
           alignment: Alignment.center,
-
           child: SizedBox(
               width: AppTheme.fullWidth(context) - 20,
               height: 70,
@@ -358,18 +242,9 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                       ),
                     )
                   : DefaultButton(
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-
-
-
-
-                      icon: Icon(Icons.add_location_rounded,),
+                      icon: Icon(
+                        Icons.add_location_rounded,
+                      ),
                       // IconColor: Colors.white,
                       // textColor: Colors.white,
                       // borderColor: Theme.of(context)
@@ -404,92 +279,30 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                       //
                       //
                       //
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
+
                       // backgroundColor: Theme.of(context)
                       //     .buttonTheme
                       //     .colorScheme!
                       //     .background,
 
-                      
-                      
-
                       press: () async {
-                        
-                        
-
-                        
-
-                        
                         MyLocationModelat = lat;
                         MyLocationModelLong = long;
-
-                        
 
                         LocationModel locusmo = new LocationModel(
                           latitude: MyLocationModelat,
                           longitude: MyLocationModelLong,
-                          
-                          
-                          
-                          
                           location_Name: coordinates != null
                               ? " ${coordinates == null || coordinates!.first.locality == null ? " " : coordinates!.first.street}"
-                                  
-                                  
                                   "${coordinates!.first == null || coordinates!.first.subThoroughfare == null ? " " : coordinates!.first.subThoroughfare},"
                                   "${coordinates!.first == null || coordinates!.first.thoroughfare == null ? " " : coordinates!.first.thoroughfare},"
                               : "",
                         );
-                        Navigator.pop(context,locusmo);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                      }, text: 'تأكيد الموقع', bkground: kblueColor, txtstyle: TextStyle(fontSize: 20,color: kwhait),
+                        Navigator.pop(context, locusmo);
+                      },
+                      text: 'تأكيد الموقع',
+                      bkground: kblueColor,
+                      txtstyle: TextStyle(fontSize: 20, color: kwhait),
                     )),
         ),
         body: Container(
@@ -507,159 +320,38 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                     // liteModeEnabled: false,
                     // tiltGesturesEnabled: ,
 
-                    
-
-                    
-                    
                     onCameraMove: ((pinPosition) async {
-                      
                       counter = counter + 1;
-                      
-                      
-                      
+
                       lat = pinPosition.target.latitude;
 
                       lat = pinPosition.target.latitude;
                       long = pinPosition.target.longitude;
-                      
 
-                      
-                      
                       coordinates = coordinates;
-
-                      
-                      
-                      
-                      
-
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-                      
-
                     }),
                     onCameraIdle: () async {
-                      
-                      
-                      
-
                       try {
                         var stream = setlocation();
-                        
+
                         stream.listen((value) => setState(() {
                               if (value != null) coordinates = value;
-
-                              
                             }));
-                        
-
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-
-                        
-
-                        
-                        
-                      } catch (e) {
-                        
-                        
-                      }
+                      } catch (e) {}
                     },
                     zoomControlsEnabled: true,
-                    
-                    
-                    
-
-
-                    
                     initialCameraPosition: gm.CameraPosition(
-                        target: gm.LatLng(widget.locationModel!.latitude!, widget.locationModel!.longitude!),
-                        
-                        
+                        target: gm.LatLng(widget.locationModel!.latitude!,
+                            widget.locationModel!.longitude!),
                         zoom: 19),
                     mapType: MapType.normal,
-                    
-                    
-
-                    
                     onMapCreated: (GoogleMapController controller) {
                       setState(() {
                         _controller = controller;
                       });
-
-                      
-                      
-                      
-                      
-                    })
-
-
-
-                ),
+                    })),
             coordinates != null && coordinates!.isNotEmpty
                 ? Align(
-                    
                     alignment: Alignment.topCenter,
                     child: Container(
                       width: MediaQuery.of(context).size.width,
@@ -680,53 +372,15 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                                 alignment: WrapAlignment.start,
                                 children: [
                                   Container(
-                                    width: MediaQuery.of(context).size.width /
-                                        1.2,
+                                    width:
+                                        MediaQuery.of(context).size.width / 1.2,
                                     child: Text(
                                       coordinates!.first.administrativeArea
                                               .toString() +
                                           ", " +
                                           coordinates!.first.street.toString(),
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
-                                      
                                     ),
                                   ),
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
                                 ],
                               )
                             ],
@@ -737,18 +391,9 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                 : Container(),
             Container(
               width: AppTheme.fullWidth(context),
-              
               height: AppTheme.fullHeight(context) - 200,
-              
-              
-              
               child: Center(
-                
-                
-                
                 child: Container(
-                  
-                  
                   height: 70,
                   width: 120,
                   child: Image.asset(
@@ -757,451 +402,10 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                     height: 70,
                     width: 120,
                   ),
-                  
-                  
-                  
-                  
-                  
                 ),
               ),
             ),
           ]),
         ));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
 }
