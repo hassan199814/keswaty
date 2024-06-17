@@ -1,5 +1,4 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:keswaty/Widgets/colors.dart';
@@ -19,7 +18,7 @@ class donation extends StatefulWidget {
   List<DonationBsktModel> donationbsktlist = [];
   List<DonationTypeModel> donationtypelist = [];
 
-  donation({Key? key}) : super(key: key);
+  donation({super.key});
 
   @override
   _donationState createState() => _donationState();
@@ -27,7 +26,7 @@ class donation extends StatefulWidget {
 
 class _donationState extends State<donation> {
   @override
-  Language _language = Language();
+  final Language _language = Language();
 
   @override
   void initState() {
@@ -49,8 +48,8 @@ class _donationState extends State<donation> {
 
       child: Scaffold(
           backgroundColor: Theme.of(context).brightness == Brightness.dark
-              ? Color.fromRGBO(33, 37, 25, 1)
-              : Color.fromRGBO(240, 242, 245, 1),
+              ? const Color.fromRGBO(33, 37, 25, 1)
+              : const Color.fromRGBO(240, 242, 245, 1),
           body:
           RefreshIndicator(
             onRefresh: () async{
@@ -59,10 +58,10 @@ class _donationState extends State<donation> {
             child: Consumer<DonationBsktGetProvider>(
                 builder: (context, donationbsktpro, child) {
                   return donationbsktpro.isloading
-                      ? Center(
+                      ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                      : donationbsktpro.donationbsktlist.length == 0
+                      : donationbsktpro.donationbsktlist.isEmpty
                       ? Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +69,7 @@ class _donationState extends State<donation> {
                       ))
                       : ListView.builder(
 
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     itemCount: donationbsktpro.donationbsktlist.length,
                     itemBuilder: (context, index) {
 
@@ -79,7 +78,7 @@ class _donationState extends State<donation> {
                         Column(
                         children: [
 
-                          SizedBox(
+                          const SizedBox(
                             height: 1,
                           ),
                           SingleChildScrollView(
@@ -89,8 +88,8 @@ class _donationState extends State<donation> {
                               children: [
                                 // SizedBox(width: 5,),
                                 Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 0),
-                                    margin: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                                    margin: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 5),
                                     child: Row(
                                       children: [
@@ -98,7 +97,7 @@ class _donationState extends State<donation> {
                                             color: Theme.of(context)
                                                 .brightness ==
                                                 Brightness.dark
-                                                ? Color.fromRGBO(
+                                                ? const Color.fromRGBO(
                                                 41, 45, 33, 1)
                                                 : kwhait,
                                             elevation: 0,
@@ -123,10 +122,10 @@ class _donationState extends State<donation> {
                                                         btnOkText: _language.tbtnYse(),
                                                         btnOkColor: kblueColor,
                                                         btnOkIcon: Icons.check,
-                                                        buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                        buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                         btnOkOnPress: (){
                                                           FocusScope.of(context).unfocus();
-                                                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Login()));
+                                                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                                                         },
                                                         btnCancelOnPress: (){}
                                                     ).show():
@@ -134,31 +133,31 @@ class _donationState extends State<donation> {
                                                     // Navigator.pushNamed(context, "AddFoundLost");
                                                   },
                                                   child: Container(
-                                                      decoration: BoxDecoration(color: Colors.transparent,
+                                                      decoration: const BoxDecoration(color: Colors.transparent,
                                                         // border: Border.all(color: kblueColor),
                                                         borderRadius:
                                                         BorderRadius.only(topRight: Radius.circular(15), topLeft: Radius.circular(15)),
                                                       ),
 
-                                                        child: Container(
+                                                        child: SizedBox(
                                                           // height: 160,
                                                           width: screenWidth,
                                                           child: Column(
                                                             children: [
-                                                              SizedBox(
+                                                              const SizedBox(
                                                                 height: 10,
                                                               ),
                                                               Row(
                                                                 children: [
-                                                                  SizedBox(
+                                                                  const SizedBox(
                                                                     width: 15,
                                                                   ),
-                                                                  Icon(MingCute.truck_line, color: kblueColor, size: 25),
-                                                                  SizedBox(width: 3,),
+                                                                  const Icon(MingCute.truck_line, color: kblueColor, size: 25),
+                                                                  const SizedBox(width: 3,),
                                                                   Expanded(
                                                                     flex: 4,
-                                                                    child: Text(_language.BasketNO() + donationbsktpro.donationbsktlist[index].id.toString()!,
-                                                                      style: TextStyle(fontSize: 15, color: kblueColor, fontWeight: FontWeight.bold),
+                                                                    child: Text(_language.BasketNO() + donationbsktpro.donationbsktlist[index].id.toString(),
+                                                                      style: const TextStyle(fontSize: 15, color: kblueColor, fontWeight: FontWeight.bold),
                                                                     ),
                                                                   ),
                                                                   Expanded(
@@ -180,10 +179,10 @@ class _donationState extends State<donation> {
                                                                             // border: Border.all(color: kblueColor),
 
                                                                             borderRadius: BorderRadius.only(
-                                                                              bottomRight: language == 'AR' ? Radius.circular(10) : Radius.circular(0),
-                                                                                topRight: language == 'AR' ? Radius.circular(10) : Radius.circular(0),
-                                                                                bottomLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(10),
-                                                                                topLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(10),
+                                                                              bottomRight: language == 'AR' ? const Radius.circular(10) : const Radius.circular(0),
+                                                                                topRight: language == 'AR' ? const Radius.circular(10) : const Radius.circular(0),
+                                                                                bottomLeft: language == 'AR' ? const Radius.circular(0) : const Radius.circular(10),
+                                                                                topLeft: language == 'AR' ? const Radius.circular(0) : const Radius.circular(10),
                                                                           )),
                                                                           // color: kblueColor,
                                                                           width: 15,
@@ -194,15 +193,15 @@ class _donationState extends State<donation> {
                                                                             children: [
 
 
-                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==0? Text(_language.Uncomplate(),style: TextStyle(fontWeight: FontWeight.bold,color: kwhait),):
-                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==1? Text(_language.UnConfirm(),style: TextStyle(fontWeight: FontWeight.bold,color: kwhait),):
-                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==2? Text(_language.Confirmed(),style: TextStyle(fontWeight: FontWeight.bold,color: kwhait),):
-                                                                              Text(_language.Delivered(),style: TextStyle(fontWeight: FontWeight.bold,color: kwhait),),
-                                                                              SizedBox(width: 3),
-                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==0? Icon(Icons.dangerous, color: kwhait, size: 25,):
-                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==1? Icon(HeroIcons.clock, color: kwhait, size: 25,):
-                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==2? Icon(HeroIcons.check, color: kwhait, size: 25,):
-                                                                              Icon(HeroIcons.check_badge, color: kwhait, size: 25,),
+                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==0? Text(_language.Uncomplate(),style: const TextStyle(fontWeight: FontWeight.bold,color: kwhait),):
+                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==1? Text(_language.UnConfirm(),style: const TextStyle(fontWeight: FontWeight.bold,color: kwhait),):
+                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==2? Text(_language.Confirmed(),style: const TextStyle(fontWeight: FontWeight.bold,color: kwhait),):
+                                                                              Text(_language.Delivered(),style: const TextStyle(fontWeight: FontWeight.bold,color: kwhait),),
+                                                                              const SizedBox(width: 3),
+                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==0? const Icon(Icons.dangerous, color: kwhait, size: 25,):
+                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==1? const Icon(HeroIcons.clock, color: kwhait, size: 25,):
+                                                                              donationbsktpro.donationbsktlist[index].dontnStatus ==2? const Icon(HeroIcons.check, color: kwhait, size: 25,):
+                                                                              const Icon(HeroIcons.check_badge, color: kwhait, size: 25,),
 
                                                                             ],
                                                                           )
@@ -213,7 +212,7 @@ class _donationState extends State<donation> {
                                                               ),
 
 
-                                                              SizedBox(
+                                                              const SizedBox(
                                                                 height: 20,
                                                               ),
                                                               Row(
@@ -222,7 +221,7 @@ class _donationState extends State<donation> {
 
 
                                                                   Text(
-                                                                    donationbsktpro.donationbsktlist[index].bsktDscr.toString(),style: TextStyle(color: kblueColor), ),
+                                                                    donationbsktpro.donationbsktlist[index].bsktDscr.toString(),style: const TextStyle(color: kblueColor), ),
 
 
                                                                  donationbsktpro.donationbsktlist[index].dontnStatus! < 3 ?
@@ -243,10 +242,10 @@ class _donationState extends State<donation> {
                                                                            btnOkText: _language.tbtnYse(),
                                                                            btnOkColor: kblueColor,
                                                                            btnOkIcon: Icons.check,
-                                                                           buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                                           buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                                            btnOkOnPress: (){
                                                                              FocusScope.of(context).unfocus();
-                                                                             Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Login()));
+                                                                             Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                                                                            },
                                                                            btnCancelOnPress: (){}
                                                                        ).show():
@@ -263,9 +262,9 @@ class _donationState extends State<donation> {
                                                                            btnOkColor: kred,
                                                                            btnCancelColor: kblack38,
                                                                            // btnOkIcon: Icons.check,
-                                                                           buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                                           buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                                            btnOkOnPress: (){
-                                                                             dio!.get("https://keswaty.com/api/donation/delete?id=${donationbsktpro.donationbsktlist[index].id}");
+                                                                             dio.get("https://keswaty.com/api/donation/delete?id=${donationbsktpro.donationbsktlist[index].id}");
                                                                              AwesomeDialog(
                                                                                  context: context,
                                                                                  dialogType: DialogType.warning,
@@ -276,7 +275,7 @@ class _donationState extends State<donation> {
                                                                                  btnOkText: _language.tbtnYse(),
                                                                                  btnOkColor: kblueColor,
                                                                                  btnOkIcon: Icons.check,
-                                                                                 buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                                                 buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                                                  btnOkOnPress: (){
                                                                                    Provider.of<DonationBsktGetProvider>(context, listen: false).donationbskt(clnt_id: InitSharedPreferences.getID()!);
                                                                                  }
@@ -296,16 +295,16 @@ class _donationState extends State<donation> {
                                                                        right: language == 'AR' ? 0 : 15
                                                                      ),
 
-                                                                       child: Icon(Icons.delete_forever_rounded,color: kred,)),
+                                                                       child: const Icon(Icons.delete_forever_rounded,color: kred,)),
                                                                  ):
-                                                                     SizedBox()
+                                                                     const SizedBox()
 
 
                                                                 ],
                                                               ),
 
 
-                                                              SizedBox(height: 10,)
+                                                              const SizedBox(height: 10,)
                                                             ],
 
                                                           ),

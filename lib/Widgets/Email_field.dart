@@ -8,8 +8,8 @@ class EmailField extends StatefulWidget {
   TextEditingController controller1;
    EmailField({
      required this.controller1,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<EmailField> createState() => _EmailFieldState();
@@ -33,8 +33,8 @@ class _EmailFieldState extends State<EmailField> {
       decoration:  InputDecoration(
         labelText: _language.temail(),
         helperText: "",
-        hintText: _language.tEnterYourEmail(),hintStyle: TextStyle(fontSize: 10),
-        suffixIcon: Icon(Icons.email_outlined, color:kblack38)
+        hintText: _language.tEnterYourEmail(),hintStyle: const TextStyle(fontSize: 10),
+        suffixIcon: const Icon(Icons.email_outlined, color:kblack38)
       ),
     );
   }

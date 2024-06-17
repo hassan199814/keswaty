@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class GeneralSetting extends StatefulWidget {
-  const GeneralSetting({Key? key}) : super(key: key);
+  const GeneralSetting({super.key});
 
   @override
   State<GeneralSetting> createState() => _GeneralSettingState();
@@ -17,11 +17,11 @@ class GeneralSetting extends StatefulWidget {
 
 class _GeneralSettingState extends State<GeneralSetting> {
 
-  Language _language = Language();
-  List<String> _languages = ['AR', 'EN'];
+  final Language _language = Language();
+  final List<String> _languages = ['AR', 'EN'];
   String? _selectedLanguage;
   bool _darkMode = false;
-  bool _natification = false;
+  final bool _natification = false;
 
 
   @override
@@ -31,6 +31,7 @@ class _GeneralSettingState extends State<GeneralSetting> {
     setState(() => _language.getLanguage());
     setState(() => _darkMode = darkMode);
   }
+  @override
   Widget build(BuildContext context) {
     var selected = true;
     return
@@ -39,13 +40,13 @@ class _GeneralSettingState extends State<GeneralSetting> {
         child: Scaffold(
           backgroundColor:
           Theme.of(context).brightness == Brightness.dark
-              ?  Color.fromRGBO(33, 37, 25, 1)
-              :  Color.fromRGBO(240, 242, 245, 1),
+              ?  const Color.fromRGBO(33, 37, 25, 1)
+              :  const Color.fromRGBO(240, 242, 245, 1),
 
           appBar: AppBar(
             backgroundColor: Theme.of(context).brightness == Brightness.dark
-                ?  Color.fromRGBO(33, 37, 25, 1)
-                :  Color.fromRGBO(240, 242, 245, 1),
+                ?  const Color.fromRGBO(33, 37, 25, 1)
+                :  const Color.fromRGBO(240, 242, 245, 1),
             elevation: 0,
             title:  Text(_language.tGeneralsetting(),
                 style: TextStyle(
@@ -65,12 +66,12 @@ class _GeneralSettingState extends State<GeneralSetting> {
         body: ListView(
             children: [
               SingleChildScrollView(
-                padding: EdgeInsets.only(right: 10,left: 10),
+                padding: const EdgeInsets.only(right: 10,left: 10),
                 child: Column(
                   children: [
                     Material(
                       color: Theme.of(context).brightness == Brightness.dark
-                          ?  Color.fromRGBO(41, 45, 33, 1)
+                          ?  const Color.fromRGBO(41, 45, 33, 1)
                           : kwhait,
                       elevation: 2,
                       borderRadius: BorderRadius.circular(5),
@@ -81,16 +82,16 @@ class _GeneralSettingState extends State<GeneralSetting> {
                           // height: 60,
                           child:  Column(
                             children: [
-                              SizedBox(height: 10,),
+                              const SizedBox(height: 10,),
                               Row(
                                 children: [
-                                  SizedBox(width: 7),
-                                  Icon(Icons.language, size: 20, color: kblueColor),
-                                  SizedBox(width: 20),
+                                  const SizedBox(width: 7),
+                                  const Icon(Icons.language, size: 20, color: kblueColor),
+                                  const SizedBox(width: 20),
                                   Expanded(
                                     child: Text(
                                         _language.tLanguageSwitch(),
-                                        style: TextStyle(fontSize: 15,color: kblueColor,
+                                        style: const TextStyle(fontSize: 15,color: kblueColor,
                                         )
                                     ),
                                   ),
@@ -106,16 +107,16 @@ class _GeneralSettingState extends State<GeneralSetting> {
                                         child:  Column(
                                           children: [
 
-                                            SizedBox(height: 5,),
+                                            const SizedBox(height: 5,),
                                             Row(
                                               children: [
-                                                SizedBox(width: 7),
-                                                Container(
-                                                  width: 50,
+                                                const SizedBox(width: 7),
+                                                SizedBox(
+                                                  width: 60,
                                                   height: 30,
                                                   child:
                                                   DropdownButton(
-                                                    underline: SizedBox(),
+                                                    underline: const SizedBox(),
                                                       hint: Text(_language.tLanguage()),
                                                       value: _selectedLanguage,
                                                       onChanged: (newValue) async {
@@ -126,39 +127,38 @@ class _GeneralSettingState extends State<GeneralSetting> {
                                                         language = newValue.toString();
                                                         setState(() {
                                                           _selectedLanguage = newValue.toString();
-                                                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>nav()),(route) => false,);
+                                                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=>const nav()),(route) => false,);
                                                         });
 
                                                       },
                                                       items: _languages.map((lang){
-                                                        return DropdownMenuItem(child: new Text(lang),
-                                                          value: lang,
+                                                        return DropdownMenuItem(value: lang,child: Text(lang),
                                                         );
                                                       }).toList()),
                                                 ),
 
-                                              //  SizedBox(width: 7),
+                                               const SizedBox(width: 7),
 
                                               ],
                                             ),
 
-                                            SizedBox(height: 5,),
+                                            const SizedBox(height: 5,),
                                           ],
                                         ) ,
                                       ),
                                     ),
                                   ),
-                                  SizedBox(width: 7),
+                                  const SizedBox(width: 7),
                                 ],
                               ),
 
-                              SizedBox(height: 10,),
+                              const SizedBox(height: 10,),
                             ],
                           ) ,
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     // Material(
                     //   color: Theme.of(context).brightness == Brightness.dark
                     //       ?  Color.fromRGBO(41, 45, 33, 1)
@@ -258,36 +258,36 @@ class _GeneralSettingState extends State<GeneralSetting> {
                     // SizedBox(height: 20,),
                     Material(
                       color: Theme.of(context).brightness == Brightness.dark
-                          ?  Color.fromRGBO(41, 45, 33, 1)
+                          ?  const Color.fromRGBO(41, 45, 33, 1)
                           : kwhait,
                       elevation: 2,
                       borderRadius: BorderRadius.circular(5),
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       child: InkWell(
-                         onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_)=>aboutpro())),
+                         onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const aboutpro())),
                         child: Container(
 
                           child:  Column(
                             children: [
-                              SizedBox(height: 15),
+                              const SizedBox(height: 15),
                               Row(
                                 children: [
-                                  SizedBox(width: 7),
+                                  const SizedBox(width: 7),
                                   Icon(Icons.adb,
                                       color: Theme.of(context).brightness == Brightness.dark
                                         ? kblueColor
                                         : kblueColor),
-                                  SizedBox(width: 20),
+                                  const SizedBox(width: 20),
                                   Expanded(
                                     child: Text(
                                         _language.taboutapp(),
-                                        style: TextStyle(fontSize: 15,color: kblueColor,
+                                        style: const TextStyle(fontSize: 15,color: kblueColor,
                                         )
                                     ),
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 15,),
+                              const SizedBox(height: 15,),
                             ],
                           ) ,
                         ),
@@ -297,7 +297,7 @@ class _GeneralSettingState extends State<GeneralSetting> {
                 ),
               ),
               // SettingPageBody(),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
             ]
         ),

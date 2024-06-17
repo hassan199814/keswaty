@@ -50,7 +50,7 @@ Future<void> stoploading() async{
           await InitSharedPreferences.setAddressUser( map["Adrs"]);
           // await InitSharedPreferences.setDateUser( map["AddingTime"]);
 
-          loginRepo!.setEmail(map["Email"]);
+          loginRepo.setEmail(map["Email"]);
           islogin =true;
           isloading = false;
           notifyListeners();

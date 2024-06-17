@@ -4,7 +4,6 @@ import 'package:keswaty/data/models/base/api_response.dart';
 import 'package:keswaty/data/models/sginup_model.dart';
 import 'package:keswaty/data/models/signuperrorModel.dart';
 import 'package:keswaty/data/repository/inset_sginup_repo.dart';
-import 'package:keswaty/data/repository/reset_accunt_repo.dart';
 
 class InsertSginUpProvider extends ChangeNotifier{
   InsertSginUpRepo? insertSginUpRepo;

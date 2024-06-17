@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -7,13 +6,12 @@ import 'package:keswaty/Widgets/colors.dart';
 import 'package:keswaty/Widgets/langage.dart';
 import 'package:keswaty/main.dart';
 import 'package:url_launcher/url_launcher.dart' as launcher;
-import 'package:flutter/widgets.dart';
 
 
 
 
 class con_us extends StatefulWidget {
-  const con_us({Key? key}) : super(key: key);
+  const con_us({super.key});
 
   @override
   _con_usState createState() => _con_usState();
@@ -21,7 +19,7 @@ class con_us extends StatefulWidget {
 
 class _con_usState extends State<con_us> {
 
-  Language _language = Language();
+  final Language _language = Language();
 
   static var jsonList;
 
@@ -68,12 +66,12 @@ class _con_usState extends State<con_us> {
       textDirection: language == 'AR' ? TextDirection.rtl: TextDirection.ltr,
       child: Scaffold(
         backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ?  Color.fromRGBO(33, 37, 25, 1)
-            :  Color.fromRGBO(240, 242, 245, 1),
+            ?  const Color.fromRGBO(33, 37, 25, 1)
+            :  const Color.fromRGBO(240, 242, 245, 1),
         appBar: AppBar(
           backgroundColor: Theme.of(context).brightness == Brightness.dark
-              ?  Color.fromRGBO(33, 37, 25, 1)
-              :  Color.fromRGBO(240, 242, 245, 1),
+              ?  const Color.fromRGBO(33, 37, 25, 1)
+              :  const Color.fromRGBO(240, 242, 245, 1),
           elevation: 0,
           title:  Text("",
               style: TextStyle(
@@ -90,7 +88,7 @@ class _con_usState extends State<con_us> {
 
 
         body: ListView(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             children: [
 
 
@@ -100,9 +98,9 @@ class _con_usState extends State<con_us> {
 
         Container(
         child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
         // padding: EdgeInsets.only(bottom: 70),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
 
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(70)
@@ -118,7 +116,7 @@ class _con_usState extends State<con_us> {
           mainAxisSpacing: 30,
           crossAxisSpacing: 20,
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
 
           children: [
 
@@ -132,7 +130,7 @@ class _con_usState extends State<con_us> {
                   color: Theme
                       .of(context)
                       .brightness == Brightness.dark
-                      ? Color.fromRGBO(41, 45, 33, 1)
+                      ? const Color.fromRGBO(41, 45, 33, 1)
                       : kwhait,
                   elevation: 3,
                   borderRadius: BorderRadius.circular(15),
@@ -177,7 +175,7 @@ class _con_usState extends State<con_us> {
                   color: Theme
                       .of(context)
                       .brightness == Brightness.dark
-                      ? Color.fromRGBO(41, 45, 33, 1)
+                      ? const Color.fromRGBO(41, 45, 33, 1)
                       : kwhait,
                   elevation: 3,
                   borderRadius: BorderRadius.circular(15),
@@ -224,7 +222,7 @@ class _con_usState extends State<con_us> {
                   color: Theme
                       .of(context)
                       .brightness == Brightness.dark
-                      ? Color.fromRGBO(41, 45, 33, 1)
+                      ? const Color.fromRGBO(41, 45, 33, 1)
                       : kwhait,
                   elevation: 3,
                   borderRadius: BorderRadius.circular(15),
@@ -267,7 +265,7 @@ class _con_usState extends State<con_us> {
                   color: Theme
                       .of(context)
                       .brightness == Brightness.dark
-                      ? Color.fromRGBO(41, 45, 33, 1)
+                      ? const Color.fromRGBO(41, 45, 33, 1)
                       : kwhait,
                   elevation: 3,
                   borderRadius: BorderRadius.circular(15),
@@ -315,7 +313,7 @@ class _con_usState extends State<con_us> {
                   color: Theme
                       .of(context)
                       .brightness == Brightness.dark
-                      ? Color.fromRGBO(41, 45, 33, 1)
+                      ? const Color.fromRGBO(41, 45, 33, 1)
                       : kwhait,
                   elevation: 3,
                   borderRadius: BorderRadius.circular(15),
@@ -362,7 +360,7 @@ class _con_usState extends State<con_us> {
                   color: Theme
                       .of(context)
                       .brightness == Brightness.dark
-                      ? Color.fromRGBO(41, 45, 33, 1)
+                      ? const Color.fromRGBO(41, 45, 33, 1)
                       : kwhait,
                   elevation: 3,
                   borderRadius: BorderRadius.circular(15),
@@ -408,7 +406,7 @@ class _con_usState extends State<con_us> {
                   color: Theme
                       .of(context)
                       .brightness == Brightness.dark
-                      ? Color.fromRGBO(41, 45, 33, 1)
+                      ? const Color.fromRGBO(41, 45, 33, 1)
                       : kwhait,
                   elevation: 3,
                   borderRadius: BorderRadius.circular(15),
@@ -451,7 +449,7 @@ class _con_usState extends State<con_us> {
                   color: Theme
                       .of(context)
                       .brightness == Brightness.dark
-                      ? Color.fromRGBO(41, 45, 33, 1)
+                      ? const Color.fromRGBO(41, 45, 33, 1)
                       : kwhait,
                   elevation: 3,
                   borderRadius: BorderRadius.circular(15),
@@ -499,7 +497,7 @@ class _con_usState extends State<con_us> {
                   color: Theme
                       .of(context)
                       .brightness == Brightness.dark
-                      ? Color.fromRGBO(41, 45, 33, 1)
+                      ? const Color.fromRGBO(41, 45, 33, 1)
                       : kwhait,
                   elevation: 3,
                   borderRadius: BorderRadius.circular(15),
@@ -540,7 +538,7 @@ class _con_usState extends State<con_us> {
         )
         ),
 
-              SizedBox(height: 5,)
+              const SizedBox(height: 5,)
             ],
         )
 

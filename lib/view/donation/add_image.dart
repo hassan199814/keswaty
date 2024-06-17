@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:keswaty/Widgets/colors.dart';
 
 class AddImage extends StatefulWidget {
-  const AddImage({Key? key}) : super(key: key);
+  const AddImage({super.key});
 
   @override
   _AddImageState createState() => _AddImageState();
@@ -67,18 +67,18 @@ class _AddImageState extends State<AddImage> {
   _showOption(BuildContext context){
     return showDialog(context: context, builder: (context)=>
         AlertDialog(
-          title: Text("Make a choice"),
+          title: const Text("Make a choice"),
           content: SingleChildScrollView(
             child: Column(
               children: [
                 ListTile(
-                  leading: Icon(Icons.image),
-                  title: Text('Gallery'),
+                  leading: const Icon(Icons.image),
+                  title: const Text('Gallery'),
                   onTap:() => uploadImage(),// uploadImage(),
                 ),
                 ListTile(
-                  leading: Icon(Icons.camera_alt_outlined),
-                  title: Text('Camera'),
+                  leading: const Icon(Icons.camera_alt_outlined),
+                  title: const Text('Camera'),
                   onTap:() => uploadImage2(),
                 ),
               ],

@@ -2025,7 +2025,7 @@ class Language extends ChangeNotifier{
   }
   String tappundemaintenance(){
     if (getLanguage() == 'AR') {
-      return Text("التطبيق تحت الصيانه").toString();
+      return const Text("التطبيق تحت الصيانه").toString();
     } else if (getLanguage() == 'EN') {
       return "The app is under maintenance";
     }else {

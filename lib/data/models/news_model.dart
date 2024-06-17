@@ -42,19 +42,19 @@ class NewsModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['Sectn'] = this.sectn;
-    data['HdLine'] = this.hdLine;
-    data['Contnt'] = this.contnt;
-    data['CvrImg'] = this.cvrImg;
-    data['AltTxt'] = this.altTxt;
-    data['Proty'] = this.proty;
-    data['Notes'] = this.notes;
-    data['Actv'] = this.actv;
-    data['AddBy'] = this.addBy;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['Sectn'] = sectn;
+    data['HdLine'] = hdLine;
+    data['Contnt'] = contnt;
+    data['CvrImg'] = cvrImg;
+    data['AltTxt'] = altTxt;
+    data['Proty'] = proty;
+    data['Notes'] = notes;
+    data['Actv'] = actv;
+    data['AddBy'] = addBy;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

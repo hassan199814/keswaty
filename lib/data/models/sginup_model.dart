@@ -42,19 +42,19 @@ class SginUpModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['UserName'] = this.userName;
-    data['Email'] = this.Email;
-    data['PhoneNo'] = this.phoneNo;
-    data['password'] = this.password;
-    data['RstrQstn'] = this.rstrQstn;
-    data['RstrAnsr'] = this.rstrAnsr;
-    data['Adrs'] = this.adrs;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['UserName'] = userName;
+    data['Email'] = Email;
+    data['PhoneNo'] = phoneNo;
+    data['password'] = password;
+    data['RstrQstn'] = rstrQstn;
+    data['RstrAnsr'] = rstrAnsr;
+    data['Adrs'] = adrs;
     // data['Lngtd'] = this.lngtd;
     // data['latud'] = this.latud;
     // data['updated_at'] = this.updatedAt;
     // data['created_at'] = this.createdAt;
-    data['id'] = this.id;
+    data['id'] = id;
     return data;
   }
 }

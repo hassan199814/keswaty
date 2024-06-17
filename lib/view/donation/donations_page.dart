@@ -1,7 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:keswaty/Widgets/colors.dart';
@@ -20,7 +19,7 @@ import 'package:provider/provider.dart';
 class DonationsPage extends StatefulWidget {
   List<DonationPicModel> donationpiclist = [];
 
-  DonationsPage({Key? key, required this.donation}) : super(key: key);
+  DonationsPage({super.key, required this.donation});
 
   DonationBsktModel donation;
 
@@ -29,8 +28,9 @@ class DonationsPage extends StatefulWidget {
 }
 
 class _DonationsPageState extends State<DonationsPage> {
-  Language _language = Language();
+  final Language _language = Language();
 
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -48,12 +48,12 @@ class _DonationsPageState extends State<DonationsPage> {
       child:
         Scaffold(
           backgroundColor: Theme.of(context).brightness == Brightness.dark
-              ? Color.fromRGBO(33, 37, 25, 1)
-              : Color.fromRGBO(240, 242, 245, 1),
+              ? const Color.fromRGBO(33, 37, 25, 1)
+              : const Color.fromRGBO(240, 242, 245, 1),
           appBar: AppBar(
               backgroundColor: Theme.of(context).brightness == Brightness.dark
-                  ? Color.fromRGBO(33, 37, 25, 1)
-                  : Color.fromRGBO(240, 242, 245, 1),
+                  ? const Color.fromRGBO(33, 37, 25, 1)
+                  : const Color.fromRGBO(240, 242, 245, 1),
               elevation: 0,
 
           ),
@@ -69,8 +69,8 @@ class _DonationsPageState extends State<DonationsPage> {
             SingleChildScrollView(
               // scrollDirection: Axis.vertical,
               child: Container(
-                margin: EdgeInsets.all(10),
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.all(10),
+                decoration: const BoxDecoration(
                 ),
                 child:
                 Column(
@@ -80,7 +80,7 @@ class _DonationsPageState extends State<DonationsPage> {
 
                     // SizedBox(width: 5,),
                     Container(
-                        padding: EdgeInsets.only(left: 10,right: 10),
+                        padding: const EdgeInsets.only(left: 10,right: 10),
                         child: Column(
                           children: [
                             Material(
@@ -88,7 +88,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                     ? greenColor
                                     : kblueColor,
                                 elevation: 0,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(10),
                                     topLeft: Radius.circular(10)),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -102,14 +102,14 @@ class _DonationsPageState extends State<DonationsPage> {
                                         // Navigator.pushNamed(context, "AddFoundLost");
                                       },
                                       child: Container(
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             color: Colors.transparent,
                                             // border: Border.all(color: kblueColor),
                                             borderRadius: BorderRadius.only(
                                                 topRight: Radius.circular(0),
                                                 topLeft: Radius.circular(0)),
                                           ),
-                                          child: Container(
+                                          child: SizedBox(
                                               height: 45,
                                               width: screenWidth - 40,
                                               child: Row(
@@ -118,7 +118,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                 children: [
                                                   Text(
                                                     _language.BasketInfo(),
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: kwhait,
                                                         fontWeight: FontWeight.bold,
                                                         fontSize: 20),
@@ -137,10 +137,10 @@ class _DonationsPageState extends State<DonationsPage> {
                                 Material(
                                     color:
                                     Theme.of(context).brightness == Brightness.dark
-                                        ? Color.fromRGBO(41, 45, 33, 1)
+                                        ? const Color.fromRGBO(41, 45, 33, 1)
                                         : kwhait,
                                     elevation: 0,
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                         bottomLeft: Radius.circular(0),
                                         bottomRight: Radius.circular(0)),
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -154,29 +154,29 @@ class _DonationsPageState extends State<DonationsPage> {
                                             // Navigator.pushNamed(context, "AddFoundLost");
                                           },
                                           child: Container(
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 color: Colors.transparent,
                                                 // border: Border.all(color: kblueColor),
                                                 borderRadius: BorderRadius.only(
                                                     topRight: Radius.circular(15),
                                                     topLeft: Radius.circular(15)),
                                               ),
-                                              child: Container(
+                                              child: SizedBox(
 
                                                 // height: 0,
                                                 width: screenWidth  - 40,
                                                 child: Column(
                                                   children: [
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       height: 15,
                                                     ),
                                                     Column(
                                                       children: [
                                                         Row(
                                                           children: [
-                                                            SizedBox(width: 15,),
-                                                            Icon(Icons.info_outline, color: kblueColor, size: 25),
-                                                            SizedBox(width: 3,),
+                                                            const SizedBox(width: 15,),
+                                                            const Icon(Icons.info_outline, color: kblueColor, size: 25),
+                                                            const SizedBox(width: 3,),
                                                             Row(
                                                               children: [
                                                                 Container(
@@ -188,7 +188,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                                         : widget.donation.dontnStatus == 2 ? kblack38.withOpacity(0.3)
                                                                           : greenColor.withOpacity(0.3),
                                                                       // border: Border.all(color: kblueColor),
-                                                                      borderRadius: BorderRadius
+                                                                      borderRadius: const BorderRadius
                                                                           .all(Radius
                                                                           .circular(
                                                                           10)),
@@ -198,13 +198,13 @@ class _DonationsPageState extends State<DonationsPage> {
                                                                       MainAxisAlignment.center,
                                                                       children: [
                                                                         widget.donation.dontnStatus == 0 ? Text(_language.Uncomplate(),
-                                                                          style: TextStyle(fontWeight: FontWeight.bold, color: kred),)
+                                                                          style: const TextStyle(fontWeight: FontWeight.bold, color: kred),)
                                                                             : widget.donation.dontnStatus == 1 ? Text(_language.UnConfirm(),
-                                                                          style: TextStyle(fontWeight: FontWeight.bold, color: kyallow),)
+                                                                          style: const TextStyle(fontWeight: FontWeight.bold, color: kyallow),)
                                                                             : widget.donation.dontnStatus == 2 ? Text(_language.Confirmed(),
-                                                                          style: TextStyle(fontWeight: FontWeight.bold, color: kwhait),)
+                                                                          style: const TextStyle(fontWeight: FontWeight.bold, color: kwhait),)
                                                                             : Text(_language.Delivered(),
-                                                                          style: TextStyle(fontWeight: FontWeight.bold, color: greenColor),
+                                                                          style: const TextStyle(fontWeight: FontWeight.bold, color: greenColor),
                                                                         ),
                                                                       ],
                                                                     )),
@@ -212,35 +212,35 @@ class _DonationsPageState extends State<DonationsPage> {
                                                             )
                                                           ],
                                                         ),
-                                                        SizedBox(height: 10,),
+                                                        const SizedBox(height: 10,),
                                                         Row(
                                                           children: [
-                                                            SizedBox(
+                                                            const SizedBox(
                                                               width: 15,
                                                             ),
-                                                            Icon(
+                                                            const Icon(
                                                               Icons
                                                                   .description_outlined,
 
                                                               color: kblueColor,
                                                               size: 25,
                                                             ),
-                                                            SizedBox(
+                                                            const SizedBox(
                                                               width: 3,
                                                             ),
                                                             Text(widget.donation.bsktDscr.toString() ,
-                                                              style: TextStyle(
+                                                              style: const TextStyle(
                                                                 fontSize: 17,
                                                                 color: kblueColor,
                                                               ),
                                                             ),
-                                                            SizedBox(
+                                                            const SizedBox(
                                                               width: 10,
                                                             )
                                                           ],
                                                         ),
 
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 10,
                                                         )
                                                       ],
@@ -263,10 +263,10 @@ class _DonationsPageState extends State<DonationsPage> {
                     Consumer<DonationBsktGetProvider>(
                       builder: (context, donationbsktpro, child) {
                         return donationbsktpro.isloading
-                            ? Center(
+                            ? const Center(
 
                         )
-                            : donationbsktpro.donationtypelist.length == 0
+                            : donationbsktpro.donationtypelist.isEmpty
                             ? Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -293,10 +293,10 @@ class _DonationsPageState extends State<DonationsPage> {
                                             btnOkText: _language.tbtnYse(),
                                             btnOkColor: kblueColor,
                                             btnOkIcon: Icons.check,
-                                            buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                            buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                             btnOkOnPress: (){
                                               FocusScope.of(context).unfocus();
-                                              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Login()));
+                                              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                                             },
                                             btnCancelOnPress: (){}
                                         ).show():
@@ -306,17 +306,17 @@ class _DonationsPageState extends State<DonationsPage> {
                                               backgroundColor:  kblueColor,
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:BorderRadius.only(
-                                                  bottomRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                  topRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                  bottomLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                  topLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
+                                                  bottomRight: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                                  topRight: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                                  bottomLeft: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                                  topLeft: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
                                                 ),
                                               )
                                           ),
-                                          icon:Icon(MingCute.hand_heart_line,color: Colors.white),
+                                          icon:const Icon(MingCute.hand_heart_line,color: Colors.white),
                                           label: Text(_language.AddDonation(),style: TextStyle(color: Colors.white,fontSize: screenWidth / 30),)),
                                     ),
-                                    SizedBox(width: 1),
+                                    const SizedBox(width: 1),
                                     SizedBox(
                                       width: screenWidth / 2.5,
                                       child: ElevatedButton.icon(onPressed:  () {
@@ -324,7 +324,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                         final dio = Dio();
 
                                         setState(() async {
-                                          if(donationbsktpro.donationtypelist.length > 0){
+                                          if(donationbsktpro.donationtypelist.isNotEmpty){
                                             InitSharedPreferences.getID()==null?
                                             AwesomeDialog(
                                                 context: context,
@@ -336,14 +336,14 @@ class _DonationsPageState extends State<DonationsPage> {
                                                 btnOkText: _language.tbtnYse(),
                                                 btnOkColor: kblueColor,
                                                 btnOkIcon: Icons.check,
-                                                buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                 btnOkOnPress: (){
                                                   FocusScope.of(context).unfocus();
-                                                  Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Login()));
+                                                  Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                                                 },
                                                 btnCancelOnPress: (){}
                                             ).show():
-                                            await dio!.get("https://keswaty.com/api/donation/status?id=${widget.donation.id}&status=2");
+                                            await dio.get("https://keswaty.com/api/donation/status?id=${widget.donation.id}&status=2");
                                             AwesomeDialog(
                                                 context: context,
                                                 dialogType: DialogType.warning,
@@ -354,7 +354,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                 btnOkText: _language.tbtnYse(),
                                                 btnOkColor: kblueColor,
                                                 btnOkIcon: Icons.check,
-                                                buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                 btnOkOnPress: (){
                                                   setState(() {
 
@@ -372,7 +372,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                 btnOkText: _language.tbtnYse(),
                                                 btnOkColor: kblueColor,
                                                 btnOkIcon: Icons.check,
-                                                buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                 btnOkOnPress: (){
                                                 }
                                             ).show();
@@ -386,14 +386,14 @@ class _DonationsPageState extends State<DonationsPage> {
 
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:BorderRadius.only(
-                                                  bottomRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                  topRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                  bottomLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                  topLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
+                                                  bottomRight: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                                  topRight: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                                  bottomLeft: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                                  topLeft: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
                                                 ),
                                               )
                                           ),
-                                          icon:Icon(Icons.check_circle,color: Colors.white,),
+                                          icon:const Icon(Icons.check_circle,color: Colors.white,),
                                           label: Text(_language.Confirmdeliveryofdonation(),style: TextStyle(color: Colors.white,fontSize: screenWidth / 35))),
                                     ),
 
@@ -404,7 +404,7 @@ class _DonationsPageState extends State<DonationsPage> {
                               ],
                             ))
                             : Container(
-                            padding: EdgeInsets.only(left: 10,right: 10),
+                            padding: const EdgeInsets.only(left: 10,right: 10),
                             child: Column(
                               children: [
 
@@ -412,7 +412,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                 Container(
                                   width: screenWidth,
                                   color: Theme.of(context).brightness == Brightness.dark
-                                      ? Color.fromRGBO(33, 37, 25, 1)
+                                      ? const Color.fromRGBO(33, 37, 25, 1)
                                       : kwhait,
                                   child:
                                   Row(
@@ -437,10 +437,10 @@ class _DonationsPageState extends State<DonationsPage> {
                                               btnOkText: _language.tbtnYse(),
                                               btnOkColor: kblueColor,
                                               btnOkIcon: Icons.check,
-                                              buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                              buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                               btnOkOnPress: (){
                                                 FocusScope.of(context).unfocus();
-                                                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Login()));
+                                                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                                               },
                                               btnCancelOnPress: (){}
                                           ).show():
@@ -450,17 +450,17 @@ class _DonationsPageState extends State<DonationsPage> {
                                                 backgroundColor:  kblueColor,
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:BorderRadius.only(
-                                                    bottomRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                    topRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                    bottomLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                    topLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
+                                                    bottomRight: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                                    topRight: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                                    bottomLeft: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                                    topLeft: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
                                                   ),
                                                 )
                                             ),
-                                            icon:Icon(MingCute.hand_heart_line,color: Colors.white),
+                                            icon:const Icon(MingCute.hand_heart_line,color: Colors.white),
                                             label: Text(_language.AddDonation(),style: TextStyle(color: Colors.white,fontSize: screenWidth / 30),)),
                                       ),
-                                      SizedBox(width: 1),
+                                      const SizedBox(width: 1),
 
 
                                       widget.donation.dontnStatus == 2 ?
@@ -470,7 +470,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                           final dio = Dio();
 
                                           setState(() async {
-                                            if(donationbsktpro.donationtypelist.length > 0){
+                                            if(donationbsktpro.donationtypelist.isNotEmpty){
                                               InitSharedPreferences.getID()==null?
                                               AwesomeDialog(
                                                   context: context,
@@ -482,10 +482,10 @@ class _DonationsPageState extends State<DonationsPage> {
                                                   btnOkText: _language.tbtnYse(),
                                                   btnOkColor: kblueColor,
                                                   btnOkIcon: Icons.check,
-                                                  buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                   btnOkOnPress: (){
                                                     FocusScope.of(context).unfocus();
-                                                    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Login()));
+                                                    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                                                   },
                                                   btnCancelOnPress: (){}
                                               ).show():
@@ -500,11 +500,11 @@ class _DonationsPageState extends State<DonationsPage> {
                                                   btnOkText: _language.tbtnYse(),
                                                   btnOkColor: kblueColor,
                                                   btnOkIcon: Icons.check,
-                                                  buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                   btnOkOnPress: (){
                                                     setState(() {
 
-                                                       dio!.get("https://keswaty.com/api/donation/status?id=${widget.donation.id}&status=3");
+                                                       dio.get("https://keswaty.com/api/donation/status?id=${widget.donation.id}&status=3");
                                                        AwesomeDialog(
                                                            context: context,
                                                            dialogType: DialogType.warning,
@@ -515,7 +515,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                            btnOkText: _language.tbtnYse(),
                                                            btnOkColor: kblueColor,
                                                            btnOkIcon: Icons.check,
-                                                           buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                           buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                            btnOkOnPress: (){
                                                              setState(() {
 
@@ -537,7 +537,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                   btnOkText: _language.tbtnYse(),
                                                   btnOkColor: kblueColor,
                                                   btnOkIcon: Icons.check,
-                                                  buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                   btnOkOnPress: (){
                                                   }
                                               ).show();
@@ -551,15 +551,15 @@ class _DonationsPageState extends State<DonationsPage> {
 
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:BorderRadius.only(
-                                                    bottomRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                    topRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                    bottomLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                    topLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
+                                                    bottomRight: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                                    topRight: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                                    bottomLeft: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                                    topLeft: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
 
                                                   ),
                                                 )
                                             ),
-                                            icon:Icon(Icons.check_circle,color: Colors.white,),
+                                            icon:const Icon(Icons.check_circle,color: Colors.white,),
                                             label: Text(_language.Confirmdeliveryofdonation(),style: TextStyle(color: Colors.white,fontSize: screenWidth / 30))),
                                       ):
                                       SizedBox(
@@ -568,7 +568,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                           final dio = Dio();
 
                                           setState(() async {
-                                            if(donationbsktpro.donationtypelist.length > 0){
+                                            if(donationbsktpro.donationtypelist.isNotEmpty){
 
                                               AwesomeDialog(
                                                   context: context,
@@ -580,11 +580,11 @@ class _DonationsPageState extends State<DonationsPage> {
                                                   btnOkText: _language.tbtnYse(),
                                                   btnOkColor: kblueColor,
                                                   btnOkIcon: Icons.check,
-                                                  buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                   btnOkOnPress: (){
                                                     setState(() {
 
-                                                       dio!.get("https://keswaty.com/api/donation/status?id=${widget.donation.id}&status=2");
+                                                       dio.get("https://keswaty.com/api/donation/status?id=${widget.donation.id}&status=2");
 
                                                        AwesomeDialog(
                                                            context: context,
@@ -596,7 +596,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                            btnOkText: _language.tbtnYse(),
                                                            btnOkColor: kblueColor,
                                                            btnOkIcon: Icons.check,
-                                                           buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                           buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                            btnOkOnPress: (){
                                                              setState(() {
 
@@ -618,7 +618,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                   btnOkText: _language.tbtnYse(),
                                                   btnOkColor: kblueColor,
                                                   btnOkIcon: Icons.check,
-                                                  buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                   btnOkOnPress: (){
                                                   }
                                               ).show();
@@ -632,14 +632,14 @@ class _DonationsPageState extends State<DonationsPage> {
 
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:BorderRadius.only(
-                                                    bottomRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                    topRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                    bottomLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                    topLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
+                                                    bottomRight: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                                    topRight: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                                    bottomLeft: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                                    topLeft: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
                                                   ),
                                                 )
                                             ),
-                                            icon:Icon(Icons.check_circle,color: Colors.white,),
+                                            icon:const Icon(Icons.check_circle,color: Colors.white,),
                                             label: Text(_language.ConfirmBasket(),style: TextStyle(color: Colors.white,fontSize: screenWidth / 30 ))),
                                       ),
 
@@ -652,7 +652,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                   color: Theme.of(context).brightness == Brightness.dark
                                   ? greenColor.withOpacity(0.3)
                                   : greenColor.withOpacity(0.3),
-                                    child: Text(_language.Thisbaskethasbeen(),textAlign: TextAlign.center,style: TextStyle(
+                                    child: Text(_language.Thisbaskethasbeen(),textAlign: TextAlign.center,style: const TextStyle(
                                       color: greenColor,fontWeight: FontWeight.bold
                                     ),)
                                 ),
@@ -661,10 +661,10 @@ class _DonationsPageState extends State<DonationsPage> {
                                 Material(
                                     color: Theme.of(context).brightness ==
                                         Brightness.dark
-                                        ? Color.fromRGBO(41, 45, 33, 1)
+                                        ? const Color.fromRGBO(41, 45, 33, 1)
                                         : kwhait,
                                     elevation: 0,
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                         topRight: Radius.circular(0),
                                         topLeft: Radius.circular(0)),
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -678,7 +678,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                             // Navigator.pushNamed(context, "AddFoundLost");
                                           },
                                           child: Container(
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 color: Colors.transparent,
                                                 // border: Border.all(color: kblueColor),
                                                 borderRadius: BorderRadius.only(
@@ -687,7 +687,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                     topLeft:
                                                     Radius.circular(0)),
                                               ),
-                                              child: Container(
+                                              child: SizedBox(
                                                   height: 45,
                                                   width: screenWidth - 40,
                                                   child:
@@ -699,7 +699,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                             ? kwhait
                                                             : kblueColor,
                                                       )),
-                                                      Padding(padding: EdgeInsets.symmetric(horizontal:10),
+                                                      Padding(padding: const EdgeInsets.symmetric(horizontal:10),
                                                         child:
                                                         Text(
                                                           _language
@@ -730,10 +730,10 @@ class _DonationsPageState extends State<DonationsPage> {
                                     Material(
                                         color: Theme.of(context).brightness ==
                                             Brightness.dark
-                                            ? Color.fromRGBO(41, 45, 33, 1)
+                                            ? const Color.fromRGBO(41, 45, 33, 1)
                                             : kwhait,
                                         elevation: 0,
-                                        borderRadius: BorderRadius.only(
+                                        borderRadius: const BorderRadius.only(
                                             bottomLeft: Radius.circular(0),
                                             bottomRight: Radius.circular(0)),
                                         clipBehavior:
@@ -743,7 +743,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                           children: [
 
                                               Container(
-                                                  decoration: BoxDecoration(
+                                                  decoration: const BoxDecoration(
                                                     color: Colors.transparent,
                                                     // border: Border.all(color: kblueColor),
                                                     borderRadius:
@@ -754,18 +754,18 @@ class _DonationsPageState extends State<DonationsPage> {
                                                         Radius.circular(
                                                             15)),
                                                   ),
-                                                  child: Container(
+                                                  child: SizedBox(
                                                     // height: 160,
                                                     width: screenWidth - 40,
                                                     child: Column(
                                                       children: [
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 15,
                                                         ),
 
                                                         ListView.builder(
                                                             shrinkWrap: true,
-                                                            physics: BouncingScrollPhysics(),
+                                                            physics: const BouncingScrollPhysics(),
                                                             // itemCount: donationbsktpro.donationbsktlist==null?0:donationbsktpro.donationbsktlist.length,
                                                             itemCount:
                                                             donationbsktpro.donationtypelist.length,
@@ -774,8 +774,8 @@ class _DonationsPageState extends State<DonationsPage> {
                                                                 Column(
                                                                   children: [
                                                                     Container(
-                                                                      margin: EdgeInsets.only(bottom: 10 , left: 10),
-                                                                      decoration: BoxDecoration(
+                                                                      margin: const EdgeInsets.only(bottom: 10 , left: 10),
+                                                                      decoration: const BoxDecoration(
 
                                                                           border:
                                                                           Border(left: BorderSide(width: 3 , color: kblueColor),
@@ -785,17 +785,17 @@ class _DonationsPageState extends State<DonationsPage> {
                                                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                         children: [
 
-                                                                          SizedBox(
+                                                                          const SizedBox(
                                                                             width:
                                                                             3,
                                                                           ),
 
-                                                                          Container(
+                                                                          SizedBox(
                                                                             width: screenWidth - 150,
                                                                             child:  Text(
 
                                                                               donationbsktpro.donationtypelist[index].name.toString(),
-                                                                              style: TextStyle(
+                                                                              style: const TextStyle(
                                                                                   fontSize:
                                                                                   17,
                                                                                   color:
@@ -811,7 +811,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                                                     dialogBackgroundColor:
                                                                                     Theme.of(context).brightness ==
                                                                                         Brightness.dark
-                                                                                        ? Color.fromRGBO(41, 45, 33, 1)
+                                                                                        ? const Color.fromRGBO(41, 45, 33, 1)
                                                                                         : kwhait,
                                                                                     context: context,
                                                                                     dialogType: DialogType.noHeader,
@@ -825,7 +825,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                                                     btnCancelColor: kblack38,
                                                                                     btnOkIcon: Icons.delete,
                                                                                     buttonsBorderRadius:
-                                                                                    BorderRadius.all(Radius.circular(10)),
+                                                                                    const BorderRadius.all(Radius.circular(10)),
                                                                                     btnOkOnPress: () {
                                                                                       Provider.of<DonationBsktGetProvider>(context, listen: false).donationtypedelete(bskt_id: widget.donation.id,type_id: donationbsktpro.donationtypelist[index].id);
                                                                                       setState(() {
@@ -841,10 +841,10 @@ class _DonationsPageState extends State<DonationsPage> {
                                                                                     .show();
                                                                               },
                                                                               child:
-                                                                              Icon(Icons.delete , color: kred, size: 30)):
+                                                                              const Icon(Icons.delete , color: kred, size: 30)):
 
 
-                                                                          SizedBox(
+                                                                          const SizedBox(
                                                                             width:
                                                                             3,
                                                                           ),
@@ -876,32 +876,32 @@ class _DonationsPageState extends State<DonationsPage> {
 
                     Consumer<DonationBsktGetProvider>(builder: (context, donationpicpro, child) {
                         return donationpicpro.isloading
-                            ? Center(
+                            ? const Center(
                           child: CircularProgressIndicator(),
                         )
-                            : donationpicpro.donationpiclist.length == 0
+                            : donationpicpro.donationpiclist.isEmpty
                             ? Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [Text(
                                 textAlign: TextAlign.center,
-                                _language.NoMaterialsFound(),style: TextStyle(
+                                _language.NoMaterialsFound(),style: const TextStyle(
                                   fontWeight: FontWeight.bold
                               ),)],
                             ))
                             :
 
                         Container(
-                            padding: EdgeInsets.only(right: 10,left: 10),
+                            padding: const EdgeInsets.only(right: 10,left: 10),
                             child: Column(
                               children: [
                                 Material(
                                     color: Theme.of(context).brightness ==
                                         Brightness.dark
-                                        ? Color.fromRGBO(41, 45, 33, 1)
+                                        ? const Color.fromRGBO(41, 45, 33, 1)
                                         : kwhait,
                                     elevation: 0,
-                                    borderRadius: BorderRadius.only(
+                                    borderRadius: const BorderRadius.only(
                                         topRight: Radius.circular(0),
                                         topLeft: Radius.circular(0)),
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -915,7 +915,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                             // Navigator.pushNamed(context, "AddFoundLost");
                                           },
                                           child: Container(
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 color: Colors.transparent,
                                                 // border: Border.all(color: kblueColor),
                                                 borderRadius: BorderRadius.only(
@@ -924,7 +924,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                     topLeft:
                                                     Radius.circular(0)),
                                               ),
-                                              child: Container(
+                                              child: SizedBox(
                                                   height: 45,
                                                   width: screenWidth - 40,
                                                   child:
@@ -936,7 +936,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                             ? kwhait
                                                             : kblueColor,
                                                       )),
-                                                      Padding(padding: EdgeInsets.symmetric(horizontal:10),
+                                                      Padding(padding: const EdgeInsets.symmetric(horizontal:10),
                                                         child:
                                                         Text(
                                                           _language
@@ -967,10 +967,10 @@ class _DonationsPageState extends State<DonationsPage> {
                                     Material(
                                         color: Theme.of(context).brightness ==
                                             Brightness.dark
-                                            ? Color.fromRGBO(41, 45, 33, 1)
+                                            ? const Color.fromRGBO(41, 45, 33, 1)
                                             : kwhait,
                                         elevation: 0,
-                                        borderRadius: BorderRadius.only(
+                                        borderRadius: const BorderRadius.only(
                                             bottomLeft: Radius.circular(10),
                                             bottomRight: Radius.circular(10)),
                                         clipBehavior:
@@ -979,7 +979,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Container(
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 color: Colors.transparent,
                                                 // border: Border.all(color: kblueColor),
                                                 borderRadius:
@@ -993,12 +993,12 @@ class _DonationsPageState extends State<DonationsPage> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     // height: 160,
                                                     width: screenWidth - 40,
                                                     child: Column(
                                                       children: [
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 15,
                                                         ),
 
@@ -1006,7 +1006,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                             shrinkWrap:
                                                             true,
                                                             physics:
-                                                            BouncingScrollPhysics(),
+                                                            const BouncingScrollPhysics(),
                                                             // itemCount: donationbsktpro.donationbsktlist==null?0:donationbsktpro.donationbsktlist.length,
                                                             itemCount: donationpicpro.donationpiclist.length,
                                                             itemBuilder: (context, index) {
@@ -1016,8 +1016,8 @@ class _DonationsPageState extends State<DonationsPage> {
                                                               // });
                                                               return
                                                                 Container(
-                                                                  margin: EdgeInsets.only(bottom: 10 , left: 10),
-                                                                  decoration: BoxDecoration(
+                                                                  margin: const EdgeInsets.only(bottom: 10 , left: 10),
+                                                                  decoration: const BoxDecoration(
 
                                                                       border:
                                                                       Border(left: BorderSide(width: 3 , color: kblueColor),
@@ -1028,11 +1028,11 @@ class _DonationsPageState extends State<DonationsPage> {
                                                                     children: [
 
 
-                                                                      SizedBox(
+                                                                      const SizedBox(
                                                                         width:
                                                                         3,
                                                                       ),
-                                                                      donationpicpro.donationpiclist.length != 0 ? CachedNetworkImage(
+                                                                      donationpicpro.donationpiclist.isNotEmpty ? CachedNetworkImage(
                                                                         placeholder: (ctx, url) => Image.asset(AppConstants.image),
                                                                         height: 200,
                                                                         fit: BoxFit.cover,
@@ -1052,7 +1052,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                                                 dialogBackgroundColor:
                                                                                 Theme.of(context).brightness ==
                                                                                     Brightness.dark
-                                                                                    ? Color.fromRGBO(41, 45, 33, 1)
+                                                                                    ? const Color.fromRGBO(41, 45, 33, 1)
                                                                                     : kwhait,
                                                                                 context: context,
                                                                                 dialogType: DialogType.noHeader,
@@ -1066,7 +1066,7 @@ class _DonationsPageState extends State<DonationsPage> {
                                                                                 btnCancelColor: kblack38,
                                                                                 btnOkIcon: Icons.delete,
                                                                                 buttonsBorderRadius:
-                                                                                BorderRadius.all(Radius.circular(10)),
+                                                                                const BorderRadius.all(Radius.circular(10)),
                                                                                 btnOkOnPress: () {
                                                                                   Provider.of<DonationBsktGetProvider>(context, listen: false).donationpicdelete(pic_id: donationpicpro.donationpiclist[index].id,);
                                                                                   // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => DonationsPage(donation: widget.donation)));
@@ -1085,8 +1085,8 @@ class _DonationsPageState extends State<DonationsPage> {
                                                                                 .show();
                                                                           },
                                                                           child:
-                                                                          Icon(Icons.delete , color: kred, size: 30)):
-                                                                      SizedBox(
+                                                                          const Icon(Icons.delete , color: kred, size: 30)):
+                                                                      const SizedBox(
                                                                         width:
                                                                         3,
                                                                       )

@@ -9,10 +9,10 @@ const klineColor = Color(0xFF475269);
 const kwhait = Colors.white;
 const kblack = Colors.black;
 const kred = Colors.red;
-const kredf = Color(0xFFFFFF8080);
-const kyallow = Color(0xFFFFEFC00C);
+const kredf = Color(0xffffff8080);
+const kyallow = Color(0xffffefc00c);
 const kblack38 = Colors.grey;
-const kblack380 = Color(0xFFFF383636);
+const kblack380 = Color(0xffff383636);
 const kCamera = Color(0xFFF5F6F9);
 
 

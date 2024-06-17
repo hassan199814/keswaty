@@ -10,7 +10,7 @@ import 'package:keswaty/view/Main/Newsdetails/views%20_page.dart';
 import 'package:provider/provider.dart';
 
 class NewsPage extends StatefulWidget {
-  const NewsPage({Key? key}) : super(key: key);
+  const NewsPage({super.key});
 
   @override
   _NewsPageState createState() => _NewsPageState();
@@ -29,8 +29,9 @@ class _NewsPageState extends State<NewsPage> {
   //   // setState(() => _language.getLanguage());
   // }
 
-  Language _language = Language();
+  final Language _language = Language();
 
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -49,13 +50,13 @@ class _NewsPageState extends State<NewsPage> {
 
       child: Scaffold(
         backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? Color.fromRGBO(33, 37, 25, 1)
-            : Color.fromRGBO(240, 242, 245, 1),
+            ? const Color.fromRGBO(33, 37, 25, 1)
+            : const Color.fromRGBO(240, 242, 245, 1),
 
         appBar: AppBar(
           backgroundColor: Theme.of(context).brightness == Brightness.dark
-              ? Color.fromRGBO(33, 37, 25, 1)
-              : Color.fromRGBO(240, 242, 245, 1),
+              ? const Color.fromRGBO(33, 37, 25, 1)
+              : const Color.fromRGBO(240, 242, 245, 1),
           elevation: 0,
           title:  Text(_language.tnews(),
               style: TextStyle(
@@ -82,8 +83,8 @@ class _NewsPageState extends State<NewsPage> {
             // LostFoundAppBAr(name: ""),
             Container(
               color: Theme.of(context).brightness == Brightness.dark
-                  ? Color.fromRGBO(33, 37, 25, 1)
-                  : Color.fromRGBO(240, 242, 245, 1),
+                  ? const Color.fromRGBO(33, 37, 25, 1)
+                  : const Color.fromRGBO(240, 242, 245, 1),
               child: Column(
                 children: [
 
@@ -91,8 +92,8 @@ class _NewsPageState extends State<NewsPage> {
 
                   Consumer<MainGellaryProvider>(builder: (context, newsypro, child) {
                     return newsypro.isloading
-                        ? Center(child: CircularProgressIndicator(),)
-                        : newsypro.newslist.length == 0
+                        ? const Center(child: CircularProgressIndicator(),)
+                        : newsypro.newslist.isEmpty
                         ? Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -100,18 +101,18 @@ class _NewsPageState extends State<NewsPage> {
                         ))
                         : ListView.builder(
                         shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         itemCount: newsypro.newslist.length ,
                         itemBuilder: (context, index) {
                           return
 
                             SingleChildScrollView(
                               scrollDirection: Axis.vertical,
-                              padding: EdgeInsets.only(right: 15,left: 10),
+                              padding: const EdgeInsets.only(right: 15,left: 10),
                               child: Column(
                                 children: [
 
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 7,
                                   ),
                                   InkWell(
@@ -130,11 +131,11 @@ class _NewsPageState extends State<NewsPage> {
                                     },
                                     child: Card(
                                       color: Theme.of(context).brightness == Brightness.dark
-                                          ? Color.fromRGBO(35, 40, 30, 1)
+                                          ? const Color.fromRGBO(35, 40, 30, 1)
                                           : kCamera,
 
                                       elevation: 0,
-                                      margin: EdgeInsets.all(0),
+                                      margin: const EdgeInsets.all(0),
                                       child: Column(
                                         children: [
 
@@ -148,38 +149,38 @@ class _NewsPageState extends State<NewsPage> {
                                                 child: Column(
                                                   children: [
 
-                                                    SizedBox(height: 10),
+                                                    const SizedBox(height: 10),
                                                     //العنوان
-                                                    Row(
+                                                    const Row(
                                                       children: [
 
 
                                                       ],
                                                     ),
-                                                    SizedBox(height: 3),
+                                                    const SizedBox(height: 3),
 
                                                     Row(
                                                       children: [
 
                                                         Container(
-                                                            padding: EdgeInsets.only(left: 5,right: 5),
+                                                            padding: const EdgeInsets.only(left: 5,right: 5),
                                                             decoration: BoxDecoration(color:
                                                             newsypro.newslist[index].sectn == 0 ? kblack38.withOpacity(0.3)
                                                                 : newsypro.newslist[index].sectn == 1 ? kblack38.withOpacity(0.3)
                                                                 : Colors.transparent,
                                                               // border: Border.all(color: kblueColor),
-                                                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                              borderRadius: const BorderRadius.all(Radius.circular(10)),
                                                             ),
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                               children: [
                                                                 newsypro.newslist[index].sectn == 0
                                                                     ? Text(_language.AboutFoundation(),
-                                                                  style: TextStyle(fontWeight: FontWeight.bold, color: kblack380,fontSize: 13),)
+                                                                  style: const TextStyle(fontWeight: FontWeight.bold, color: kblack380,fontSize: 13),)
                                                                     : newsypro.newslist[index].sectn == 1
                                                                     ? Text(_language.AboutDonations(),
-                                                                  style: TextStyle(fontWeight: FontWeight.bold, color: kblack380,fontSize: 13),)
-                                                                    : Text('',
+                                                                  style: const TextStyle(fontWeight: FontWeight.bold, color: kblack380,fontSize: 13),)
+                                                                    : const Text('',
                                                                 ),
                                                               ],
                                                             )),
@@ -190,7 +191,7 @@ class _NewsPageState extends State<NewsPage> {
                                                     Row(
                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
-                                                        SizedBox(width: 5,),
+                                                        const SizedBox(width: 5,),
                                                         Expanded(
                                                           flex: 3,
                                                           child:
@@ -199,15 +200,15 @@ class _NewsPageState extends State<NewsPage> {
                                                             child: Column(
                                                               crossAxisAlignment: CrossAxisAlignment.end,
                                                               children: [
-                                                                SizedBox(height: 8),
+                                                                const SizedBox(height: 8),
 
                                                                 Text(
                                                                   maxLines: 2,
                                                                   overflow: TextOverflow.ellipsis,
                                                                   newsypro.newslist[index].contnt.toString(),
-                                                                  style: TextStyle(fontSize: 16),
+                                                                  style: const TextStyle(fontSize: 16),
                                                                 ),
-                                                                SizedBox(height: 10),
+                                                                const SizedBox(height: 10),
 
                                                                 // more read
 
@@ -215,7 +216,7 @@ class _NewsPageState extends State<NewsPage> {
                                                             ),
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           width: 5,
                                                         ),
                                                       ],
@@ -230,9 +231,9 @@ class _NewsPageState extends State<NewsPage> {
                                                   children: [
 
                                                     Container(
-                                                        margin: EdgeInsets.only(top: 8, right: 8),
+                                                        margin: const EdgeInsets.only(top: 8, right: 8),
                                                         child:
-                                                        newsypro.newslist.length != 0 ?
+                                                        newsypro.newslist.isNotEmpty ?
                                                         ClipRRect(
                                                           borderRadius: BorderRadius.circular(15),
 
@@ -257,10 +258,10 @@ class _NewsPageState extends State<NewsPage> {
                                                           )
 
                                                     ),
-                                                    SizedBox(height: 5,),
+                                                    const SizedBox(height: 5,),
                                                     Padding(
                                                       padding: const EdgeInsets.all(2.0),
-                                                      child:  Text(newsypro.newslist[index].createdAt.toString().substring(0,10),style: TextStyle(color: Colors.black38),
+                                                      child:  Text(newsypro.newslist[index].createdAt.toString().substring(0,10),style: const TextStyle(color: Colors.black38),
                                                         textAlign: language == 'AR' ? TextAlign.right : TextAlign.left,),
 
 
@@ -290,7 +291,7 @@ class _NewsPageState extends State<NewsPage> {
                                           ),
 
 
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 5,
                                           ),
                                         ],

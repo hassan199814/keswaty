@@ -11,7 +11,7 @@ import 'package:keswaty/view/Login_Resiter/Login/login.dart';
 import 'package:provider/provider.dart';
 
 class ChangePassword extends StatefulWidget {
-   ChangePassword({Key? key , required this.sginUpModel}) : super(key: key);
+   ChangePassword({super.key , required this.sginUpModel});
 
   SginUpModel sginUpModel;
   @override
@@ -41,7 +41,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   bool remember = false;
 
 
-  Language _language = Language();
+  final Language _language = Language();
 
 
   bool obscurePassWord = true;
@@ -57,13 +57,13 @@ class _ChangePasswordState extends State<ChangePassword> {
       child: Scaffold(
         backgroundColor:
         Theme.of(context).brightness == Brightness.dark
-            ?  Color.fromRGBO(33, 37, 25, 1)
-            :  Color.fromRGBO(240, 242, 245, 1),
+            ?  const Color.fromRGBO(33, 37, 25, 1)
+            :  const Color.fromRGBO(240, 242, 245, 1),
 
         appBar: AppBar(
           backgroundColor: Theme.of(context).brightness == Brightness.dark
-              ?  Color.fromRGBO(33, 37, 25, 1)
-              :  Color.fromRGBO(240, 242, 245, 1),
+              ?  const Color.fromRGBO(33, 37, 25, 1)
+              :  const Color.fromRGBO(240, 242, 245, 1),
           elevation: 0,
           // title:  Text(_language.tAddpost(),
           //     style: TextStyle(
@@ -86,14 +86,14 @@ class _ChangePasswordState extends State<ChangePassword> {
             children: [
               SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
                       Text(
                         _language.tChangePass(),
                         style : headingStyle,
                       ),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       // Text(
                       //   _language.tValidateHelp(),
                       //   textAlign: TextAlign.center,
@@ -108,12 +108,12 @@ class _ChangePasswordState extends State<ChangePassword> {
                         key: _formkey,
                         child: Column(
                           children: [
-                            SizedBox(height: 60),
+                            const SizedBox(height: 60),
 
                             SizedBox(
                               width: 345,
                               child: TextFormField(
-                                style: TextStyle(
+                                style: const TextStyle(
 
                                 ),
 
@@ -125,11 +125,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                                     labelText: _language.tOldPass(),
                                     helperText: "",
                                     // hintText: _language.tEnterRestoreAnswer(),hintStyle: TextStyle(fontSize: 12),
-                                    suffixIcon: Icon(Icons.password, color:kblack38)
+                                    suffixIcon: const Icon(Icons.password, color:kblack38)
                                 ),
                               ),
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             SizedBox(
                               width: 345,
                               child: TextFormField(
@@ -157,7 +157,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             SizedBox(
                               width: 345,
                               child: TextFormField(
@@ -191,8 +191,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 40),
-                            Container(
+                            const SizedBox(height: 40),
+                            SizedBox(
                               width: 350,
                               child: DefaultButton(
                                 bkground: kblueColor,
@@ -214,9 +214,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                                             btnOkText: _language.tbtnOk(),
                                             btnOkColor: kblueColor,
                                             btnOkIcon: Icons.check,
-                                            buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                            buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                             btnOkOnPress: (){
-                                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>Login()));
+                                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>const Login()));
                                             },
                                         ).show();
 
@@ -225,11 +225,11 @@ class _ChangePasswordState extends State<ChangePassword> {
 
 
                                 },
-                                text: _language.tChange(),txtstyle: TextStyle(fontSize: 20,color: kwhait),
-                                icon: Icon(Icons.check_circle, color: kwhait ),
+                                text: _language.tChange(),txtstyle: const TextStyle(fontSize: 20,color: kwhait),
+                                icon: const Icon(Icons.check_circle, color: kwhait ),
                               ),
                             ),
-                            SizedBox(height: 60),
+                            const SizedBox(height: 60),
 
                           ],
                         ),

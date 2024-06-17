@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:keswaty/String_Extensions.dart';
 
 class ConfirmPassword extends StatefulWidget {
-  const ConfirmPassword({Key? key}) : super(key: key);
+  const ConfirmPassword({super.key});
 
 
 
@@ -18,17 +18,19 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
   final List<String> errors =[];
 
   void addError({required String error}){
-    if(!error.contains(error))
+    if(!error.contains(error)) {
       setState(() {
         errors.add(error);
       });
+    }
   }
 
   void removError({required String error}){
-    if(!error.contains(error))
+    if(!error.contains(error)) {
       setState(() {
         errors.remove(error);
       });
+    }
   }
 
   @override
@@ -40,7 +42,7 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
         if(password == confrom_password){
           removError(error: KMatchPassError);
         }
-        return null;
+        return;
       },
 
       validator: (value){

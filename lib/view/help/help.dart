@@ -1,5 +1,4 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:keswaty/Widgets/colors.dart';
@@ -11,7 +10,7 @@ import 'package:keswaty/view/feedback/feedback_page.dart';
 
 
 class HelpPage extends StatefulWidget {
-  const HelpPage({Key? key}) : super(key: key);
+  const HelpPage({super.key});
 
   @override
   _HelpPageState createState() => _HelpPageState();
@@ -19,7 +18,7 @@ class HelpPage extends StatefulWidget {
 
 class _HelpPageState extends State<HelpPage> {
 
-  Language _language = Language();
+  final Language _language = Language();
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +28,13 @@ class _HelpPageState extends State<HelpPage> {
       child: Scaffold(
           backgroundColor:
           Theme.of(context).brightness == Brightness.dark
-              ?  Color.fromRGBO(33, 37, 25, 1)
-              :  Color.fromRGBO(240, 242, 245, 1),
+              ?  const Color.fromRGBO(33, 37, 25, 1)
+              :  const Color.fromRGBO(240, 242, 245, 1),
 
           appBar: AppBar(
             backgroundColor: Theme.of(context).brightness == Brightness.dark
-                ?  Color.fromRGBO(33, 37, 25, 1)
-                :  Color.fromRGBO(240, 242, 245, 1),
+                ?  const Color.fromRGBO(33, 37, 25, 1)
+                :  const Color.fromRGBO(240, 242, 245, 1),
             elevation: 0,
 
             leading: IconButton(
@@ -46,20 +45,20 @@ class _HelpPageState extends State<HelpPage> {
                       :  kblueColor),),),
 
           body:ListView(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             children: [
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
 
 
               Container(
-                    child: Text(_language.helptitle(),style: TextStyle(fontSize: 20),textAlign: TextAlign.center,),
+                    child: Text(_language.helptitle(),style: const TextStyle(fontSize: 20),textAlign: TextAlign.center,),
                   ),
 
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
 
               Container(
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                     // padding: EdgeInsets.only(bottom: 70),
 
 
@@ -71,7 +70,7 @@ class _HelpPageState extends State<HelpPage> {
                       mainAxisSpacing: 30,
                       crossAxisSpacing: 20,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       // childAspectRatio: 10,
                       // mainAxisSpacing: 10,
 
@@ -89,19 +88,19 @@ class _HelpPageState extends State<HelpPage> {
                                 btnOkText: _language.tbtnYse(),
                                 btnOkColor: kblueColor,
 
-                                buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                 btnOkOnPress: (){
                                   FocusScope.of(context).unfocus();
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Login()));
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                                 },
                                 btnCancelOnPress: (){}
                             ).show():
                             Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_) => FeedbackPage()));
+                                MaterialPageRoute(builder: (_) => const FeedbackPage()));
                           },
                           child: Material(
                               color: Theme.of(context).brightness == Brightness.dark
-                                  ?  Color.fromRGBO(41, 45, 33, 1)
+                                  ?  const Color.fromRGBO(41, 45, 33, 1)
                                   : kwhait,
                               elevation: 3,
                               borderRadius: BorderRadius.circular(15),
@@ -122,15 +121,15 @@ class _HelpPageState extends State<HelpPage> {
                                             btnOkText: _language.tbtnYse(),
                                             btnOkColor: kblueColor,
 
-                                            buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                            buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                             btnOkOnPress: (){
                                               FocusScope.of(context).unfocus();
-                                              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Login()));
+                                              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                                             },
                                             btnCancelOnPress: (){}
                                         ).show():
                                         Navigator.of(context).push(
-                                            MaterialPageRoute(builder: (_) => FeedbackPage()));
+                                            MaterialPageRoute(builder: (_) => const FeedbackPage()));
                                       },
                                       child: Column(
                                         children: [
@@ -158,7 +157,7 @@ class _HelpPageState extends State<HelpPage> {
                           },
                           child: Material(
                               color: Theme.of(context).brightness == Brightness.dark
-                                  ?  Color.fromRGBO(41, 45, 33, 1)
+                                  ?  const Color.fromRGBO(41, 45, 33, 1)
                                   : kwhait,
                               elevation: 3,
                               borderRadius: BorderRadius.circular(15),
@@ -174,7 +173,7 @@ class _HelpPageState extends State<HelpPage> {
                                         children: [
                                           Icon(Icons.privacy_tip_outlined, color:kblueColor,size: screenWidth/10, ),
                                           Text(
-                                            _language.privacypolicy(),style: TextStyle(fontSize: screenWidth/25,color: kblueColor),
+                                            _language.privacypolicy(),style: TextStyle(fontSize: screenWidth/40,color: kblueColor),
                                           ),
                                         ],
                                       )

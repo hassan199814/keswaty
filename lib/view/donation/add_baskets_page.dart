@@ -23,7 +23,7 @@ class AddBasketsPage extends StatefulWidget {
 
   List<DonationBsktModel> donationbsktlist = [];
 
-  AddBasketsPage({Key? key}) : super(key: key);
+  AddBasketsPage({super.key});
 
   @override
   _AddBasketsPageState createState() => _AddBasketsPageState();
@@ -47,7 +47,7 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
   final TextEditingController controllerLat = TextEditingController();
   final TextEditingController controllerLong = TextEditingController();
 
-  Language _language = Language();
+  final Language _language = Language();
   final format = DateFormat("yyyy-MM-dd");
 
   @override
@@ -59,12 +59,12 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
 
            Scaffold(
                 backgroundColor: Theme.of(context).brightness == Brightness.dark
-                    ? Color.fromRGBO(33, 37, 25, 1)
-                    : Color.fromRGBO(240, 242, 245, 1),
+                    ? const Color.fromRGBO(33, 37, 25, 1)
+                    : const Color.fromRGBO(240, 242, 245, 1),
                 appBar: AppBar(
                   backgroundColor: Theme.of(context).brightness == Brightness.dark
-                      ? Color.fromRGBO(33, 37, 25, 1)
-                      : Color.fromRGBO(240, 242, 245, 1),
+                      ? const Color.fromRGBO(33, 37, 25, 1)
+                      : const Color.fromRGBO(240, 242, 245, 1),
                   elevation: 0,
                   // title:  Text(_language.tAddLost(),
                   //     style: TextStyle(
@@ -88,7 +88,7 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
 
                 body: Consumer<DonationBsktGetProvider>(builder: (context, donationinsertPro, child) {
                   return donationinsertPro.isloading
-                      ? Center(
+                      ? const Center(
                           child: CircularProgressIndicator(),
                         )
                       : ListView(
@@ -102,8 +102,8 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                   child: Material(
                                       color: Theme.of(context).brightness ==
                                               Brightness.dark
-                                          ? Color.fromRGBO(41, 45, 33, 1)
-                                          : Color.fromRGBO(240, 242, 245, 1),
+                                          ? const Color.fromRGBO(41, 45, 33, 1)
+                                          : const Color.fromRGBO(240, 242, 245, 1),
                                       elevation: 0,
                                       borderRadius: BorderRadius.circular(5),
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -112,28 +112,28 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                         children: [
                                           Column(
                                             children: [
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 5,
                                               ),
                                               Container(
-                                                decoration: BoxDecoration(
+                                                decoration: const BoxDecoration(
                                                   color: Colors.transparent,
                                                   //  border: Border.all(color: kblueColor),
                                                   borderRadius: BorderRadius.only(
                                                       topRight: Radius.circular(5),
                                                       topLeft: Radius.circular(5)),
                                                 ),
-                                                child: Icon(
+                                                // Ink.image(image: AssetImage("images/found.png"),
+                                                height: 40,
+                                                width: screenWidth - 20,
+                                                child: const Icon(
                                                   MingCute.truck_line,
                                                   color: greenColor,
                                                   size: 40,
                                                 ),
-                                                // Ink.image(image: AssetImage("images/found.png"),
-                                                height: 40,
-                                                width: screenWidth - 20,
                                                 // fit: BoxFit.cover,
                                               ),
-                                              SizedBox(height: 6),
+                                              const SizedBox(height: 6),
 
                                               // SizedBox(height: 6,)
                                             ],
@@ -141,7 +141,7 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                         ],
                                       )),
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                               ],
                             ),
                             Row(
@@ -154,10 +154,10 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                       : greenColor,
                                 )),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
                                   child: Text(
                                     _language.Createreceiptrequest(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20,
                                         color: greenColor,
                                         fontWeight: FontWeight.bold),
@@ -172,7 +172,7 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                 )),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             //---------------------------------------------------------------------------------------------------------
@@ -180,14 +180,14 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                 key: _formKey,
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 20,
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: screenWidth - 20,
                                       child: DateTimeField(
                                         decoration: InputDecoration(
-                                          suffixIcon: Icon(
+                                          suffixIcon: const Icon(
                                               Icons.date_range_outlined,
                                               color: kblack38),
                                           labelText: _language.tDateandTime(),
@@ -224,10 +224,10 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                         },
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 20,
                                     ),
-                                    Container(
+                                    SizedBox(
                                         width: screenWidth - 20,
                                         child: TextFormField(
                                           onChanged: (value) {
@@ -252,7 +252,7 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                                 ],
                                               )),
                                         )),
-                                    Container(
+                                    SizedBox(
                                         width: screenWidth - 20,
                                         child: ElevatedButton.icon(
                                           style: ElevatedButton.styleFrom(
@@ -262,7 +262,7 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                               shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(10))),
-                                          icon: Icon(Icons.location_on_outlined,
+                                          icon: const Icon(Icons.location_on_outlined,
                                               color: Colors.white),
                                           onPressed: () async {
 
@@ -276,7 +276,7 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                                     longitude:
                                                     44.191657147476455),
                                                     () async {
-                                                  Location location = new Location();
+                                                  Location location = Location();
 
                                                   bool serviceEnabled;
                                                   PermissionStatus permissionGranted;
@@ -308,9 +308,9 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                                   await location.getLocation();
 
                                                   setState(() {
-                                                    lngtd = locationData!.longitude
+                                                    lngtd = locationData.longitude
                                                         .toString();
-                                                    latud = locationData!.latitude
+                                                    latud = locationData.latitude
                                                         .toString();
                                                     controllerLong.text = lngtd!;
                                                     controllerLat.text = latud!;
@@ -334,7 +334,7 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                                 setState(() {
                                                   lngtd = locationModel!.longitude
                                                       .toString();
-                                                  latud = locationModel!.latitude
+                                                  latud = locationModel.latitude
                                                       .toString();
                                                   controllerLong.text = lngtd!;
                                                   controllerLat.text = latud!;
@@ -387,13 +387,14 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: screenWidth / 3,
                                           child: TextFormField(
                                             validator: (value) {
                                               if (!value!.isNotEmpty) {
                                                 return "";
                                               }
+                                              return null;
                                             },
                                             controller: controllerLong,
                                             decoration: InputDecoration(
@@ -401,7 +402,7 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                                 labelText: _language.tLongitude(),
                                                 helperText: "",
                                                 hintText: "",
-                                                suffixIcon: Icon(
+                                                suffixIcon: const Icon(
                                                     Icons.location_on_outlined,
                                                     color: kblack38)),
                                             onChanged: (value) {
@@ -414,16 +415,17 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                           //   ),
                                           // )
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 20,
                                         ),
-                                        Container(
+                                        SizedBox(
                                           width: screenWidth / 3,
                                           child: TextFormField(
                                             validator: (value) {
                                               if (!value!.isNotEmpty) {
                                                 return _language.dlvryloc();
                                               }
+                                              return null;
                                             },
                                             controller: controllerLat,
                                             decoration: InputDecoration(
@@ -431,7 +433,7 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                                 labelText: _language.tLatitude(),
                                                 helperText: "",
                                                 hintText: "",
-                                                suffixIcon: Icon(
+                                                suffixIcon: const Icon(
                                                     Icons.location_on_outlined,
                                                     color: kblack38)),
                                             onChanged: (value) {
@@ -446,8 +448,8 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: 10),
-                                    Container(
+                                    const SizedBox(height: 10),
+                                    SizedBox(
                                       width: screenWidth - 20,
                                       child: DefaultButton(
                                         bkground: kblueColor,
@@ -483,10 +485,10 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                                 btnOkText: _language.tbtnYse(),
                                                 btnOkColor: kblueColor,
                                                 btnOkIcon: Icons.check,
-                                                buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                 btnOkOnPress: (){
                                                   FocusScope.of(context).unfocus();
-                                                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => AddDonationPage()));
+                                                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AddDonationPage()));
                                                 }
                                             ).show();
                                           }
@@ -495,8 +497,8 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                         },
                                         text: _language.Next(),
                                         txtstyle:
-                                            TextStyle(fontSize: 15, color: kwhait),
-                                        icon: Icon(Icons.next_plan_outlined, color: Colors.white),
+                                            const TextStyle(fontSize: 15, color: kwhait),
+                                        icon: const Icon(Icons.next_plan_outlined, color: Colors.white),
                                       ),
                                     ),
                                   ],
@@ -505,27 +507,27 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
             //------------------------------------------------------------------------------------------
                             Column(
                               children: [
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                                 Row(
                                   children: [
-                                    SizedBox(width: 20),
-                                    Expanded(child: Divider()),
+                                    const SizedBox(width: 20),
+                                    const Expanded(child: Divider()),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10),
+                                      padding: const EdgeInsets.symmetric(horizontal: 10),
                                       child: Text(
                                         _language.tNote(),
-                                        style: TextStyle(color: Colors.red),
+                                        style: const TextStyle(color: Colors.red),
                                       ),
                                     ),
-                                    Expanded(child: Divider()),
-                                    SizedBox(width: 20),
+                                    const Expanded(child: Divider()),
+                                    const SizedBox(width: 20),
                                   ],
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Text(_language.dontnnote(),
                                     textAlign: TextAlign.center,
                                     style: TextStyleGray),
-                                SizedBox(height: 40),
+                                const SizedBox(height: 40),
                               ],
                             )
                           ],

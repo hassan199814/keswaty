@@ -3,14 +3,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:keswaty/Widgets/My_Input_Them.dart';
-import 'package:keswaty/Widgets/colors.dart';
 import 'package:keswaty/Widgets/langage.dart';
 import 'package:keswaty/data/models/map_model.dart';
 import 'package:keswaty/view/map/add_location_from_map_screan.dart';
 
 class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
 
-  Language _language = Language();
+  final Language _language = Language();
 
 
   LocationModel locationModel;
@@ -38,11 +37,11 @@ class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Icon(Icons.location_pin,color:Theme.of(context).iconTheme.color),
-          SizedBox(width: 5,),
+          const SizedBox(width: 5,),
           Text("موقعك الحالي",
               style: Theme.of(context)
                   .textTheme
-                  .bodyText1
+                  .bodyLarge
           ),
         ],
       ),
@@ -67,12 +66,12 @@ class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Icon(Icons.map,color:Theme.of(context).iconTheme.color),
-          SizedBox(width: 5,),
+          const SizedBox(width: 5,),
 
           Text("تحديد على الخرائط",
               style: Theme.of(context)
                   .textTheme
-                  .bodyText1
+                  .bodyLarge
           ),
         ],
       ),
@@ -123,7 +122,7 @@ class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
 
         child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Row(children: [
                 Navigator.canPop(context)
@@ -135,9 +134,9 @@ class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
                   alignment: Navigator.canPop(context)
                       ? Alignment.center
                       : Alignment.centerRight,
-                  child: Text(_language.tlocationfrommap()),
                     width: 170,
                     height: 70,
+                  child: Text(_language.tlocationfrommap()),
                   ),
 
               ]),
@@ -147,7 +146,7 @@ class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return  SizedBox(
       width: AppTheme.fullWidth(context),
       height: AppTheme.fullHeight(context),
       child: Column(
@@ -163,7 +162,7 @@ class _AddLocationLocationModelNavigationBarWidget extends StatelessWidget {
           MyLocationButton(context,contextLocationModel),
           
       CameraButton(context,contextLocationModel),
-          SizedBox(height: 60,),
+          const SizedBox(height: 60,),
 
         ],
       ),
@@ -257,21 +256,7 @@ class AddLocationLocationModelNavigationBar {
         
       }
     }
-    catch(e){
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-
-    }
+    return null;
 
 
   }
@@ -733,7 +718,7 @@ class AddLocationLocationModelNavigationBar {
         
         
       ),
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(34.0), topRight: Radius.circular(34.0)),
       ),

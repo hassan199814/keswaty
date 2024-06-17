@@ -10,9 +10,9 @@ class SignuperrorModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['phone'] = this.phone;
-    data['email'] = this.email;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['phone'] = phone;
+    data['email'] = email;
     return data;
   }
 }

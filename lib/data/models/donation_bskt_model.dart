@@ -39,18 +39,18 @@ class DonationBsktModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['DontnStatus'] = this.dontnStatus;
-    data['PhoneNo'] = this.phoneNo;
-    data['BsktDscr'] = this.bsktDscr;
-    data['Lngtd'] = this.lngtd;
-    data['latud'] = this.latud;
-    data['DlvryDate'] = this.dlvryDate;
-    data['ClientID'] = this.clientID;
-    data['Notes'] = this.notes;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['DontnStatus'] = dontnStatus;
+    data['PhoneNo'] = phoneNo;
+    data['BsktDscr'] = bsktDscr;
+    data['Lngtd'] = lngtd;
+    data['latud'] = latud;
+    data['DlvryDate'] = dlvryDate;
+    data['ClientID'] = clientID;
+    data['Notes'] = notes;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

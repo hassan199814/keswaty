@@ -5,9 +5,9 @@ import 'package:keswaty/Widgets/langage.dart';
 import 'package:keswaty/main.dart';
 
 class PartNersPAge extends StatefulWidget {
-   PartNersPAge({Key? key,
+   const PartNersPAge({super.key,
      required this.type_id
-  }) : super(key: key);
+  });
 
   final int type_id;
 
@@ -33,7 +33,7 @@ class _PartNersPAgeState extends State<PartNersPAge> {
   Future getData() async{
 
 
-    var response = await Dio().get('https://keswaty.com/api/partners?type='+widget.type_id.toString());
+    var response = await Dio().get('https://keswaty.com/api/partners?type=${widget.type_id}');
 
     try{
 
@@ -61,13 +61,13 @@ class _PartNersPAgeState extends State<PartNersPAge> {
       child: Scaffold(
 
           backgroundColor: Theme.of(context).brightness == Brightness.dark
-              ?  Color.fromRGBO(33, 37, 25, 1)
-              :  Color.fromRGBO(240, 242, 245, 1),
+              ?  const Color.fromRGBO(33, 37, 25, 1)
+              :  const Color.fromRGBO(240, 242, 245, 1),
 
           appBar: AppBar(
             backgroundColor: Theme.of(context).brightness == Brightness.dark
-                ?  Color.fromRGBO(33, 37, 25, 1)
-                :  Color.fromRGBO(240, 242, 245, 1),
+                ?  const Color.fromRGBO(33, 37, 25, 1)
+                :  const Color.fromRGBO(240, 242, 245, 1),
             elevation: 0,
             title:  Text(Language().Partners(),
                 style: TextStyle(
@@ -84,15 +84,15 @@ class _PartNersPAgeState extends State<PartNersPAge> {
 
           body:
           ListView.builder(
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
               itemCount:jsonList==null?0: jsonList.length,
               itemBuilder: (context, int?i)=>
                   Card(
 
-                    margin: EdgeInsets.all(5),
+                    margin: const EdgeInsets.all(5),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     color: Theme.of(context).brightness == Brightness.dark
-                        ?  Color.fromRGBO(33, 37, 25, 1)
+                        ?  const Color.fromRGBO(33, 37, 25, 1)
                         : kwhait,
 
                     elevation: 1,
@@ -106,14 +106,14 @@ class _PartNersPAgeState extends State<PartNersPAge> {
                              width: 70,
                              decoration: BoxDecoration(
                                image: DecorationImage(
-                                 image: NetworkImage('https://keswaty.com/storage/${jsonList[i]['PrntrLogo'].toString()== null?jsonList[i]['PrntrLogo'].toString():jsonList[i]['PrntrLogo'].toString()}',),
+                                 image: NetworkImage('https://keswaty.com/storage/${jsonList[i]['PrntrLogo'].toString() ?? jsonList[i]['PrntrLogo'].toString()}',),
                                  fit: BoxFit.cover,
                                ),
                                borderRadius: BorderRadius.only(
-                                 bottomRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                 topRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                 bottomLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                 topLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
+                                 bottomRight: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                 topRight: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                 bottomLeft: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                 topLeft: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
                                ),
                              ),
 

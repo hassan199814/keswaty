@@ -11,7 +11,7 @@ import 'package:keswaty/view/setting/personal_data/personal_data.dart';
 
 
 class SettingPageBody extends StatefulWidget {
-  const SettingPageBody({Key? key}) : super(key: key);
+  const SettingPageBody({super.key});
 
   @override
   State<SettingPageBody> createState() => _SettingPageBodyState();
@@ -19,7 +19,7 @@ class SettingPageBody extends StatefulWidget {
 
 class _SettingPageBodyState extends State<SettingPageBody> {
 
-  Language _language = Language();
+  final Language _language = Language();
 
   @override
 
@@ -29,59 +29,59 @@ class _SettingPageBodyState extends State<SettingPageBody> {
       textDirection: language == 'AR' ? TextDirection.rtl : TextDirection.ltr,
 
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
         child: Container(
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           child: Column(
             children: [
 
               Material(
                 color: Theme.of(context).brightness == Brightness.dark
-                    ?  Color.fromRGBO(41, 45, 33, 1)
+                    ?  const Color.fromRGBO(41, 45, 33, 1)
                     : kwhait,
                 elevation: 2,
                 borderRadius: BorderRadius.circular(5),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: InkWell(
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_)=>GeneralSetting())),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const GeneralSetting())),
 
                   child: Container(
 
                     child:  Column(
                       children: [
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         Row(
                           children: [
-                            SizedBox(width: 7),
-                            Icon(Icons.settings_outlined, size: 20, color: kblueColor),
-                            SizedBox(width: 20),
+                            const SizedBox(width: 7),
+                            const Icon(Icons.settings_outlined, size: 20, color: kblueColor),
+                            const SizedBox(width: 20),
                             Expanded(
                               child:
                                   Text(
                                     _language.tGaneralSetting(),
-                                      style: TextStyle(fontSize: 15,color: kblueColor,
+                                      style: const TextStyle(fontSize: 15,color: kblueColor,
                                       )
                                   ),
                             ),
-                            Icon(Icons.arrow_forward_ios, size: 15, color:kblueColor,),
-                            SizedBox(width: 7),
+                            const Icon(Icons.arrow_forward_ios, size: 15, color:kblueColor,),
+                            const SizedBox(width: 7),
 
                           ],
                         ),
-                        SizedBox(height: 5,),
+                        const SizedBox(height: 5,),
                         Row(
                           children: [
-                            SizedBox(width: 50,),
+                            const SizedBox(width: 50,),
                             Text(_language.tLanguagelanguage(), style: TextStyle(fontSize: screenWidth / 50,color: kblack38,decoration: TextDecoration.underline,)),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(_language.tsituation(), style: TextStyle(fontSize: screenWidth / 50,color: kblack38,decoration: TextDecoration.underline,)),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(_language.taboutapp(), style: TextStyle(fontSize: screenWidth / 50,color: kblack38,decoration: TextDecoration.underline,)),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
 
                           ],
                         ),
-                        SizedBox(height: 5,),
+                        const SizedBox(height: 5,),
                       ],
                     ) ,
                   ),
@@ -90,11 +90,11 @@ class _SettingPageBodyState extends State<SettingPageBody> {
 
 
 
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
 
               Material(
                 color: Theme.of(context).brightness == Brightness.dark
-                    ?  Color.fromRGBO(41, 45, 33, 1)
+                    ?  const Color.fromRGBO(41, 45, 33, 1)
                     : kwhait,
                 elevation: 3,
                 borderRadius: BorderRadius.circular(5),
@@ -102,12 +102,12 @@ class _SettingPageBodyState extends State<SettingPageBody> {
                 child: InkWell(
 
                   onTap: () {
-                    if(InitSharedPreferences.getNameUser()!=null&&InitSharedPreferences.getNameUser()!.isNotEmpty)
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>PersonalData()));
-                    else{
+                    if(InitSharedPreferences.getNameUser()!=null&&InitSharedPreferences.getNameUser()!.isNotEmpty) {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const PersonalData()));
+                    } else{
                       AwesomeDialog(
                         dialogBackgroundColor: Theme.of(context).brightness == Brightness.dark
-                            ?  Color.fromRGBO(41, 45, 33, 1)
+                            ?  const Color.fromRGBO(41, 45, 33, 1)
                             : kwhait,
                         context: context,
                         dialogType: DialogType.noHeader,
@@ -119,10 +119,10 @@ class _SettingPageBodyState extends State<SettingPageBody> {
                         btnCancelText: _language.tbtnCancel(),
                         btnOkColor: kblueColor,
                         btnOkIcon: Icons.login,
-                        buttonsBorderRadius: BorderRadius.all(
+                        buttonsBorderRadius: const BorderRadius.all(
                             Radius.circular(10)),
                         btnOkOnPress: ()  {
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>Login()));
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>const Login()));
                         },
                         btnCancelOnPress: (){
                         }
@@ -137,47 +137,47 @@ class _SettingPageBodyState extends State<SettingPageBody> {
                     child:  Column(
                       children: [
 
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         Row(
                           children: [
-                            SizedBox(width: 7),
-                            Icon(Icons.manage_accounts_outlined, size: 20, color: kblueColor),
-                            SizedBox(width: 20),
+                            const SizedBox(width: 7),
+                            const Icon(Icons.manage_accounts_outlined, size: 20, color: kblueColor),
+                            const SizedBox(width: 20),
                             Expanded(child: Text(
                                 _language.Account(),
-                              style: TextStyle(fontSize: 15,color: kblueColor,
+                              style: const TextStyle(fontSize: 15,color: kblueColor,
                             )
                             ),
                             ),
-                            Icon(Icons.arrow_forward_ios, size: 15, color:kblueColor,),
-                            SizedBox(width: 7),
+                            const Icon(Icons.arrow_forward_ios, size: 15, color:kblueColor,),
+                            const SizedBox(width: 7),
 
                           ],
                         ),
-                        SizedBox(height: 5,),
+                        const SizedBox(height: 5,),
                         Row(
                           children: [
-                            SizedBox(width: 50,),
+                            const SizedBox(width: 50,),
                             Text(_language.tname(), style: TextStyle(fontSize: screenWidth / 50,color: kblack38,decoration: TextDecoration.underline)),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(_language.tphone(), style: TextStyle(fontSize: screenWidth / 50,color: kblack38,decoration: TextDecoration.underline)),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(_language.tpassword(), style: TextStyle(fontSize: screenWidth / 50,color: kblack38,decoration: TextDecoration.underline)),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(_language.temail(), style: TextStyle(fontSize: screenWidth / 50,color: kblack38,decoration: TextDecoration.underline)),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(_language.taddress(), style: TextStyle(fontSize: screenWidth / 50,color: kblack38,decoration: TextDecoration.underline)),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                           ],
                         ),
-                        SizedBox(height: 5,),
+                        const SizedBox(height: 5,),
                       ],
                     ) ,
                   ),
                 ),
               ),
 
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
 
               // Material(
               //   color: Theme.of(context).brightness == Brightness.dark

@@ -6,7 +6,7 @@ import 'package:keswaty/Widgets/colors.dart';
 
 
 class ProfilePic extends StatefulWidget {
-  const ProfilePic({Key? key}) : super(key: key);
+  const ProfilePic({super.key});
 
   @override
   State<ProfilePic> createState() => _ProfilePicState();
@@ -20,7 +20,7 @@ class _ProfilePicState extends State<ProfilePic> {
   // دوال تحميل الصور من الاستوديو والكيمرا
 
   uploadImage() async {
-    var pickedImage = await  imagepicker.getImage(source: ImageSource.gallery);
+    var pickedImage = await  imagepicker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null){
       setState ((){
         image = File(pickedImage.path);
@@ -31,7 +31,7 @@ class _ProfilePicState extends State<ProfilePic> {
     }
   }
   uploadImage2() async {
-    var pickedImage = await imagepicker.getImage(source: ImageSource.camera);
+    var pickedImage = await imagepicker.pickImage(source: ImageSource.camera);
     if (pickedImage != null) {
       setState(() {
         image = File(pickedImage.path);
@@ -45,18 +45,18 @@ class _ProfilePicState extends State<ProfilePic> {
   _showOption(BuildContext context){
     return showDialog(context: context, builder: (context)=>
         AlertDialog(
-          title: Text("Make a choice"),
+          title: const Text("Make a choice"),
           content: SingleChildScrollView(
             child: Column(
               children: [
                 ListTile(
-                  leading: Icon(Icons.image),
-                  title: Text('Gallery'),
+                  leading: const Icon(Icons.image),
+                  title: const Text('Gallery'),
                   onTap:() => uploadImage(),
                 ),
                 ListTile(
-                  leading: Icon(Icons.camera_alt_outlined),
-                  title: Text('Camera'),
+                  leading: const Icon(Icons.camera_alt_outlined),
+                  title: const Text('Camera'),
                   onTap:() => uploadImage2(),
                 ),
               ],
@@ -69,7 +69,7 @@ class _ProfilePicState extends State<ProfilePic> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           Material(
@@ -98,7 +98,7 @@ class _ProfilePicState extends State<ProfilePic> {
                           child: Center(
                             child : Container(
                               child:
-                              image == null ? Icon(Icons.person,size: 80,color: kblueColor,) :
+                              image == null ? const Icon(Icons.person,size: 80,color: kblueColor,) :
                               Image.file(image!),
                             ),
                           ),
@@ -117,7 +117,7 @@ class _ProfilePicState extends State<ProfilePic> {
                           },
                           child:Container(
 
-                            child: Icon(
+                            child: const Icon(
                               Icons.camera_alt_outlined,
                               size: 20,
                               color: kblack38,

@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.press, required this.icon, required this.bkground, required this.txtstyle,
-  })
-      : super(key: key);
+  });
 
   final String text;
   final  VoidCallback press;

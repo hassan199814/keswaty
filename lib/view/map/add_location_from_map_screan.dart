@@ -5,7 +5,6 @@ import 'dart:io';
 
 import 'dart:ui' as ui;
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -33,7 +32,7 @@ class AddLocatonGoogleMapScreen extends StatefulWidget {
   final LocationModel ? locationModel;
   static const String routeName = 'add-locaton-screen';
 
-  AddLocatonGoogleMapScreen({
+  const AddLocatonGoogleMapScreen({super.key, 
     // @required this.lat,
     // this.long,
     required this.locationModel,
@@ -174,11 +173,12 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
     
 
     setlocationTow().then((value) {
-      if (value != null && value.isNotEmpty)
+      if (value.isNotEmpty) {
         setState(() {
           coordinates = value;
           print(coordinates!.first.name);
         });
+      }
       return coordinates;
     }).catchError((e, s) {
 
@@ -194,7 +194,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
 
     Uint8List imageBytes = imageFile.readAsBytesSync();
 
-    final Completer<ui.Image> completer = new Completer();
+    final Completer<ui.Image> completer = Completer();
 
     ui.decodeImageFromList(imageBytes, (ui.Image img) {
       return completer.complete(img);
@@ -212,15 +212,15 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
     final Radius radius = Radius.circular(size.width / 2);
 
     final Paint tagPaint = Paint()..color = Colors.blue;
-    final double tagWidth = 40.0;
+    const double tagWidth = 40.0;
 
     final Paint shadowPaint = Paint()..color = Colors.blue.withAlpha(100);
-    final double shadowWidth = 15.0;
+    const double shadowWidth = 15.0;
 
     final Paint borderPaint = Paint()..color = Colors.white;
-    final double borderWidth = 3.0;
+    const double borderWidth = 3.0;
 
-    final double imageOffset = shadowWidth + borderWidth;
+    const double imageOffset = shadowWidth + borderWidth;
 
     
     canvas.drawRRect(
@@ -258,9 +258,9 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
 
     
     TextPainter textPainter = TextPainter(textDirection: TextDirection.ltr);
-    textPainter.text = TextSpan(
+    textPainter.text = const TextSpan(
       text: '1',
-      style: const TextStyle(fontSize: 20.0, color: Colors.white),
+      style: TextStyle(fontSize: 20.0, color: Colors.white),
     );
 
     textPainter.layout();
@@ -301,10 +301,10 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
     
 
     markers.add(Marker(
-      markerId: MarkerId("1"),
-      position: gm.LatLng(widget.locationModel!.latitude!, widget.locationModel!.longitude!!),
+      markerId: const MarkerId("1"),
+      position: gm.LatLng(widget.locationModel!.latitude!, widget.locationModel!.longitude!),
       
-      infoWindow: InfoWindow(title: "بقاله", anchor: Offset(5, 4)),
+      infoWindow: const InfoWindow(title: "بقاله", anchor: Offset(5, 4)),
       icon: BitmapDescriptor.defaultMarkerWithHue(20),
     ));
 
@@ -334,7 +334,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
           height: 70,
           padding: const EdgeInsets.all(8.0),
 
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.surface,
           alignment: Alignment.center,
 
           child: SizedBox(
@@ -352,7 +352,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                             Theme.of(context)
                                 .buttonTheme
                                 .colorScheme!
-                                .background,
+                                .surface,
                           ),
                         ),
                       ),
@@ -369,7 +369,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
 
 
 
-                      icon: Icon(Icons.add_location_rounded,),
+                      icon: const Icon(Icons.add_location_rounded,),
                       // IconColor: Colors.white,
                       // textColor: Colors.white,
                       // borderColor: Theme.of(context)
@@ -444,7 +444,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
 
                         
 
-                        LocationModel locusmo = new LocationModel(
+                        LocationModel locusmo = LocationModel(
                           latitude: MyLocationModelat,
                           longitude: MyLocationModelLong,
                           
@@ -455,8 +455,8 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                               ? " ${coordinates == null || coordinates!.first.locality == null ? " " : coordinates!.first.street}"
                                   
                                   
-                                  "${coordinates!.first == null || coordinates!.first.subThoroughfare == null ? " " : coordinates!.first.subThoroughfare},"
-                                  "${coordinates!.first == null || coordinates!.first.thoroughfare == null ? " " : coordinates!.first.thoroughfare},"
+                                  "${coordinates!.first.subThoroughfare ?? " "},"
+                                  "${coordinates!.first.thoroughfare ?? " "},"
                               : "",
                         );
                         Navigator.pop(context,locusmo);
@@ -489,14 +489,14 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
 
 
 
-                      }, text: 'تأكيد الموقع', bkground: kblueColor, txtstyle: TextStyle(fontSize: 20,color: kwhait),
+                      }, text: 'تأكيد الموقع', bkground: kblueColor, txtstyle: const TextStyle(fontSize: 20,color: kwhait),
                     )),
         ),
-        body: Container(
+        body: SizedBox(
           width: AppTheme.fullWidth(context),
           height: AppTheme.fullHeight(context),
           child: Stack(children: [
-            Container(
+            SizedBox(
                 width: AppTheme.fullWidth(context),
                 height: AppTheme.fullHeight(context),
                 child: GoogleMap(
@@ -579,7 +579,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                         var stream = setlocation();
                         
                         stream.listen((value) => setState(() {
-                              if (value != null) coordinates = value;
+                              coordinates = value;
 
                               
                             }));
@@ -661,7 +661,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                 ? Align(
                     
                     alignment: Alignment.topCenter,
-                    child: Container(
+                    child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       height: 100,
                       child: Card(
@@ -670,7 +670,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                           padding: const EdgeInsets.all(7.0),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.location_on,
                                 color: Colors.grey,
                               ),
@@ -679,14 +679,11 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                                 verticalDirection: VerticalDirection.down,
                                 alignment: WrapAlignment.start,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: MediaQuery.of(context).size.width /
                                         1.2,
                                     child: Text(
-                                      coordinates!.first.administrativeArea
-                                              .toString() +
-                                          ", " +
-                                          coordinates!.first.street.toString(),
+                                      "${coordinates!.first.administrativeArea}, ${coordinates!.first.street}",
                                       
                                       
                                       
@@ -735,7 +732,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                       ),
                     ))
                 : Container(),
-            Container(
+            SizedBox(
               width: AppTheme.fullWidth(context),
               
               height: AppTheme.fullHeight(context) - 200,
@@ -746,7 +743,7 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
                 
                 
                 
-                child: Container(
+                child: SizedBox(
                   
                   
                   height: 70,

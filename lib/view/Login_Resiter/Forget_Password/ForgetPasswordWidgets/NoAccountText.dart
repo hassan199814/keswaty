@@ -6,8 +6,8 @@ import '../../Sgin_up/sgin_up.dart';
 
 class NoAccountText extends StatelessWidget {
   const NoAccountText({
-    Key? key, required this.text1, required this.text2,
-  }) : super(key: key);
+    super.key, required this.text1, required this.text2,
+  });
 
   final String text1;
   final String text2;
@@ -19,7 +19,7 @@ class NoAccountText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          text1,style: TextStyle(fontSize: 15,color: kblack38),textAlign: TextAlign.center,
+          text1,style: const TextStyle(fontSize: 10,color: kblack38),textAlign: TextAlign.center,
         ),
         GestureDetector(
           onTap: ()=> {
@@ -27,7 +27,7 @@ class NoAccountText extends StatelessWidget {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SginUpPage(),))
           },
           child:Text(
-            text2,style: TextStyle(fontSize: 15,color: kblueColor),
+            text2,style: const TextStyle(fontSize: 15,color: kblueColor),
           ),
         ),
       ],

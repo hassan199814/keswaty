@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:keswaty/String_Extensions.dart';
@@ -21,9 +20,9 @@ class AddDonationPage2 extends StatefulWidget {
 
 
 
-  AddDonationPage2({Key? key ,
+  AddDonationPage2({super.key ,
     required this.bskt_id
-  }) : super(key: key);
+  });
 
 
   DonationBsktModel bskt_id;
@@ -49,8 +48,9 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
   final TextEditingController controllerLat = TextEditingController();
   final TextEditingController controllerLong = TextEditingController();
 
-  Language _language = Language();
+  final Language _language = Language();
 
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -69,12 +69,12 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
           textDirection: language == 'AR' ? TextDirection.rtl : TextDirection.ltr,
           child: Scaffold(
               backgroundColor: Theme.of(context).brightness == Brightness.dark
-                  ? Color.fromRGBO(33, 37, 25, 1)
-                  : Color.fromRGBO(240, 242, 245, 1),
+                  ? const Color.fromRGBO(33, 37, 25, 1)
+                  : const Color.fromRGBO(240, 242, 245, 1),
               appBar: AppBar(
                 backgroundColor: Theme.of(context).brightness == Brightness.dark
-                    ? Color.fromRGBO(33, 37, 25, 1)
-                    : Color.fromRGBO(240, 242, 245, 1),
+                    ? const Color.fromRGBO(33, 37, 25, 1)
+                    : const Color.fromRGBO(240, 242, 245, 1),
                 elevation: 0,
                 leading: IconButton(
                   onPressed: () {
@@ -91,7 +91,7 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
               body:
               Consumer<DonationBsktGetProvider>(builder: (context, donationinsertPro, child) {
                 return donationinsertPro.isloading
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     :
@@ -108,8 +108,8 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                 child: Material(
                                     color: Theme.of(context).brightness ==
                                             Brightness.dark
-                                        ? Color.fromRGBO(41, 45, 33, 1)
-                                        : Color.fromRGBO(240, 242, 245, 1),
+                                        ? const Color.fromRGBO(41, 45, 33, 1)
+                                        : const Color.fromRGBO(240, 242, 245, 1),
                                     elevation: 0,
                                     borderRadius: BorderRadius.circular(5),
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -118,28 +118,28 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                       children: [
                                         Column(
                                           children: [
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 5,
                                             ),
                                             Container(
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 color: Colors.transparent,
                                                 //  border: Border.all(color: kblueColor),
                                                 borderRadius: BorderRadius.only(
                                                     topRight: Radius.circular(5),
                                                     topLeft: Radius.circular(5)),
                                               ),
-                                              child: Icon(
+                                              // Ink.image(image: AssetImage("images/found.png"),
+                                              height: 40,
+                                              width: screenWidth - 20,
+                                              child: const Icon(
                                                 MingCute.hand_heart_line,
                                                 color: greenColor,
                                                 size: 40,
                                               ),
-                                              // Ink.image(image: AssetImage("images/found.png"),
-                                              height: 40,
-                                              width: screenWidth - 20,
                                               // fit: BoxFit.cover,
                                             ),
-                                            SizedBox(height: 6),
+                                            const SizedBox(height: 6),
 
                                             // SizedBox(height: 6,)
                                           ],
@@ -147,7 +147,7 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                       ],
                                     )),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                             ],
                           ),
                           Row(
@@ -160,10 +160,10 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                     : greenColor,
                               )),
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
                                 child: Text(
                                   _language.Donate(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 20,
                                       color: greenColor,
                                       fontWeight: FontWeight.bold),
@@ -178,7 +178,7 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                               )),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           //---------------------------------------------------------------------------------------------------------
@@ -186,10 +186,10 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                               key: _formKey,
                               child: Column(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: screenWidth - 20,
 
                                     child: DropdownButtonFormField<String>(
@@ -197,9 +197,10 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                         if (value == null) {
                                           return _language.tPleaseselectType();
                                         }
+                                        return null;
                                       },
                                        // value: lostfound_type,
-                                      items: donationinsertPro.donationtypedropdownlist!.map((DonationTypeModel element) {
+                                      items: donationinsertPro.donationtypedropdownlist.map((DonationTypeModel element) {
                                         return DropdownMenuItem(
                                           value: element.id.toString(),
                                           child: Text(element.name.toString()),
@@ -218,10 +219,10 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                     ),
                                   ),
 
-                                  SizedBox(height: 10),
-                                  SizedBox(width: 10),
+                                  const SizedBox(height: 10),
+                                  const SizedBox(width: 10),
                                   Text(_language.AddPhoto()),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
 
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -236,16 +237,16 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:BorderRadius.only(
 
-                                                  bottomRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                  topRight: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                  bottomLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                  topLeft: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
+                                                  bottomRight: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                                  topRight: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                                  bottomLeft: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                                  topLeft: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
                                                 ),
                                               )
                                             ),
-                                            icon:Icon(Icons.camera_alt,color: Colors.white),
-                                            label: Text(_language.Camera(),style: TextStyle(color: Colors.white),)),
-                                        SizedBox(width: 1),
+                                            icon:const Icon(Icons.camera_alt,color: Colors.white),
+                                            label: Text(_language.Camera(),style: const TextStyle(color: Colors.white),)),
+                                        const SizedBox(width: 1),
                                          ElevatedButton.icon(onPressed:  () {
                                           donationinsertPro.pickMultipleImage();
                                         },
@@ -254,16 +255,16 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
 
                                                  shape: RoundedRectangleBorder(
                                                    borderRadius:BorderRadius.only(
-                                                     bottomRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                     topRight: language == 'AR' ? Radius.circular(0) : Radius.circular(15),
-                                                     bottomLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
-                                                     topLeft: language == 'AR' ? Radius.circular(15) : Radius.circular(0),
+                                                     bottomRight: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                                     topRight: language == 'AR' ? const Radius.circular(0) : const Radius.circular(15),
+                                                     bottomLeft: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
+                                                     topLeft: language == 'AR' ? const Radius.circular(15) : const Radius.circular(0),
                                                    ),
                                                  )
                                              ),
-                                            icon:Icon(Icons.image,color: Colors.white,),
-                                            label: Text(_language.Gallery(),style: TextStyle(color: Colors.white))),
-                                        SizedBox(width: 10),
+                                            icon:const Icon(Icons.image,color: Colors.white,),
+                                            label: Text(_language.Gallery(),style: const TextStyle(color: Colors.white))),
+                                        const SizedBox(width: 10),
                                         ],
                                     ),
 
@@ -272,7 +273,7 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                     shrinkWrap: true,
                                     itemCount: donationinsertPro.imageFileList?.length,
                                     padding: const EdgeInsets.all(20),
-                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 3,
                                       childAspectRatio: 1 / 1,
                                       mainAxisSpacing: 8,
@@ -306,11 +307,11 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
 
                                     },
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20,
                                   ),
-                                  SizedBox(height: 10),
-                                  Container(
+                                  const SizedBox(height: 10),
+                                  SizedBox(
                                     width: screenWidth - 20,
                                     child:
                                     DefaultButton(
@@ -321,7 +322,7 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                           FocusScope.of(context).unfocus();
                                           _formKey.currentState!.save();
 
-                                          if(donationinsertPro.imageFileList!.length > 0 ){
+                                          if(donationinsertPro.imageFileList!.isNotEmpty ){
                                             donationinsertPro.uploadImage(widget.bskt_id.id.toString() ,id!);
 
 
@@ -335,7 +336,7 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                                 btnOkText: _language.tbtnYse(),
                                                 btnOkColor: kblueColor,
                                                 btnOkIcon: Icons.check,
-                                                buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                 btnOkOnPress: (){
                                                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => DonationsPage(donation: widget.bskt_id)));
                                                 }
@@ -351,7 +352,7 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                                 btnOkText: _language.tbtnYse(),
                                                 btnOkColor: kblueColor,
                                                 btnOkIcon: Icons.check,
-                                                buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                                buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                                 btnOkOnPress: (){
 
                                                 }
@@ -373,8 +374,8 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
                                       },
                                       text: _language.tadd(),
                                       txtstyle:
-                                          TextStyle(fontSize: 15, color: kwhait),
-                                      icon: Icon(Icons.add_circle_outline,
+                                          const TextStyle(fontSize: 15, color: kwhait),
+                                      icon: const Icon(Icons.add_circle_outline,
                                           color: Colors.white),
                                     ),
                                   ),
@@ -386,27 +387,27 @@ class _AddDonationPage2State extends State<AddDonationPage2> {
           //------------------------------------------------------------------------------------------
                           Column(
                             children: [
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Row(
                                 children: [
-                                  SizedBox(width: 20),
-                                  Expanded(child: Divider()),
+                                  const SizedBox(width: 20),
+                                  const Expanded(child: Divider()),
                                   Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 10),
+                                    padding: const EdgeInsets.symmetric(horizontal: 10),
                                     child: Text(
                                       _language.tNote(),
-                                      style: TextStyle(color: Colors.red),
+                                      style: const TextStyle(color: Colors.red),
                                     ),
                                   ),
-                                  Expanded(child: Divider()),
-                                  SizedBox(width: 20),
+                                  const Expanded(child: Divider()),
+                                  const SizedBox(width: 20),
                                 ],
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Text(_language.dontnnote(),
                                   textAlign: TextAlign.center,
                                   style: TextStyleGray),
-                              SizedBox(height: 40),
+                              const SizedBox(height: 40),
                             ],
                           )
                         ],

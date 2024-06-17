@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -12,7 +11,7 @@ import '../My_Input_Them.dart';
 
 class GoogleMapProdactCard extends StatefulWidget {
   LocationModel ? locationModel;
-  GoogleMapProdactCard({
+  GoogleMapProdactCard({super.key, 
     this.locationModel,
   }){
     locationModel ??= LocationModel(
@@ -34,9 +33,7 @@ class _GoogleMapProdactCardState extends State<GoogleMapProdactCard> {
     addCustomIcon();
     super.initState();
 
-    if (widget.locationModel!.latitude! != null &&
-        widget.locationModel!.latitude! != 0 &&
-        widget.locationModel!.longitude! != null &&
+    if (widget.locationModel!.latitude! != 0 &&
         widget.locationModel!.longitude! != 0) {
       if (mounted && _controller != null) {
         setState(() {
@@ -104,7 +101,7 @@ class _GoogleMapProdactCardState extends State<GoogleMapProdactCard> {
   Widget _location() {
     return Row(
       children: [
-        Container(
+        SizedBox(
           height: 50.0,
           width: 30,
           child: SizedBox(
@@ -113,13 +110,13 @@ class _GoogleMapProdactCardState extends State<GoogleMapProdactCard> {
             child: Icon(
               Icons.location_pin,
               size: 22,
-              color: Theme.of(context).textTheme.bodyText1?.color,
+              color: Theme.of(context).textTheme.bodyLarge?.color,
             ),
           ),
         ),
         Text(
           widget.locationModel!.location_Name!,
-          style: Theme.of(context).textTheme.subtitle1?.copyWith(fontSize: 16),
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 16),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           softWrap: true,
@@ -150,21 +147,19 @@ class _GoogleMapProdactCardState extends State<GoogleMapProdactCard> {
                       alignment: Alignment.topCenter,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        constraints: BoxConstraints(maxHeight: 150),
+                        constraints: const BoxConstraints(maxHeight: 150),
                         child:  Container(
                             width: MediaQuery.of(context).size.width,
-                            constraints: BoxConstraints(maxHeight: 150),
+                            constraints: const BoxConstraints(maxHeight: 150),
                             child: _location(),
 
                         ),
                       )),
                  Stack(children: [
-                      widget.locationModel!.latitude! == null ||
-                          widget.locationModel!.longitude! == null ||
-                          widget.locationModel!.latitude! == 0.0 ||
+                      widget.locationModel!.latitude! == 0.0 ||
                           widget.locationModel!.longitude! == 0.0
                           ? Container()
-                          : Container(
+                          : SizedBox(
                           width: MediaQuery.of(context).size.width - 6,
                           height: 250,
                           child: GoogleMap(
@@ -211,7 +206,7 @@ class _GoogleMapProdactCardState extends State<GoogleMapProdactCard> {
                                           19.151926040649414));
                                 });
                               })),
-                      Container(
+                      SizedBox(
                         width: AppTheme.fullWidth(context) - 6,
                         height: 250,
                         child: Center(
