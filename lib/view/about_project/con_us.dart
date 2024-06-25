@@ -518,8 +518,11 @@ class _con_usState extends State<con_us> {
 
                               Icon(HeroIcons.envelope, color: kblueColor,size: screenWidth / 10,),
 
-                              Text(
-                                _language.mail(),style: TextStyle(fontSize: screenWidth / 25,color: kblueColor),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  _language.mail(),style: TextStyle(fontSize: screenWidth / 25,color: kblueColor),
+                                ),
                               ),
                             ],
                           )
