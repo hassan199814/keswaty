@@ -13,9 +13,10 @@ import 'package:keswaty/view/about_project/About_project.dart';
 import 'package:keswaty/view/about_project/con_us.dart';
 import 'package:keswaty/view/donation/add_baskets_page.dart';
 import 'package:keswaty/view/partners/partners_page.dart';
+import 'package:url_launcher/url_launcher.dart' as launcher;
 
 class Menus extends StatefulWidget {
-  const Menus({super.key});
+  const Menus({Key? key}) : super(key: key);
 
   @override
   _MenusState createState() => _MenusState();
@@ -23,7 +24,7 @@ class Menus extends StatefulWidget {
 
 class _MenusState extends State<Menus> {
 
-  final Language _language = Language();
+  Language _language = Language();
 
 
 
@@ -74,19 +75,19 @@ class _MenusState extends State<Menus> {
       Scaffold(
       backgroundColor:
       Theme.of(context).brightness == Brightness.dark
-          ?  const Color.fromRGBO(33, 37, 25, 1)
-          :  const Color.fromRGBO(240, 242, 245, 1),
+          ?  Color.fromRGBO(33, 37, 25, 1)
+          :  Color.fromRGBO(240, 242, 245, 1),
 
 
 
       body:ListView(
-       padding: const EdgeInsets.all(8.0),
+       padding: EdgeInsets.all(8.0),
         children: [
       Container(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
           // padding: EdgeInsets.only(bottom: 70),
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
 
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(70)
@@ -105,7 +106,7 @@ class _MenusState extends State<Menus> {
         //   crossAxisCount: 2,
         // crossAxisSpacing: 10, mainAxisSpacing: 1,
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+        physics: NeverScrollableScrollPhysics(),
         // childAspectRatio: 10,
         // mainAxisSpacing: 10,
 
@@ -123,10 +124,10 @@ class _MenusState extends State<Menus> {
                   btnOkText: _language.tbtnYse(),
                   btnOkColor: kblueColor,
 
-                  buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
+                  buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
                   btnOkOnPress: (){
                     FocusScope.of(context).unfocus();
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Login()));
                   },
                   btnCancelOnPress: (){}
               ).show():
@@ -156,10 +157,10 @@ class _MenusState extends State<Menus> {
                               btnOkText: _language.tbtnYse(),
                               btnOkColor: kblueColor,
 
-                              buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
+                              buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
                               btnOkOnPress: (){
                                 FocusScope.of(context).unfocus();
-                                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
+                                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Login()));
                               },
                               btnCancelOnPress: (){}
                           ).show():
@@ -171,8 +172,11 @@ class _MenusState extends State<Menus> {
 
                               Icon(MingCute.truck_line,size: screenWidth / 10, color:kwhait, ),
 
-                            Text(
-                              _language.Createreceiptrequest(),style: TextStyle(fontSize:screenWidth / 40,color: kwhait),
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                _language.Createreceiptrequest(),style: TextStyle(fontSize:screenWidth / 25,color: kwhait),
+                              ),
                             ),
 
 
@@ -195,7 +199,7 @@ class _MenusState extends State<Menus> {
                 desc: _language.tAlertSoon(),
                 btnOkText: _language.tbtnYse(),
                 btnOkColor: kblueColor,
-                buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
+                buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
                 btnOkOnPress: (){
                 },
               ).show();
@@ -203,7 +207,7 @@ class _MenusState extends State<Menus> {
             },
             child: Material(
                 color: Theme.of(context).brightness == Brightness.dark
-                    ?  const Color.fromRGBO(41, 45, 33, 1)
+                    ?  Color.fromRGBO(41, 45, 33, 1)
                     : kwhait,
                 elevation: 3,
                 borderRadius: BorderRadius.circular(15),
@@ -222,7 +226,7 @@ class _MenusState extends State<Menus> {
                               desc: _language.tAlertSoon(),
                               btnOkText: _language.tbtnYse(),
                               btnOkColor: kblueColor,
-                              buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
+                              buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
                               btnOkOnPress: (){
                               },
                           ).show();
@@ -247,11 +251,11 @@ class _MenusState extends State<Menus> {
           InkWell(
             onTap: (){
 
-              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const PartNersPAge(type_id: 1,)));
+              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>PartNersPAge(type_id: 1,)));
             },
             child: Material(
                 color: Theme.of(context).brightness == Brightness.dark
-                    ?  const Color.fromRGBO(41, 45, 33, 1)
+                    ?  Color.fromRGBO(41, 45, 33, 1)
                     : kwhait,
                 elevation: 3,
                 borderRadius: BorderRadius.circular(15),
@@ -263,7 +267,7 @@ class _MenusState extends State<Menus> {
                         hoverColor: greenColor,
                         onTap: (){
 
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const PartNersPAge(type_id: 1,)));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>PartNersPAge(type_id: 1,)));
                         },
                         child: Column(
                           children: [
@@ -288,11 +292,11 @@ class _MenusState extends State<Menus> {
           InkWell(
             onTap: () async {
 
-              await Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const PartNersPAge(type_id: 2)));
+              await Navigator.of(context).push(MaterialPageRoute(builder: (_)=>PartNersPAge(type_id: 2)));
             },
             child: Material(
                 color: Theme.of(context).brightness == Brightness.dark
-                    ?  const Color.fromRGBO(41, 45, 33, 1)
+                    ?  Color.fromRGBO(41, 45, 33, 1)
                     : kwhait,
                 elevation: 3,
                 borderRadius: BorderRadius.circular(15),
@@ -305,7 +309,7 @@ class _MenusState extends State<Menus> {
 
                         onTap: () async {
 
-                          await Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const PartNersPAge(type_id: 2)));
+                          await Navigator.of(context).push(MaterialPageRoute(builder: (_)=>PartNersPAge(type_id: 2)));
                         },
                         child: Column(
                           children: [
@@ -330,11 +334,11 @@ class _MenusState extends State<Menus> {
           InkWell(
             onTap: (){
 
-              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const galleryus()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>galleryus()));
             },
             child: Material(
                 color: Theme.of(context).brightness == Brightness.dark
-                    ?  const Color.fromRGBO(41, 45, 33, 1)
+                    ?  Color.fromRGBO(41, 45, 33, 1)
                     : kwhait,
                 elevation: 3,
                 borderRadius: BorderRadius.circular(15),
@@ -346,7 +350,7 @@ class _MenusState extends State<Menus> {
                         hoverColor: greenColor,
                         onTap: (){
 
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const galleryus()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>galleryus()));
                         },
                         child: Column(
                           children: [
@@ -414,12 +418,12 @@ class _MenusState extends State<Menus> {
           InkWell(
             onTap: (){
 
-              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const con_us()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>con_us()));
               // Navigator.pushNamed(context, "AddFound");
             },
             child: Material(
                 color: Theme.of(context).brightness == Brightness.dark
-                    ?  const Color.fromRGBO(41, 45, 33, 1)
+                    ?  Color.fromRGBO(41, 45, 33, 1)
                     : kwhait,
                 elevation: 3,
                 borderRadius: BorderRadius.circular(15),
@@ -431,17 +435,20 @@ class _MenusState extends State<Menus> {
                         hoverColor: greenColor,
                         onTap: (){
 
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const con_us()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>con_us()));
                           // Navigator.pushNamed(context, "AddFound");
                         },
                         child: Column(
                           children: [
-                            const SizedBox(height: 5,),
+                            SizedBox(height: 5,),
 
                               Icon(FontAwesome.at_solid, color:kblueColor,size: screenWidth / 10, ),
 
-                            Text(
-                              _language.socialmedia(),style: TextStyle(fontSize: screenWidth / 40,color: kblueColor),
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                _language.socialmedia(),style: TextStyle(fontSize: screenWidth / 25,color: kblueColor),
+                              ),
                             ),
 
                           ],
@@ -458,11 +465,11 @@ class _MenusState extends State<Menus> {
           InkWell(
             onTap: (){
 
-              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const NewsPage()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>NewsPage()));
             },
             child: Material(
                 color: Theme.of(context).brightness == Brightness.dark
-                    ?  const Color.fromRGBO(41, 45, 33, 1)
+                    ?  Color.fromRGBO(41, 45, 33, 1)
                     : kwhait,
                 elevation: 3,
                 borderRadius: BorderRadius.circular(15),
@@ -474,7 +481,7 @@ class _MenusState extends State<Menus> {
                         hoverColor: greenColor,
                         onTap: (){
 
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const NewsPage()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>NewsPage()));
                         },
                         child: Column(
                           children: [
@@ -498,11 +505,11 @@ class _MenusState extends State<Menus> {
           ),
           InkWell(
             onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const aboutpro()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>aboutpro()));
             },
             child: Material(
                 color: Theme.of(context).brightness == Brightness.dark
-                    ?  const Color.fromRGBO(41, 45, 33, 1)
+                    ?  Color.fromRGBO(41, 45, 33, 1)
                     : kwhait,
                 elevation: 3,
                 borderRadius: BorderRadius.circular(15),
@@ -513,7 +520,7 @@ class _MenusState extends State<Menus> {
                     InkWell(
                         hoverColor: greenColor,
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const aboutpro()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>aboutpro()));
                         },
                         child: Column(
                           children: [
@@ -524,7 +531,7 @@ class _MenusState extends State<Menus> {
                             Text(
                               _language.AboutProject(),style: TextStyle(fontSize:screenWidth / 25,color: kblueColor),
                             ),
-                            const SizedBox(height: 6,)
+                            SizedBox(height: 6,)
 
                           ],
                         )
@@ -547,7 +554,7 @@ class _MenusState extends State<Menus> {
     )
       ),
 
-          const SizedBox(height: 30,)
+          SizedBox(height: 30,)
         ],
       )
 
