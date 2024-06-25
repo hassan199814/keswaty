@@ -16,10 +16,15 @@ class NoAccountText extends StatelessWidget {
   Widget build(BuildContext context) {
     return
       Row(
+
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          text1,style: TextStyle(fontSize: 15,color: kblack38),textAlign: TextAlign.center,
+        Flexible(
+          flex: 1,
+          fit: FlexFit.tight,
+          child: Text(
+            text1,style: TextStyle(fontSize: 15,color: kblack38,),textAlign: TextAlign.center,
+          ),
         ),
         GestureDetector(
           onTap: ()=> {

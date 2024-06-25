@@ -172,8 +172,11 @@ class _MenusState extends State<Menus> {
 
                               Icon(MingCute.truck_line,size: screenWidth / 10, color:kwhait, ),
 
-                            Text(
-                              _language.Createreceiptrequest(),style: TextStyle(fontSize:screenWidth / 25,color: kwhait),
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                _language.Createreceiptrequest(),style: TextStyle(fontSize:screenWidth / 25,color: kwhait),
+                              ),
                             ),
 
 
@@ -441,8 +444,11 @@ class _MenusState extends State<Menus> {
 
                               Icon(FontAwesome.at_solid, color:kblueColor,size: screenWidth / 10, ),
 
-                            Text(
-                              _language.socialmedia(),style: TextStyle(fontSize: screenWidth / 25,color: kblueColor),
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                _language.socialmedia(),style: TextStyle(fontSize: screenWidth / 25,color: kblueColor),
+                              ),
                             ),
 
                           ],
