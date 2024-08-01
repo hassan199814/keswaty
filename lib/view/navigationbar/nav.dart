@@ -506,11 +506,14 @@ class _navState extends State<nav> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const SizedBox(width: 5,),
-                      Text(_currentIndex == 2?
-                      _language.Createreceiptrequest() : "",
-                        style: TextStyle(
-                            color: kwhait,
-                            fontWeight: FontWeight.bold,fontSize: screenWidth / 30
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(_currentIndex == 2?
+                        _language.Createreceiptrequest() : "",
+                          style: TextStyle(
+                              color: kwhait,
+                              fontWeight: FontWeight.bold,fontSize: screenWidth / 30
+                          ),
                         ),
                       ),
                       const SizedBox(width: 5,),
@@ -547,7 +550,7 @@ class _navState extends State<nav> {
                 icon:
                   _currentIndex == 0 ?Icon(Icons.home,size:  screenWidth / 15,):
                   Icon(Icons.home_outlined,size:  screenWidth / 15,),
-                title: Text(_language.tHome(),style: TextStyle(fontSize: screenWidth / 30)),
+                title: FittedBox(fit: BoxFit.fill,child: Text(_language.tHome(),style: TextStyle(fontSize: screenWidth / 30))),
                 // selectedColor: kblueColor,
               ),
               SalomonBottomBarItem(
@@ -555,7 +558,7 @@ class _navState extends State<nav> {
                 _currentIndex == 1 ? Icon(MingCute.truck_fill,size:  screenWidth / 15):
                 Icon(MingCute.truck_line,size:  screenWidth / 15),
 
-                title: Text(_language.Createreceiptrequest(),style: TextStyle(fontSize: screenWidth / 30)),
+                title: FittedBox(fit: BoxFit.fill,child: Text(_language.Createreceiptrequest(),style: TextStyle(fontSize: screenWidth / 30))),
                 // selectedColor: kblueColor,
               ),
               /// Donations
@@ -564,7 +567,7 @@ class _navState extends State<nav> {
                   _currentIndex == 2 ? Icon(MingCute.hand_heart_fill,size:  screenWidth / 15):
                     Icon(MingCute.hand_heart_line,size:  screenWidth / 15),
 
-                title: Text(_language.MyDonations(),style: TextStyle(fontSize: screenWidth / 30)),
+                title: FittedBox(fit: BoxFit.fill,child: Text(_language.MyDonations(),style: TextStyle(fontSize: screenWidth / 30))),
                 // selectedColor: kblueColor,
               ),
 
@@ -574,7 +577,7 @@ class _navState extends State<nav> {
                 icon:
                 _currentIndex == 3 ? Icon(BoxIcons.bx_grid_horizontal,size:  screenWidth / 15):
                 Icon(BoxIcons.bx_grid_horizontal,size:  screenWidth / 15),
-                title: Text(_language.Menus(),style: TextStyle(fontSize: screenWidth / 30)),
+                title: FittedBox(fit: BoxFit.fill,child: Text(_language.Menus(),style: TextStyle(fontSize: screenWidth / 30))),
               ),
 
               /// Profile

@@ -155,12 +155,15 @@ class _AddBasketsPageState extends State<AddBasketsPage> {
                                 )),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                                  child: Text(
-                                    _language.Createreceiptrequest(),
-                                    style: const TextStyle(
-                                        fontSize: 20,
-                                        color: greenColor,
-                                        fontWeight: FontWeight.bold),
+                                  child: FittedBox(
+                                    fit: BoxFit.fill,
+                                    child: Text(
+                                      _language.Createreceiptrequest(),
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          color: greenColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 ),
                                 Expanded(
