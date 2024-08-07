@@ -1,9 +1,9 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:keswaty/String_Extensions.dart';
 import 'package:keswaty/Widgets/colors.dart';
 import 'package:keswaty/Widgets/langage.dart';
@@ -440,6 +440,8 @@ class _PersonalDataState extends State<PersonalData> {
                                         context: context,
                                         dialogType: DialogType.warning,
                                         animType: AnimType.topSlide,
+                                        dismissOnTouchOutside: false,
+                                        dismissOnBackKeyPress: false,
                                         showCloseIcon: true,
                                         title: _language
                                             .tAlertTitleRemoveAccount(),
@@ -460,11 +462,13 @@ class _PersonalDataState extends State<PersonalData> {
                                               prefs.getString('Email');
                                           final String? password =
                                               prefs.getString('password');
-                                          print(Email);
+                                          if (kDebugMode) {
+                                            print(Email);
+                                         
                                           print(password);
                                           print(
                                               'https://keswaty.com/api/users/login?email=$Email&password=$password');
-
+                                            }
                                           final dio = Dio();
 
                                           final response = await dio
@@ -472,32 +476,49 @@ class _PersonalDataState extends State<PersonalData> {
                                                   'https://keswaty.com/api/users/remove?email=$Email&password=$password')
                                               .then(
                                             (value) async {
-                                              print(value.toString());
-                                              print("####");
-                                              print(value.toString() ==
+                                              if (kDebugMode) {
+                                                print(value.toString());
+                                              }
+                                              if (kDebugMode) {
+                                                print("####");
+                                              }
+                                              if (kDebugMode) {
+                                                print(value.toString() ==
                                                   'deleted');
+                                              }
                                               if (value.toString() ==
                                                   'deleted') {
                                                 // await InitSharedPreferences.logOut();
                                                 // await InitSharedPreferences.logOut();
 
                                                 AwesomeDialog(
-                                                  dialogBackgroundColor: Theme.of(context).brightness == Brightness.dark? const Color.fromRGBO( 41, 45, 33, 1)
+                                                  dialogBackgroundColor: Theme
+                                                                  .of(context)
+                                                              .brightness ==
+                                                          Brightness.dark
+                                                      ? const Color.fromRGBO(
+                                                          41, 45, 33, 1)
                                                       : kwhait,
                                                   context: context,
-                                                  dialogType:DialogType.noHeader,
+                                                  dialogType:
+                                                      DialogType.noHeader,
                                                   animType: AnimType.topSlide,
                                                   showCloseIcon: false,
-                                                  title: _language.tAlertSuccess(),
-                                                  desc: _language.tAlertDescrDeleteLogout(),
+                                                  title:
+                                                      _language.tAlertSuccess(),
+                                                  desc: _language
+                                                      .tAlertDescrDeleteLogout(),
                                                   btnOkColor: kblueColor,
                                                   btnOkIcon: Icons.check,
                                                   buttonsBorderRadius:
                                                       const BorderRadius.all(
                                                           Radius.circular(10)),
+                                                  dismissOnBackKeyPress: false,
+                                                  dismissOnTouchOutside: false,
                                                   btnOkOnPress: () async {
                                                     Get.offAll(const nav());
-                                                    await InitSharedPreferences.logOut();
+                                                    await InitSharedPreferences
+                                                        .logOut();
 
                                                     // setState(() {});
                                                   },
@@ -524,49 +545,47 @@ class _PersonalDataState extends State<PersonalData> {
                                                       .tAlertDescrError(),
                                                   btnOkColor: kblueColor,
                                                   btnOkIcon: Icons.check,
+                                                  dismissOnBackKeyPress: false,
+                                                  dismissOnTouchOutside: false,
                                                   buttonsBorderRadius:
                                                       const BorderRadius.all(
                                                           Radius.circular(10)),
-                                                  btnOkOnPress: () async {
-
-                                                  },
+                                                  btnOkOnPress: () async {},
                                                   btnOkText:
                                                       _language.tbtnOk_yes(),
                                                 ).show();
                                               }
                                             },
-                                          ).catchError((e){
-                                            print(e.toString());
+                                          ).catchError((e) {
+                                            if (kDebugMode) {
+                                              print(e.toString());
+                                            }
 
                                             AwesomeDialog(
-                                              dialogBackgroundColor: Theme
-                                                  .of(context)
-                                                  .brightness ==
-                                                  Brightness.dark
-                                                  ? const Color.fromRGBO(
-                                                  41, 45, 33, 1)
-                                                  : kwhait,
+                                              dialogBackgroundColor:
+                                                  Theme.of(context)
+                                                              .brightness ==
+                                                          Brightness.dark
+                                                      ? const Color.fromRGBO(
+                                                          41, 45, 33, 1)
+                                                      : kwhait,
                                               context: context,
-                                              dialogType:
-                                              DialogType.noHeader,
+                                              dialogType: DialogType.noHeader,
                                               animType: AnimType.topSlide,
                                               showCloseIcon: false,
-                                              title:
-                                              _language.tAlertError(),
-                                              desc: _language
-                                                  .tAlertDescrError(),
+                                              title: _language.tAlertError(),
+                                              desc:
+                                                  _language.tAlertDescrError(),
                                               btnOkColor: kblueColor,
                                               btnOkIcon: Icons.check,
+                                              dismissOnTouchOutside: false,
+                                              dismissOnBackKeyPress: false,
                                               buttonsBorderRadius:
-                                              const BorderRadius.all(
-                                                  Radius.circular(10)),
-                                              btnOkOnPress: () async {
-
-                                              },
-                                              btnOkText:
-                                              _language.tbtnOk_yes(),
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
+                                              btnOkOnPress: () async {},
+                                              btnOkText: _language.tbtnOk_yes(),
                                             ).show();
-
                                           });
                                           setState(() {});
                                         },
