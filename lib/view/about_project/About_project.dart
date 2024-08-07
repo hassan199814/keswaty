@@ -52,7 +52,7 @@ class _aboutproState extends State<aboutpro> {
              ),
              Container(
                padding: const EdgeInsets.only(right: 10,left: 10),
-               child: const Text( 'كسوتي هو تطبيق خيري يهدف إلى تسهيل عملية التبرع للجمعيات الخيرية في المملكة العربية السعودية. التطبيق متاح على أجهزة iOS وAndroid، ويقدم واجهة سهلة الاستخدام للتعامل مع عمليات التبرع',style:TextStyle(fontSize: 18)
+               child: const Text( 'كسوتي هو تطبيق خيري يهدف إلى تسهيل عملية التبرع للجمعيات الخيرية في المملكة العربية السعودية. التطبيق متاح على جميع الأجهزة ، ويقدم واجهة سهلة الاستخدام للتعامل مع عمليات التبرع',style:TextStyle(fontSize: 18)
                  ),
 
              ),

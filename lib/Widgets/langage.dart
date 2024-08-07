@@ -1614,7 +1614,7 @@ class Language extends ChangeNotifier{
     if (getLanguage() == 'AR') {
       return "";
     } else if (getLanguage() == 'EN') {
-      return "A missing application is an Android mobile application (for lost or lost items) that provides a service to the community in general in retrieving lost items or reporting missing items.. The application also helps in searching for missing items or reporting items. They are of various kinds (personal cards, phones, personal items, etc, The application also makes it easier for the user to search and filter by section (phones section, personal cards and passports section, etc...The application will be easy to use and flexible so that anyone can use it and save time and effort in searching for lost items or reporting them.)";
+      return "A missing application is an  mobile application (for lost or lost items) that provides a service to the community in general in retrieving lost items or reporting missing items.. The application also helps in searching for missing items or reporting items. They are of various kinds (personal cards, phones, personal items, etc, The application also makes it easier for the user to search and filter by section (phones section, personal cards and passports section, etc...The application will be easy to use and flexible so that anyone can use it and save time and effort in searching for lost items or reporting them.)";
     }else {
       return "MAFQWD";
     }
