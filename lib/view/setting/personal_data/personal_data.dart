@@ -1,9 +1,17 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:keswaty/String_Extensions.dart';
 import 'package:keswaty/Widgets/colors.dart';
 import 'package:keswaty/Widgets/langage.dart';
 import 'package:keswaty/data/ini_shard.dart';
 import 'package:keswaty/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../navigationbar/nav.dart';
 
 class PersonalData extends StatefulWidget {
   const PersonalData({
@@ -415,6 +423,162 @@ class _PersonalDataState extends State<PersonalData> {
                             ),
                           ),
                           const SizedBox(height: 10),
+                          const SizedBox(height: 16),
+                          CupertinoButton(
+                              color: const Color.fromARGB(200, 191, 40, 13),
+                              child: Text(
+                                _language.DeleteAccount(),
+                              ),
+                              onPressed: () async {
+                                AwesomeDialog(
+                                        dialogBackgroundColor:
+                                            Theme.of(context).brightness ==
+                                                    Brightness.dark
+                                                ? const Color.fromRGBO(
+                                                    41, 45, 33, 1)
+                                                : kwhait,
+                                        context: context,
+                                        dialogType: DialogType.warning,
+                                        animType: AnimType.topSlide,
+                                        showCloseIcon: true,
+                                        title: _language
+                                            .tAlertTitleRemoveAccount(),
+                                        desc:
+                                            _language.tAlertDescRemoveAccount(),
+                                        btnCancelColor: kblueColor,
+                                        btnOkColor: kred,
+                                        btnOkIcon: Icons.delete,
+                                        buttonsBorderRadius:
+                                            const BorderRadius.all(
+                                                Radius.circular(10)),
+                                        btnOkText: _language.tbremove(),
+                                        btnOkOnPress: () async {
+                                          final SharedPreferences prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                          final String? Email =
+                                              prefs.getString('Email');
+                                          final String? password =
+                                              prefs.getString('password');
+                                          print(Email);
+                                          print(password);
+                                          print(
+                                              'https://keswaty.com/api/users/login?email=$Email&password=$password');
+
+                                          final dio = Dio();
+
+                                          final response = await dio
+                                              .get(
+                                                  'https://keswaty.com/api/users/remove?email=$Email&password=$password')
+                                              .then(
+                                            (value) async {
+                                              print(value.toString());
+                                              print("####");
+                                              print(value.toString() ==
+                                                  'deleted');
+                                              if (value.toString() ==
+                                                  'deleted') {
+                                                // await InitSharedPreferences.logOut();
+                                                // await InitSharedPreferences.logOut();
+
+                                                AwesomeDialog(
+                                                  dialogBackgroundColor: Theme.of(context).brightness == Brightness.dark? const Color.fromRGBO( 41, 45, 33, 1)
+                                                      : kwhait,
+                                                  context: context,
+                                                  dialogType:DialogType.noHeader,
+                                                  animType: AnimType.topSlide,
+                                                  showCloseIcon: false,
+                                                  title: _language.tAlertSuccess(),
+                                                  desc: _language.tAlertDescrDeleteLogout(),
+                                                  btnOkColor: kblueColor,
+                                                  btnOkIcon: Icons.check,
+                                                  buttonsBorderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(10)),
+                                                  btnOkOnPress: () async {
+                                                    Get.offAll(const nav());
+                                                    await InitSharedPreferences.logOut();
+
+                                                    // setState(() {});
+                                                  },
+                                                  btnOkText:
+                                                      _language.tbtnYse(),
+                                                ).show();
+                                              } else {
+                                                AwesomeDialog(
+                                                  dialogBackgroundColor: Theme
+                                                                  .of(context)
+                                                              .brightness ==
+                                                          Brightness.dark
+                                                      ? const Color.fromRGBO(
+                                                          41, 45, 33, 1)
+                                                      : kwhait,
+                                                  context: context,
+                                                  dialogType:
+                                                      DialogType.noHeader,
+                                                  animType: AnimType.topSlide,
+                                                  showCloseIcon: false,
+                                                  title:
+                                                      _language.tAlertError(),
+                                                  desc: _language
+                                                      .tAlertDescrError(),
+                                                  btnOkColor: kblueColor,
+                                                  btnOkIcon: Icons.check,
+                                                  buttonsBorderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(10)),
+                                                  btnOkOnPress: () async {
+
+                                                  },
+                                                  btnOkText:
+                                                      _language.tbtnOk_yes(),
+                                                ).show();
+                                              }
+                                            },
+                                          ).catchError((e){
+                                            print(e.toString());
+
+                                            AwesomeDialog(
+                                              dialogBackgroundColor: Theme
+                                                  .of(context)
+                                                  .brightness ==
+                                                  Brightness.dark
+                                                  ? const Color.fromRGBO(
+                                                  41, 45, 33, 1)
+                                                  : kwhait,
+                                              context: context,
+                                              dialogType:
+                                              DialogType.noHeader,
+                                              animType: AnimType.topSlide,
+                                              showCloseIcon: false,
+                                              title:
+                                              _language.tAlertError(),
+                                              desc: _language
+                                                  .tAlertDescrError(),
+                                              btnOkColor: kblueColor,
+                                              btnOkIcon: Icons.check,
+                                              buttonsBorderRadius:
+                                              const BorderRadius.all(
+                                                  Radius.circular(10)),
+                                              btnOkOnPress: () async {
+
+                                              },
+                                              btnOkText:
+                                              _language.tbtnOk_yes(),
+                                            ).show();
+
+                                          });
+                                          setState(() {});
+                                        },
+                                        btnCancelOnPress: () {},
+                                        btnCancelText: _language.tbtnCancel())
+                                    .show();
+
+                                // print(response.data.toString());
+                                // The below request is the same as above.
+
+                                // print(response.data.toString());
+                              }),
                         ]),
                       ],
                     ))
