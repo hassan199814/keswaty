@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:keswaty/data/models/base/api_response.dart';
 import 'package:keswaty/data/models/sginup_model.dart';
 import 'package:keswaty/data/models/signuperrorModel.dart';
@@ -9,12 +11,13 @@ class InsertSginUpProvider extends ChangeNotifier{
   InsertSginUpRepo? insertSginUpRepo;
 
   InsertSginUpProvider({this.insertSginUpRepo});
-
   // int stateResponse =10;
   // bool islogin =false;
   bool isloading =false;
    String message_error ="";
   bool iserror =false;
+   Map<String, dynamic> errlist=new Map<String,dynamic>();
+
 
   List<SginUpModel> userlist = [];
   List<SignuperrorModel> singuperrorlist = [];
@@ -29,51 +32,39 @@ class InsertSginUpProvider extends ChangeNotifier{
     notifyListeners();
     ApiResponse apiResponse = await insertSginUpRepo!.insert_response(sginUpModel);
 
-     print(apiResponse.error);
-     print(apiResponse.response?.statusCode==200);
-     print(apiResponse.response);
-
-    if(apiResponse.response != null&&apiResponse.response?.statusCode ==200){
 
 
-      Map<dynamic, dynamic> map = jsonDecode(apiResponse.response!.data);
-      // Map<dynamic, dynamic> map = jsonDecode(apiResponse.response!.data);
-      // print("***************************************");
-      //  print(map);
-      if(apiResponse.response != null&&apiResponse.response?.statusCode ==200) {
-        if(apiResponse.response!.data.toString().contains("Already Exists.")){
-          for (var item in apiResponse.response?.data) {
-            var encodedString = jsonEncode( apiResponse.response?.data);
+    try {
+      if (apiResponse.response != null &&
+          apiResponse.response?.statusCode == 200) {
+          Map<String, dynamic> userMap =jsonDecode(apiResponse.response.toString());
+              singuperrorlist.add(SignuperrorModel.fromJson(userMap));
+        iserror = false;
+        isloading = false;
+      } else {
+        iserror = true;
+        // apiResponse.
+        // Extracting the overall message and errors
+        // final String message = apiResponse.error['response'];
+        final DioException r = apiResponse.error;
+        print(r.response);
 
-            // Map<String, dynamic> valueMap = json.decode(encodedString);
-            Map<String, dynamic> valueMap = json.decode(encodedString);
+        print(r);
+        // print(r.error.toString());
+        print(apiResponse.error.response);
+        print(apiResponse.error.message);
+        print(apiResponse.error.toString());
+        // Response hh = apiResponse.error.response!;
+        errlist = apiResponse.error.response!.data['errors'];
+        message_error = apiResponse.error.response!.data['message'];
 
-            singuperrorlist.add(SignuperrorModel.fromJson(valueMap));
-            print(userlist);
-            print(singuperrorlist);
-
-        }
-        } else{
-          for (var item in apiResponse.response?.data) {
-          print(item);
-          var encodedString = jsonEncode(item);
-
-          Map<String, dynamic> valueMap = Map.castFrom(json.decode(encodedString));
-
-          userlist.add(SginUpModel.fromJson(valueMap));
-          }
-
-        }
-
+        print("-----------------------------");
       }
-
-
-    }else{
-      // print(apiResponse.response?.statusCode==200);
-      // print(apiResponse.response?.statusMessage);
-      print("-----------------------------");
-
-
+    }catch(e){
+      message_error=e.toString();
+      e.printError;
+      print(e);
+      iserror=true;
     }
 
     isloading =false;

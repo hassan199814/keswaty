@@ -201,7 +201,9 @@ class _LoginState extends State<Login> {
                                                      context: context,
                                                      dialogType: DialogType.noHeader,
                                                      animType: AnimType.topSlide,
-                                                     showCloseIcon: true,
+                                                    showCloseIcon: false,
+                                                    dismissOnBackKeyPress: false,
+                                                    dismissOnTouchOutside: false,
                                                      title: _language.tHello(),
                                                      desc: _language.tWelcome() + InitSharedPreferences.getNameUser()!,
                                                      descTextStyle: const TextStyle(

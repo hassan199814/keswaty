@@ -332,7 +332,7 @@ class Language extends ChangeNotifier{
   }
     String donthaveaccount(){
     if (getLanguage() == 'AR') {
-      return " هل تمتلك حساب ؟";
+      return " ليس لديك حساب ؟";
     } else if (getLanguage() == 'EN') {
       return "Don't have an account ? ";
     }else {

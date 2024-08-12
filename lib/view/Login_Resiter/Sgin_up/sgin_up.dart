@@ -139,7 +139,14 @@ class _SginUpPageState extends State<SginUpPage> {
                       SizedBox(
                           width: screenWidth,
                           child: TextFormField(
+                            autovalidateMode: AutovalidateMode.onUserInteraction
+                            ,
                             onChanged: (value) {
+                              setState(() {
+                                if(userPro.errlist.containsKey('UserName')){
+                                  userPro.errlist.remove('UserName');
+                                }
+                              });
                               userName = value;
                             },
                             validator: (s) {
@@ -151,6 +158,7 @@ class _SginUpPageState extends State<SginUpPage> {
                             decoration:  InputDecoration(
                                 labelText: _language.tFullname(),
                                 helperText: "",
+                                errorText: userPro.errlist.containsKey('UserName')?userPro.errlist['UserName'][0]!.toString().replaceAll(' no ', ''):null,
                                 hintText: _language.tEnteryourname(),hintStyle: const TextStyle(fontSize: 10),
                                 suffixIcon: const Icon(
                                     Icons.person_outline_sharp, color: kblack38)
@@ -161,12 +169,24 @@ class _SginUpPageState extends State<SginUpPage> {
                       SizedBox(
                           width: screenWidth,
                           child: TextFormField(
+                            autovalidateMode: AutovalidateMode.onUserInteraction
+                            ,
                             onChanged: (value) {
+                              setState(() {
+                                if(userPro.errlist.containsKey('PhoneNo')){
+                                  userPro.errlist.remove('PhoneNo');
+                                }
+                              });
+
                               phoneNo = value;
                             },
                             validator: (s) {
                               if (!s!.isValidInt()) {
                                 return _language.tPleaseenterphonenumber();
+                              }
+
+                              if(userPro.errlist.containsKey('PhoneNo')){
+                                return userPro.errlist['PhoneNo'][0]!.toString()??null;
                               }
                               return null;
                             },
@@ -174,6 +194,7 @@ class _SginUpPageState extends State<SginUpPage> {
                             // maxLengthEnforcement: MaxLengthEnforcement.enforced,
                             decoration:  InputDecoration(
                                 labelText: _language.tPhonnumber(),
+                                errorText: userPro.errlist.containsKey('PhoneNo')?userPro.errlist['PhoneNo'][0]!.toString().replaceAll(' no ', ''):null,
                                 helperText: "",
                                 hintText: _language.tenterphonenumber(),hintStyle: const TextStyle(fontSize: 10),
                                 suffixIcon: const Icon(Icons.phone, color: kblack38)
@@ -185,17 +206,31 @@ class _SginUpPageState extends State<SginUpPage> {
                       SizedBox(
                           width: screenWidth,
                           child: TextFormField(
+                            autovalidateMode: AutovalidateMode.onUserInteraction
+                            ,
                             onChanged: (value) {
+                              setState(() {
+                                if(userPro.errlist.containsKey('Email')){
+                                  userPro.errlist.remove('Email');
+                                }
+                              });
+
+                              print(userPro.errlist);
                               email = value;
+
                             },
                             keyboardType: TextInputType.emailAddress,
                             validator: (s) {
                               if (!s!.isValidEmail()) {
                                 return KinvalidEmailError;
                               }
+                              if(userPro.errlist.containsKey('Email')){
+                                return userPro.errlist['Email'][0]!.toString()??null;
+                              }
                               return null;
                             },
                             decoration:  InputDecoration(
+                              errorText: userPro.errlist.containsKey('Email')?userPro.errlist['Email'][0]!.toString():null,
                                 labelText: _language.temail(),
                                 helperText: "",
                                 hintText: _language.tEnterYourEmail(),hintStyle: const TextStyle(fontSize: 10),
@@ -328,7 +363,9 @@ class _SginUpPageState extends State<SginUpPage> {
                       Consumer<InsertSginUpProvider>(builder: (context, value, child) {
                         return
 
-                        SizedBox(
+                        userPro.isloading?
+                           const Center(child: CircularProgressIndicator(),):
+                           SizedBox(
 
 
                             width: screenWidth,
@@ -352,26 +389,56 @@ class _SginUpPageState extends State<SginUpPage> {
 
 
                                   );
-                                  setState(()  {
+                                  setState(() async  {
 
-                                     Provider.of<InsertSginUpProvider>(context, listen: false).insert_response(sginUpModel);
+                                  await   Provider.of<InsertSginUpProvider>(context, listen: false).insert_response(sginUpModel);
+                                    if(userPro.iserror){
+                                      AwesomeDialog(
+                                        dialogBackgroundColor: Theme
+                                            .of(context)
+                                            .brightness == Brightness.dark
+                                            ? const Color.fromRGBO(
+                                            41, 45, 33, 1)
+                                            : kwhait,
+                                        context: context,
+                                        dialogType: DialogType.error,
+                                        animType: AnimType.topSlide,
+                                        showCloseIcon: true,
+                                        title: "",
+                                        desc: userPro.message_error.replaceAll(' no ', ' '),
+                                        descTextStyle: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                        btnOkColor: kblueColor,
+                                        btnOkIcon: Icons.check_circle,
+                                      ).show();
+                                    }else {
+                                      AwesomeDialog(
+                                        dialogBackgroundColor: Theme
+                                            .of(context)
+                                            .brightness == Brightness.dark
+                                            ? const Color.fromRGBO(
+                                            41, 45, 33, 1)
+                                            : kwhait,
+                                        context: context,
+                                        dialogType: DialogType.noHeader,
+                                        animType: AnimType.topSlide,
+                                        showCloseIcon: false,
+                                        dismissOnBackKeyPress: false,
+                                        dismissOnTouchOutside: false,
 
-                                    AwesomeDialog(
-                                      dialogBackgroundColor: Theme.of(context).brightness == Brightness.dark ? const Color.fromRGBO(41, 45, 33, 1) : kwhait,
-                                      context: context,
-                                      dialogType: DialogType.noHeader,
-                                      animType: AnimType.topSlide,
-                                      showCloseIcon: true,
-                                      title: "",
-                                      desc:_language.RegistrDon(),
-                                      descTextStyle: const TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                      btnOkOnPress: () {
-                                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>const Login()));
-                                      },
-                                      btnOkColor: kblueColor,
-                                      btnOkIcon: Icons.check_circle,
-                                    ).show();
+                                        title: "",
+                                        desc: _language.RegistrDon(),
+                                        descTextStyle: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                        btnOkOnPress: () {
+                                          Navigator.of(context).pushReplacement(
+                                              MaterialPageRoute(builder: (
+                                                  _) => const Login()));
+                                        },
+                                        btnOkColor: kblueColor,
+                                        btnOkIcon: Icons.check_circle,
+                                      ).show();
+                                    }
 
 
                                   });
