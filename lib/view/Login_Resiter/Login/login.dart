@@ -65,14 +65,15 @@ class _LoginState extends State<Login> {
                     :  Colors.transparent,
                 fontSize: 15,)),
           leading: IconButton(
-            onPressed: (){},
+            onPressed: (){Navigator.pop(context);},
             icon: Icon( Icons.arrow_back,
               color:Theme.of(context).brightness == Brightness.dark
-                  ?  Colors.transparent
-                  :  Colors.transparent,
+                  ?  kwhait
+                  :  kblueColor,
 
             ),
           ),
+
         ),
 
         body: Consumer<LoginProvider>(builder: (context, loginpro, child) {

@@ -91,7 +91,8 @@ class _AddLocatonGoogleMapScreenState extends State<AddLocatonGoogleMapScreen> {
   Stream<List<Placemark>> setlocation() async* {
     
     print("setlocation");
-    yield await placemarkFromCoordinates(lat, long, localeIdentifier: "egy")
+    yield await placemarkFromCoordinates(lat, long,// localeIdentifier: "egy"
+    )
         .catchError((e, s) {
       
       

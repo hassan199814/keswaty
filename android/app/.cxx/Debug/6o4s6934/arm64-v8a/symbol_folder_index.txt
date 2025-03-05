@@ -1,0 +1,1 @@
+/home/heebow/StudioProjects/keswaty/build/app/intermediates/cxx/Debug/6o4s6934/obj/arm64-v8a
