@@ -385,7 +385,7 @@ class _navState extends State<nav> {
                                           btnCancelText: _language.tbtnCancel())
                                           .show();
                                     } else {
-                                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>const Login()));
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                                     }
                                   },
                                   leading: Icon(

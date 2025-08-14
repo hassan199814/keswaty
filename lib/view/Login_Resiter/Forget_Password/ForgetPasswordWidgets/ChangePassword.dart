@@ -216,7 +216,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                             btnOkIcon: Icons.check,
                                             buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                             btnOkOnPress: (){
-                                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>const Login()));
+                                              Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                                             },
                                         ).show();
 

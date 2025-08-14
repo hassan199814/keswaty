@@ -122,7 +122,7 @@ class _SettingPageBodyState extends State<SettingPageBody> {
                         buttonsBorderRadius: const BorderRadius.all(
                             Radius.circular(10)),
                         btnOkOnPress: ()  {
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>const Login()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                         },
                         btnCancelOnPress: (){
                         }
