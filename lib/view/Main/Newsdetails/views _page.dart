@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keswaty/Widgets/colors.dart';
 import 'package:keswaty/constant.dart';
@@ -7,12 +6,11 @@ import 'package:keswaty/main.dart';
 
 class v_page extends StatefulWidget {
   v_page(
-      {Key? key,
+      {super.key,
       required this.imge,
       required this.titel,
       required this.content,
-      required this.Section})
-      : super(key: key) {
+      required this.Section}) {
     // TODO: implement v_page
   }
 
@@ -35,14 +33,14 @@ class _v_pageState extends State<v_page> {
         textDirection: language == 'AR' ? TextDirection.rtl : TextDirection.ltr,
         child: Scaffold(
           backgroundColor: Theme.of(context).brightness == Brightness.dark
-              ?  Color.fromRGBO(33, 37, 25, 1)
-              :  Color.fromRGBO(240, 242, 245, 1),
+              ?  const Color.fromRGBO(33, 37, 25, 1)
+              :  const Color.fromRGBO(240, 242, 245, 1),
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
                 backgroundColor: Theme.of(context).brightness == Brightness.dark
-                    ?  Color.fromRGBO(33, 37, 25, 1)
-                    :  Color.fromRGBO(240, 242, 245, 1),
+                    ?  const Color.fromRGBO(33, 37, 25, 1)
+                    :  const Color.fromRGBO(240, 242, 245, 1),
                     // pinned: true,
                 collapsedHeight: 300,
                 floating: true,
@@ -52,7 +50,7 @@ class _v_pageState extends State<v_page> {
                 flexibleSpace: FlexibleSpaceBar(
                   background: ClipRRect(
                     borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(20)),
+                        const BorderRadius.vertical(bottom: Radius.circular(20)),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
 
@@ -64,7 +62,7 @@ class _v_pageState extends State<v_page> {
                               // fit: BoxFit.cover,
 
                             ),
-                        imageUrl: '${AppConstants.BASE_URL}${AppConstants.DONATION_PIC_PATH}'+widget.imge,
+                        imageUrl: '${AppConstants.BASE_URL}${AppConstants.DONATION_PIC_PATH}${widget.imge}',
                       ),
                     )
                   ),
@@ -76,14 +74,14 @@ class _v_pageState extends State<v_page> {
                 child: SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      SizedBox(
+                      const SizedBox(
                         height: 3,
                       ),
                       ListTile(
                         title: Text(
 
                           widget.titel,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w800,
                             fontSize: 18,
                             color: kblueColor,
@@ -95,7 +93,7 @@ class _v_pageState extends State<v_page> {
                         child: Text(
                           textAlign: language == 'AR' ? TextAlign.right : TextAlign.left,
                           widget.content,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 15,
                           ),
                           textDirection: TextDirection.ltr,

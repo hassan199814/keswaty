@@ -113,6 +113,15 @@ class Language extends ChangeNotifier{
       return "Account";
     }
   }
+  String DeleteAccount(){
+    if (getLanguage() == 'AR') {
+      return "حذف الحساب";
+    } else if (getLanguage() == 'EN') {
+      return "Remove Account";
+    }else {
+      return "Remove Account";
+    }
+  }
 
   String tname(){
     if (getLanguage() == 'AR') {
@@ -231,6 +240,24 @@ class Language extends ChangeNotifier{
       return "Do you want to log out ?";
     }
   }
+  String tAlertTitleRemoveAccount(){
+    if (getLanguage() == 'AR') {
+      return "هل تريد حذف الحساب؟";
+    } else if (getLanguage() == 'EN') {
+      return "Do you want to delete the account?";
+    }else {
+      return "Do you want to delete the account?";
+    }
+  }
+  String tAlertDescRemoveAccount(){
+    if (getLanguage() == 'AR') {
+      return "سيتم حذف حسابك مع جميع بياناتك ؟ لا يمكن التراجع عن هذا القرار";
+    } else if (getLanguage() == 'EN') {
+      return "Will your account be deleted along with all your data? This decision cannot be reversed after you continue";
+    }else {
+      return "Will your account be deleted along with all your data? This decision cannot be reversed after you continue";
+    }
+  }
   String tAlertDescrLogout(){
     if (getLanguage() == 'AR') {
       return "تم تسجيل الخروج بنجاح. إذا كنت تريد إجراء أي عملية ، فيجب عليك تسجيل الدخول";
@@ -238,6 +265,24 @@ class Language extends ChangeNotifier{
       return "Logout completed successfully. If you want to perform any operation, you must log in";
     }else {
       return "Logout completed successfully. If you want to perform any operation, you must log in";
+    }
+  }
+  String tAlertDescrDeleteLogout(){
+    if (getLanguage() == 'AR') {
+      return "تم حذف حسابك بنجاح. إذا كنت تريد إجراء أي عملية ، فيجب عليك تسجيل الدخول أو انشاء حساب جديد.";
+    } else if (getLanguage() == 'EN') {
+      return "Your account has been successfully deleted. If you want to perform any operation, you must log in or create a new account.";
+    }else {
+      return "Your account has been successfully deleted. If you want to perform any operation, you must log in or create a new account.";
+    }
+  }
+  String tAlertDescrError(){
+    if (getLanguage() == 'AR') {
+      return "تحقق من اتصالك بالانترنت أو المحاولة بوقت لاحق.";
+    } else if (getLanguage() == 'EN') {
+      return "Check your internet connection or try later.";
+    }else {
+      return "Check your internet connection or try later.";
     }
   }
   String tAlertAlreadyLogout(){
@@ -256,6 +301,15 @@ class Language extends ChangeNotifier{
       return "Success";
     }else {
       return "Success";
+    }
+  }
+  String tAlertError(){
+    if (getLanguage() == 'AR') {
+      return "خطا";
+    } else if (getLanguage() == 'EN') {
+      return "Error";
+    }else {
+      return "Error";
     }
   }
   String tAlertinfor(){
@@ -278,7 +332,7 @@ class Language extends ChangeNotifier{
   }
     String donthaveaccount(){
     if (getLanguage() == 'AR') {
-      return " هل تمتلك حساب ؟";
+      return " ليس لديك حساب ؟";
     } else if (getLanguage() == 'EN') {
       return "Don't have an account ? ";
     }else {
@@ -878,6 +932,24 @@ class Language extends ChangeNotifier{
       return "Ok";
     }else {
       return "Ok";
+    }
+  }
+  String tbtnOk_yes(){
+    if (getLanguage() == 'AR') {
+      return "حسنا";
+    } else if (getLanguage() == 'EN') {
+      return "Ok";
+    }else {
+      return "Ok";
+    }
+  }
+  String tbremove(){
+    if (getLanguage() == 'AR') {
+      return "قبول وحذف";
+    } else if (getLanguage() == 'EN') {
+      return "Agree and Delete";
+    }else {
+      return "Agree and Delete";
     }
   }
   String cancel(){
@@ -1614,7 +1686,7 @@ class Language extends ChangeNotifier{
     if (getLanguage() == 'AR') {
       return "";
     } else if (getLanguage() == 'EN') {
-      return "A missing application is an Android mobile application (for lost or lost items) that provides a service to the community in general in retrieving lost items or reporting missing items.. The application also helps in searching for missing items or reporting items. They are of various kinds (personal cards, phones, personal items, etc, The application also makes it easier for the user to search and filter by section (phones section, personal cards and passports section, etc...The application will be easy to use and flexible so that anyone can use it and save time and effort in searching for lost items or reporting them.)";
+      return "A missing application is an  mobile application (for lost or lost items) that provides a service to the community in general in retrieving lost items or reporting missing items.. The application also helps in searching for missing items or reporting items. They are of various kinds (personal cards, phones, personal items, etc, The application also makes it easier for the user to search and filter by section (phones section, personal cards and passports section, etc...The application will be easy to use and flexible so that anyone can use it and save time and effort in searching for lost items or reporting them.)";
     }else {
       return "MAFQWD";
     }
@@ -2025,7 +2097,7 @@ class Language extends ChangeNotifier{
   }
   String tappundemaintenance(){
     if (getLanguage() == 'AR') {
-      return Text("التطبيق تحت الصيانه").toString();
+      return const Text("التطبيق تحت الصيانه").toString();
     } else if (getLanguage() == 'EN') {
       return "The app is under maintenance";
     }else {

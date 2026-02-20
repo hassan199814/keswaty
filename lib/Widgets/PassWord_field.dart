@@ -4,7 +4,7 @@ import 'package:keswaty/Widgets/langage.dart';
 
 
 class PassWordField extends StatefulWidget {
-   PassWordField({required this.controller1 ,Key? key}) : super(key: key);
+   PassWordField({required this.controller1 ,super.key});
   TextEditingController controller1  ;
   @override
   State<PassWordField> createState() => PassWordFieldState();
@@ -58,7 +58,7 @@ class PassWordFieldState extends State<PassWordField> {
       decoration: InputDecoration(
         labelText: _language.tpassword(),
         helperText: "",
-        hintText: _language.tPleaseEnteryourpassword(),hintStyle: TextStyle(fontSize: 10),
+        hintText: _language.tPleaseEnteryourpassword(),hintStyle: const TextStyle(fontSize: 10),
 
         suffixIcon: IconButton(
           onPressed: () => setState(() => obscurePassWord = !obscurePassWord),

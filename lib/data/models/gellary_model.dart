@@ -39,18 +39,18 @@ class GellaryModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['PostTitle'] = this.postTitle;
-    data['MdiaType'] = this.mdiaType;
-    data['PostPic'] = this.postPic;
-    data['AltTxt'] = this.altTxt;
-    data['PostVdURL'] = this.postVdURL;
-    data['Notes'] = this.notes;
-    data['Actv'] = this.actv;
-    data['AddBy'] = this.addBy;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['PostTitle'] = postTitle;
+    data['MdiaType'] = mdiaType;
+    data['PostPic'] = postPic;
+    data['AltTxt'] = altTxt;
+    data['PostVdURL'] = postVdURL;
+    data['Notes'] = notes;
+    data['Actv'] = actv;
+    data['AddBy'] = addBy;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

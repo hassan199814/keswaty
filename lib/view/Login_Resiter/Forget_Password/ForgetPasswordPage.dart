@@ -8,7 +8,6 @@ import 'package:keswaty/Widgets/colors.dart';
 import 'package:keswaty/Widgets/langage.dart';
 import 'package:keswaty/controller/Reset_Account_Provider.dart';
 import 'package:keswaty/main.dart';
-import 'package:keswaty/view/Login_Resiter/Forget_Password/ForgetPasswordWidgets/NoAccountText.dart';
 import 'package:provider/provider.dart';
 
 import 'ForgetPasswordWidgets/ValidatingAnswer.dart';
@@ -16,7 +15,7 @@ import 'ForgetPasswordWidgets/ValidatingAnswer.dart';
 
 
 class ForgetPasswordPage extends StatefulWidget {
-  const ForgetPasswordPage({Key? key}) : super(key: key);
+  const ForgetPasswordPage({super.key});
 
   @override
   _ForgetPasswordPageState createState() => _ForgetPasswordPageState();
@@ -43,7 +42,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   bool remember = false;
 
 
-  Language _language = Language();
+  final Language _language = Language();
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +52,13 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
       child: Scaffold(
         backgroundColor:
         Theme.of(context).brightness == Brightness.dark
-            ?  Color.fromRGBO(33, 37, 25, 1)
-            :  Color.fromRGBO(240, 242, 245, 1),
+            ?  const Color.fromRGBO(33, 37, 25, 1)
+            :  const Color.fromRGBO(240, 242, 245, 1),
 
         appBar: AppBar(
           backgroundColor: Theme.of(context).brightness == Brightness.dark
-              ?  Color.fromRGBO(33, 37, 25, 1)
-              :  Color.fromRGBO(240, 242, 245, 1),
+              ?  const Color.fromRGBO(33, 37, 25, 1)
+              :  const Color.fromRGBO(240, 242, 245, 1),
           elevation: 0,
           // title:  Text(_language.tAddpost(),
           //     style: TextStyle(
@@ -82,7 +81,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
 
         Consumer<ResetAccountProvider>(builder: (context, resetAccountPro, child) {
           return resetAccountPro.isloading
-              ? Center(
+              ? const Center(
             child: CircularProgressIndicator(),
           )
               :
@@ -90,18 +89,18 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               children: [
                 SingleChildScrollView(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
                         Text(
                           _language.resetpass(),
                           style : headingStyle,
                         ),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         Text(
                           _language.resetpassdesc(),
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: kblack38,
                           ),
                         ),
@@ -109,15 +108,15 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                           key: _formkey,
                           child: Column(
                             children: [
-                              SizedBox(height: 60),
+                              const SizedBox(height: 60),
                               SizedBox(
                                   width: 345,
                                   child: EmailField(
                                     controller1:  emailcontroller,
                                   )
                               ),
-                              SizedBox(height: 40),
-                              Container(
+                              const SizedBox(height: 40),
+                              SizedBox(
                                 width: 350,
                                 child: DefaultButton(
                                   bkground: kblueColor,
@@ -130,7 +129,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
 
                                       setState(() async{
                                        await Provider.of<ResetAccountProvider>(context, listen: false).reset_account(emailcontroller.text);
-                                       if(resetAccountPro.userlist.length > 0){
+                                       if(resetAccountPro.userlist.isNotEmpty){
 
                                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ValidatingAnswer(sginUpModel: resetAccountPro.userlist.last,)));
 
@@ -145,7 +144,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                                              btnOkText: _language.tbtnYse(),
                                              btnOkColor: kblueColor,
                                              btnOkIcon: Icons.check,
-                                             buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                             buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                              btnOkOnPress: (){
 
                                              }
@@ -159,11 +158,11 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                                     }
 
                                   },
-                                  text: _language.Next(),txtstyle: TextStyle(fontSize: 20,color: kwhait),
-                                  icon: Icon(Icons.next_plan_outlined, color: kwhait ),
+                                  text: _language.Next(),txtstyle: const TextStyle(fontSize: 20,color: kwhait),
+                                  icon: const Icon(Icons.next_plan_outlined, color: kwhait ),
                                 ),
                               ),
-                              SizedBox(height: 60),
+                              const SizedBox(height: 60),
 
                             ],
                           ),

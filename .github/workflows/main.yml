@@ -44,7 +44,7 @@ jobs:
       #    path: build/ios/**/*.ipa
       - uses: actions/upload-artifact@v1
         with:
-          name: release-ipa
+          name: release-ipa-upgrade
           path: build/ios/iphoneos/Runner.app
       # - uses: actions/upload-artifact@v2
       #   with:

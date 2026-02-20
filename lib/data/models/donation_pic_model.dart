@@ -27,14 +27,14 @@ class DonationPicModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['DontnID'] = this.dontnID;
-    data['DontnPic'] = this.dontnPic;
-    data['AltTxt'] = this.altTxt;
-    data['ClientID'] = this.clientID;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['DontnID'] = dontnID;
+    data['DontnPic'] = dontnPic;
+    data['AltTxt'] = altTxt;
+    data['ClientID'] = clientID;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

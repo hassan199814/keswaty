@@ -32,7 +32,7 @@ class LoginRepo{
   sharedPreferences.setString("user_email", email);
   }
   Future<String> getEmail()async{
-    return await sharedPreferences.getString("user_email")??"";
+    return sharedPreferences.getString("user_email")??"";
   }
 
 }

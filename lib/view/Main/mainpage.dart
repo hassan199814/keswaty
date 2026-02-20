@@ -1,9 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
 import 'package:keswaty/Widgets/colors.dart';
 import 'package:keswaty/Widgets/langage.dart';
 import 'package:keswaty/constant.dart';
@@ -14,7 +11,7 @@ import 'package:keswaty/view/Main/gallery/gallery.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -35,8 +32,9 @@ class _MainPageState extends State<MainPage> {
   //   // setState(() => _language.getLanguage());
   // }
 
-  Language _language = Language();
+  final Language _language = Language();
 
+  @override
   void initState() {
 
     // TODO: implement initState
@@ -56,8 +54,8 @@ class _MainPageState extends State<MainPage> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? Color.fromRGBO(33, 37, 25, 1)
-          : Color.fromRGBO(240, 242, 245, 1),
+          ? const Color.fromRGBO(33, 37, 25, 1)
+          : const Color.fromRGBO(240, 242, 245, 1),
       body: RefreshIndicator(
         onRefresh: ()async{
          await Provider.of<MainGellaryProvider>(context, listen: false).getgellarymain();
@@ -69,8 +67,8 @@ class _MainPageState extends State<MainPage> {
             // LostFoundAppBAr(name: ""),
             Container(
               color: Theme.of(context).brightness == Brightness.dark
-                  ? Color.fromRGBO(33, 37, 25, 1)
-                  : Color.fromRGBO(240, 242, 245, 1),
+                  ? const Color.fromRGBO(33, 37, 25, 1)
+                  : const Color.fromRGBO(240, 242, 245, 1),
               child: Column(
                 children: [
 
@@ -78,8 +76,8 @@ class _MainPageState extends State<MainPage> {
                   Consumer<MainGellaryProvider>(
                     builder: (context, gellarypro, child) {
                       return gellarypro.isloading
-                          ? Center()
-                          : gellarypro.gellaryList.length == 0
+                          ? const Center()
+                          : gellarypro.gellaryList.isEmpty
                               ? Center(
                                   child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -91,7 +89,7 @@ class _MainPageState extends State<MainPage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Container(
-                                          margin: EdgeInsets.symmetric(
+                                          margin: const EdgeInsets.symmetric(
                                               vertical: 0, horizontal: 0),
                                           child: Row(
                                             children: [
@@ -100,9 +98,9 @@ class _MainPageState extends State<MainPage> {
                                                   color: Theme.of(context)
                                                               .brightness ==
                                                           Brightness.dark
-                                                      ? Color.fromRGBO(
+                                                      ? const Color.fromRGBO(
                                                           41, 45, 33, 1)
-                                                      : Color.fromRGBO(
+                                                      : const Color.fromRGBO(
                                                           240, 242, 245, 1),
                                                   elevation: 0,
                                                   borderRadius:
@@ -117,12 +115,12 @@ class _MainPageState extends State<MainPage> {
                                                         splashColor:
                                                             Colors.black26,
                                                         onTap: () {
-                                                           Navigator.of(context).push(MaterialPageRoute(builder: (_) => galleryus()));
+                                                           Navigator.of(context).push(MaterialPageRoute(builder: (_) => const galleryus()));
                                                           // Navigator.pushNamed(context, "AddFoundLost");
                                                         },
                                                         child: Container(
                                                             decoration:
-                                                                BoxDecoration(
+                                                                const BoxDecoration(
                                                               color: Colors
                                                                   .transparent,
                                                               // border: Border.all(color: kblueColor),
@@ -130,7 +128,7 @@ class _MainPageState extends State<MainPage> {
                                                                   topRight: Radius.circular(0),
                                                                   topLeft: Radius.circular(0)),
                                                             ),
-                                                            child: Container(
+                                                            child: SizedBox(
                                                               height: screenheight / 3.5,
                                                               width: screenWidth,
                                                               child: Swiper(
@@ -139,7 +137,7 @@ class _MainPageState extends State<MainPage> {
                                                                     true,
                                                                 itemBuilder:(BuildContextcontext, int index) {
                                                                   return
-                                                                    gellarypro.gellaryList.length != 0
+                                                                    gellarypro.gellaryList.isNotEmpty
                                                                       ? CachedNetworkImage(placeholder: (ctx, url) =>
                                                                       Image.asset(AppConstants.image),
                                                                           height: 250,
@@ -174,17 +172,17 @@ class _MainPageState extends State<MainPage> {
                   ),
 
 
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Text(_language.tnews(),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 20,
                               color: kblueColor,
                               fontWeight: FontWeight.bold))
@@ -193,8 +191,8 @@ class _MainPageState extends State<MainPage> {
 
                   Consumer<MainGellaryProvider>(builder: (context, newsypro, child) {
                       return newsypro.isloading
-                          ? Center(child: CircularProgressIndicator(),)
-                          : newsypro.newslist.length == 0
+                          ? const Center(child: CircularProgressIndicator(),)
+                          : newsypro.newslist.isEmpty
                               ? Center(
                                   child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -202,7 +200,7 @@ class _MainPageState extends State<MainPage> {
                                 ))
                               : ListView.builder(
                                   shrinkWrap: true,
-                                  physics: BouncingScrollPhysics(),
+                                  physics: const BouncingScrollPhysics(),
                                   itemCount: newsypro.newslist.length > 6 ? 6 : newsypro.newslist.length,
                                   itemBuilder: (context, index) {
                                     return
@@ -212,7 +210,7 @@ class _MainPageState extends State<MainPage> {
                                         child: Column(
                                           children: [
 
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 7,
                                             ),
                                         InkWell(
@@ -231,11 +229,11 @@ class _MainPageState extends State<MainPage> {
                                           },
                                           child: Card(
                                             color: Theme.of(context).brightness == Brightness.dark
-                                                ? Color.fromRGBO(35, 40, 30, 1)
+                                                ? const Color.fromRGBO(35, 40, 30, 1)
                                                 : kCamera,
 
                                             elevation: 0,
-                                            margin: EdgeInsets.all(0),
+                                            margin: const EdgeInsets.all(0),
                                             child: Column(
                                               children: [
 
@@ -247,11 +245,11 @@ class _MainPageState extends State<MainPage> {
                                                       child: Column(
                                                         children: [
 
-                                                          SizedBox(height: 10),
+                                                          const SizedBox(height: 10),
                                                           //العنوان
                                                           Row(
                                                             children: [
-                                                              SizedBox(
+                                                              const SizedBox(
                                                                 width: 15,
                                                               ),
                                                               Flexible(
@@ -260,49 +258,49 @@ class _MainPageState extends State<MainPage> {
                                                                   maxLines: 1,
                                                                   overflow: TextOverflow.ellipsis,
                                                                   textAlign: TextAlign.justify,
-                                                                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,
+                                                                  style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold,
                                                                   ),
                                                                 ),
                                                               ),
                                                             ],
                                                           ),
-                                                          SizedBox(height: 3),
+                                                          const SizedBox(height: 3),
 
                                                           Row(
                                                             children: [
-                                                              SizedBox(
+                                                              const SizedBox(
                                                                 width: 15,
                                                               ),
                                                               Container(
-                                                                  padding: EdgeInsets.only(left: 5,right: 5),
+                                                                  padding: const EdgeInsets.only(left: 5,right: 5),
                                                                   decoration: BoxDecoration(color:
                                                                       newsypro.newslist[index].sectn == 0 ? kblack38.withOpacity(0.3)
                                                                       : newsypro.newslist[index].sectn == 1 ? kblack38.withOpacity(0.3)
                                                                       : Colors.transparent,
                                                                     // border: Border.all(color: kblueColor),
-                                                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                                                                   ),
                                                                   child: Row(
                                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                                     children: [
                                                                       newsypro.newslist[index].sectn == 0
                                                                           ? Text(_language.AboutFoundation(),
-                                                                        style: TextStyle(fontWeight: FontWeight.bold, color: kblack380,fontSize: 13),)
+                                                                        style: const TextStyle(fontWeight: FontWeight.bold, color: kblack380,fontSize: 13),)
                                                                           : newsypro.newslist[index].sectn == 1
                                                                           ? Text(_language.AboutDonations(),
-                                                                        style: TextStyle(fontWeight: FontWeight.bold, color: kblack380,fontSize: 13),)
-                                                                          : Text('',
+                                                                        style: const TextStyle(fontWeight: FontWeight.bold, color: kblack380,fontSize: 13),)
+                                                                          : const Text('',
                                                                       ),
                                                                     ],
                                                                   )),
-                                                              SizedBox(width: 3),
+                                                              const SizedBox(width: 3),
                                                             ],
                                                           ),
                                                           // محتوى الخبر
                                                           Row(
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
-                                                              SizedBox(width: 5,),
+                                                              const SizedBox(width: 5,),
                                                               Expanded(
                                                                 flex: 3,
                                                                 child:
@@ -311,22 +309,22 @@ class _MainPageState extends State<MainPage> {
                                                                   child: Column(
                                                                     crossAxisAlignment: CrossAxisAlignment.end,
                                                                     children: [
-                                                                      SizedBox(height: 8),
+                                                                      const SizedBox(height: 8),
 
                                                                       Text(
                                                                         textAlign: language == 'AR' ? TextAlign.right : TextAlign.left,
                                                                         maxLines: 2,
                                                                         overflow: TextOverflow.ellipsis,
                                                                         newsypro.newslist[index].contnt.toString(),
-                                                                        style: TextStyle(fontSize: 16),
+                                                                        style: const TextStyle(fontSize: 16),
                                                                       ),
-                                                                      SizedBox(height: 10),
+                                                                      const SizedBox(height: 10),
                                                                       // more read
                                                                     ],
                                                                   ),
                                                                 ),
                                                               ),
-                                                              SizedBox(
+                                                              const SizedBox(
                                                                 width: 5,
                                                               ),
                                                             ],
@@ -341,10 +339,10 @@ class _MainPageState extends State<MainPage> {
 
                                                         children: [
                                                           Container(
-                                                            margin: EdgeInsets.only(top: 8, right: 8,left: 8),
+                                                            margin: const EdgeInsets.only(top: 8, right: 8,left: 8),
 
                                                             child:
-                                                            newsypro.newslist.length != 0 ?
+                                                            newsypro.newslist.isNotEmpty ?
                                                             ClipRRect(
                                                               borderRadius: BorderRadius.circular(15),
 
@@ -367,10 +365,10 @@ class _MainPageState extends State<MainPage> {
                                                              )
 
                                                           ),
-                                                            SizedBox(height: 5,),
+                                                            const SizedBox(height: 5,),
                                                           Padding(
                                                             padding: const EdgeInsets.all(2.0),
-                                                            child:  Text(newsypro.newslist[index].createdAt.toString().substring(0,10),style: TextStyle(color: Colors.black38),
+                                                            child:  Text(newsypro.newslist[index].createdAt.toString().substring(0,10),style: const TextStyle(color: Colors.black38),
                                                               textAlign: language == 'AR' ? TextAlign.right : TextAlign.left,),
 
                                                             // InkWell(
@@ -399,7 +397,7 @@ class _MainPageState extends State<MainPage> {
                                                 ),
 
 
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 5,
                                                 ),
                                               ],

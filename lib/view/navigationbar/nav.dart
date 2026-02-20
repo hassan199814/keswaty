@@ -1,5 +1,4 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -22,7 +21,7 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 
 class nav extends StatefulWidget {
-  nav({super.key,});
+  const nav({super.key,});
 
   @override
   State<nav> createState() => _navState();
@@ -34,7 +33,7 @@ class _navState extends State<nav> {
 
   String page = 'Home';
 
-  Language _language = Language();
+  final Language _language = Language();
 
   static var _currentIndex = 0;
 
@@ -50,7 +49,7 @@ class _navState extends State<nav> {
       width: 10,
           decoration: BoxDecoration(
               color: Theme.of(context).brightness == Brightness.dark
-                  ?  Color.fromRGBO(33, 37, 25, 1)
+                  ?  const Color.fromRGBO(33, 37, 25, 1)
                   :  kwhait,
 
           ),
@@ -65,7 +64,7 @@ class _navState extends State<nav> {
         disabledGestures: false,
 
         childDecoration: const BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(16)),
+          borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
 
         drawer: Directionality(
@@ -81,19 +80,19 @@ class _navState extends State<nav> {
                           child: Column(
 
                             children: [
-                              SizedBox(height: 60),
+                              const SizedBox(height: 60),
                               Container(
                                 child: InkWell(
                                   onTap: () {
                                     if (InitSharedPreferences.getNameUser() != null &&
-                                        InitSharedPreferences.getNameUser()!.isNotEmpty)
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => PersonalData()));
-                                    else
+                                        InitSharedPreferences.getNameUser()!.isNotEmpty) {
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PersonalData()));
+                                    } else {
                                       AwesomeDialog(
                                           dialogBackgroundColor:
                                           Theme.of(context).brightness ==
                                               Brightness.dark
-                                              ? Color.fromRGBO(41, 45, 33, 1)
+                                              ? const Color.fromRGBO(41, 45, 33, 1)
                                               : kwhait,
                                           context: context,
                                           dialogType: DialogType.noHeader,
@@ -106,19 +105,20 @@ class _navState extends State<nav> {
                                           btnOkColor: kblueColor,
                                           btnOkIcon: Icons.login,
                                           buttonsBorderRadius:
-                                          BorderRadius.all(Radius.circular(10)),
+                                          const BorderRadius.all(Radius.circular(10)),
                                           btnOkOnPress: () {
-                                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => Login()));
+                                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const Login()));
                                           },
                                           btnCancelOnPress: () {})
                                           .show();
+                                    }
                                   },
                                   child: Center(
                                       child: Column(
                                         children: [
                                           Container(
-                                            padding: EdgeInsets.only(left: 0,),
-                                            margin: EdgeInsets.only(left: 0, top: 0),
+                                            padding: const EdgeInsets.only(left: 0,),
+                                            margin: const EdgeInsets.only(left: 0, top: 0),
                                             child: Row(
                                               children: [
 
@@ -172,7 +172,7 @@ class _navState extends State<nav> {
                                                         children: [
                                                           if (InitSharedPreferences.getNameUser() != null &&
                                                               InitSharedPreferences.getNameUser()!.isNotEmpty)
-                                                            Container(
+                                                            SizedBox(
                                                               width: screenWidth / 2,
                                                               child: Text(InitSharedPreferences.getNameUser()!,
                                                                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenWidth / 30, color:
@@ -206,7 +206,7 @@ class _navState extends State<nav> {
 
                                                         if (InitSharedPreferences.getEmailUser() != null &&
                                                             InitSharedPreferences.getEmailUser()!.isNotEmpty)
-                                                          Container(
+                                                          SizedBox(
                                                             width: screenWidth / 2,
                                                             child: Text(
                                                               overflow: TextOverflow.ellipsis,
@@ -246,15 +246,15 @@ class _navState extends State<nav> {
                               ListTile(
                                     onTap: () {
                                       if (InitSharedPreferences.getNameUser() != null &&
-                                          InitSharedPreferences.getNameUser()!.isNotEmpty)
+                                          InitSharedPreferences.getNameUser()!.isNotEmpty) {
                                         Navigator.of(context).push(
-                                            MaterialPageRoute(builder: (_) => FeedbackPage()));
-                                      else {
+                                            MaterialPageRoute(builder: (_) => const FeedbackPage()));
+                                      } else {
                                         AwesomeDialog(
                                             dialogBackgroundColor:
                                             Theme.of(context).brightness ==
                                                 Brightness.dark
-                                                ? Color.fromRGBO(41, 45, 33, 1)
+                                                ? const Color.fromRGBO(41, 45, 33, 1)
                                                 : kwhait,
                                             context: context,
                                             dialogType: DialogType.noHeader,
@@ -267,11 +267,11 @@ class _navState extends State<nav> {
                                             btnOkColor: kblueColor,
                                             btnOkIcon: Icons.login,
                                             buttonsBorderRadius:
-                                            BorderRadius.all(Radius.circular(10)),
+                                            const BorderRadius.all(Radius.circular(10)),
                                             btnOkOnPress: () {
                                               Navigator.of(context).pushReplacement(
                                                   MaterialPageRoute(
-                                                      builder: (_) => SginUpPage()));
+                                                      builder: (_) => const SginUpPage()));
                                             },
                                             btnCancelOnPress: () {})
                                             .show();
@@ -289,7 +289,7 @@ class _navState extends State<nav> {
                                   ),
                               ListTile(
                                     onTap: () {
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => SettingPage()));
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SettingPage()));
                                     },
                                     leading: Icon(EvaIcons.settings_outline,
                                         color: Theme.of(context).brightness == Brightness.dark
@@ -304,7 +304,7 @@ class _navState extends State<nav> {
                               ListTile(
                                     onTap: () {
 
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => HelpPage()));
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HelpPage()));
                                     },
                                     leading: Icon(Icons.question_mark,
                                         color: Theme.of(context).brightness == Brightness.dark
@@ -319,7 +319,7 @@ class _navState extends State<nav> {
                                   ),
                               ListTile(
                                     onTap: () {
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => aboutpro()));
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const aboutpro()));
                                       },
 
                                     leading: Icon(Icons.info_outline,
@@ -341,7 +341,7 @@ class _navState extends State<nav> {
                                           dialogBackgroundColor:
                                           Theme.of(context).brightness ==
                                               Brightness.dark
-                                              ? Color.fromRGBO(41, 45, 33, 1)
+                                              ? const Color.fromRGBO(41, 45, 33, 1)
                                               : kwhait,
                                           context: context,
                                           dialogType: DialogType.question,
@@ -352,7 +352,7 @@ class _navState extends State<nav> {
                                           btnOkColor: kblueColor,
                                           btnOkIcon: Icons.check,
                                           buttonsBorderRadius:
-                                          BorderRadius.all(Radius.circular(10)),
+                                          const BorderRadius.all(Radius.circular(10)),
                                           btnOkText: _language.tbtnYse(),
                                           btnOkOnPress: () async {
                                             await InitSharedPreferences.logOut();
@@ -360,18 +360,20 @@ class _navState extends State<nav> {
                                               dialogBackgroundColor:
                                               Theme.of(context).brightness ==
                                                   Brightness.dark
-                                                  ? Color.fromRGBO(41, 45, 33, 1)
+                                                  ? const Color.fromRGBO(41, 45, 33, 1)
                                                   : kwhait,
                                               context: context,
                                               dialogType: DialogType.noHeader,
                                               animType: AnimType.topSlide,
-                                              showCloseIcon: true,
+                                              showCloseIcon: false,
+                                              dismissOnBackKeyPress: false,
+                                              dismissOnTouchOutside: false,
                                               title: _language.tAlertSuccess(),
                                               desc: _language.tAlertDescrLogout(),
                                               btnOkColor: kblueColor,
                                               btnOkIcon: Icons.check,
                                               buttonsBorderRadius:
-                                              BorderRadius.all(Radius.circular(10)),
+                                              const BorderRadius.all(Radius.circular(10)),
                                               btnOkOnPress: () async {
                                                 await InitSharedPreferences.logOut();
                                                 setState(() {});
@@ -383,7 +385,7 @@ class _navState extends State<nav> {
                                           btnCancelText: _language.tbtnCancel())
                                           .show();
                                     } else {
-                                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>Login()));
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                                     }
                                   },
                                   leading: Icon(
@@ -398,7 +400,7 @@ class _navState extends State<nav> {
                                           ? _language.tlogin()
                                           : _language.tlogout()
                                       ,
-                                      style: TextStyle(color: kblueColor,fontWeight: FontWeight.bold))
+                                      style: const TextStyle(color: kblueColor,fontWeight: FontWeight.bold))
                               ),
 
 
@@ -408,10 +410,10 @@ class _navState extends State<nav> {
 
                         Column(
                           children: [
-                            Text(_language.trights(),textAlign: TextAlign.center,style: TextStyle(
+                            Text(_language.trights(),textAlign: TextAlign.center,style: const TextStyle(
                                 color: kblack38,fontSize: 12
                             )),
-                            SizedBox(height: 40),
+                            const SizedBox(height: 40),
                           ],
                         ),
                       ],
@@ -426,8 +428,8 @@ class _navState extends State<nav> {
 
           appBar: AppBar(
             backgroundColor: Theme.of(context).brightness == Brightness.dark
-                ? Color.fromRGBO(33, 37, 25, 1)
-                : Color.fromRGBO(240, 242, 245, 1),
+                ? const Color.fromRGBO(33, 37, 25, 1)
+                : const Color.fromRGBO(240, 242, 245, 1),
             elevation: 0,
             title: Center(
               child:
@@ -450,7 +452,7 @@ class _navState extends State<nav> {
                 valueListenable: _advancedDrawerController,
                 builder: (_, value, __) {
                   return AnimatedSwitcher(
-                    duration: Duration(milliseconds: 250),
+                    duration: const Duration(milliseconds: 250),
                     child: Icon(
                       color: Theme.of(context).brightness == Brightness.dark
                           ? kwhait
@@ -462,7 +464,7 @@ class _navState extends State<nav> {
                 },
               ),
             ):
-                SizedBox(),
+                const SizedBox(),
 
 
             actions: [
@@ -482,10 +484,10 @@ class _navState extends State<nav> {
                       btnOkText: _language.tbtnYse(),
                       btnOkColor: kblueColor,
 
-                      buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                      buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                       btnOkOnPress: (){
                         FocusScope.of(context).unfocus();
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Login()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const Login()));
                       },
                     btnCancelOnPress: (){}
                   ).show():
@@ -505,20 +507,23 @@ class _navState extends State<nav> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 5,),
-                      Text(_currentIndex == 2?
-                      _language.Createreceiptrequest() : "",
-                        style: TextStyle(
-                            color: kwhait,
-                            fontWeight: FontWeight.bold,fontSize: screenWidth / 30
+                      const SizedBox(width: 5,),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(_currentIndex == 2?
+                        _language.Createreceiptrequest() : "",
+                          style: TextStyle(
+                              color: kwhait,
+                              fontWeight: FontWeight.bold,fontSize: screenWidth / 30
+                          ),
                         ),
                       ),
-                      SizedBox(width: 5,),
+                      const SizedBox(width: 5,),
                     ],
                   ),
                 ),
               ):
-                  SizedBox()
+                  const SizedBox()
             ],
           ),
           // _pages[_currentIndex],
@@ -526,8 +531,8 @@ class _navState extends State<nav> {
 
           bottomNavigationBar: SalomonBottomBar(
             backgroundColor: Theme.of(context).brightness == Brightness.dark
-                ? Color.fromRGBO(33, 37, 25, 1)
-                : Color.fromRGBO(240, 242, 245, 1),
+                ? const Color.fromRGBO(33, 37, 25, 1)
+                : const Color.fromRGBO(240, 242, 245, 1),
 
 
             selectedItemColor: kblueColor,
@@ -547,7 +552,7 @@ class _navState extends State<nav> {
                 icon:
                   _currentIndex == 0 ?Icon(Icons.home,size:  screenWidth / 15,):
                   Icon(Icons.home_outlined,size:  screenWidth / 15,),
-                title: Text(_language.tHome(),style: TextStyle(fontSize: screenWidth / 30)),
+                title: FittedBox(fit: BoxFit.fill,child: Text(_language.tHome(),style: TextStyle(fontSize: screenWidth / 30))),
                 // selectedColor: kblueColor,
               ),
               SalomonBottomBarItem(
@@ -555,7 +560,7 @@ class _navState extends State<nav> {
                 _currentIndex == 1 ? Icon(MingCute.truck_fill,size:  screenWidth / 15):
                 Icon(MingCute.truck_line,size:  screenWidth / 15),
 
-                title: Text(_language.Createreceiptrequest(),style: TextStyle(fontSize: screenWidth / 30)),
+                title: FittedBox(fit: BoxFit.fill,child: Text(_language.Createreceiptrequest(),style: TextStyle(fontSize: screenWidth / 30))),
                 // selectedColor: kblueColor,
               ),
               /// Donations
@@ -564,7 +569,7 @@ class _navState extends State<nav> {
                   _currentIndex == 2 ? Icon(MingCute.hand_heart_fill,size:  screenWidth / 15):
                     Icon(MingCute.hand_heart_line,size:  screenWidth / 15),
 
-                title: Text(_language.MyDonations(),style: TextStyle(fontSize: screenWidth / 30)),
+                title: FittedBox(fit: BoxFit.fill,child: Text(_language.MyDonations(),style: TextStyle(fontSize: screenWidth / 30))),
                 // selectedColor: kblueColor,
               ),
 
@@ -574,7 +579,7 @@ class _navState extends State<nav> {
                 icon:
                 _currentIndex == 3 ? Icon(BoxIcons.bx_grid_horizontal,size:  screenWidth / 15):
                 Icon(BoxIcons.bx_grid_horizontal,size:  screenWidth / 15),
-                title: Text(_language.Menus(),style: TextStyle(fontSize: screenWidth / 30)),
+                title: FittedBox(fit: BoxFit.fill,child: Text(_language.Menus(),style: TextStyle(fontSize: screenWidth / 30))),
               ),
 
               /// Profile
@@ -588,11 +593,11 @@ class _navState extends State<nav> {
             builder: (context) {
               switch (_currentIndex) {
                 case 0:
-                  return Container(child: MainPage());
+                  return Container(child: const MainPage());
                 case 1:
                   if(InitSharedPreferences.getNameUser()!=null){
                     return Container(child: AddBasketsPage());
-                  } return Container(child: Login());
+                  } return Container(child: const Login());
 
                 case 2:
                   return Container(child: donation());
@@ -600,7 +605,7 @@ class _navState extends State<nav> {
 
                 case 3:
                    // if(InitSharedPreferences.getNameUser()!=null)
-                  return Container(child: Menus());
+                  return Container(child: const Menus());
 
                 default:
                   return Container();

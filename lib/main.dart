@@ -44,7 +44,7 @@ void main() async{
       ChangeNotifierProvider(create: (context) => di.sl<ResetAccountProvider>()),
     ],
 
-        child: MyApp(),
+        child: const MyApp(),
 
   )
   );
@@ -52,12 +52,12 @@ void main() async{
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider <ProviderData> (
       create: (context) => ProviderData(),
-      child: MafqwdwithThem(),
+      child: const MafqwdwithThem(),
       // MaterialApp(
     );
 
@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MafqwdwithThem extends StatelessWidget {
-  const MafqwdwithThem({Key? key}) : super(key: key);
+  const MafqwdwithThem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +90,7 @@ class MafqwdwithThem extends StatelessWidget {
       // ),
 
 
-      home: mysplsh(),
+      home: const mysplsh(),
 
 
 

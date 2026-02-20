@@ -6,12 +6,10 @@ import 'package:keswaty/Widgets/Email_field.dart';
 import 'package:keswaty/Widgets/PassWord_field.dart';
 import 'package:keswaty/Widgets/colors.dart';
 import 'package:keswaty/Widgets/langage.dart';
-import 'package:keswaty/controller/Reset_Account_Provider.dart';
 import 'package:keswaty/controller/login_provider.dart';
 import 'package:keswaty/data/ini_shard.dart';
 import 'package:keswaty/main.dart';
 import 'package:keswaty/view/Login_Resiter/Forget_Password/ForgetPasswordPage.dart';
-import 'package:keswaty/view/Login_Resiter/Forget_Password/ForgetPasswordWidgets/NoAccountText.dart';
 import 'package:keswaty/view/navigationbar/nav.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +20,7 @@ import '../Sgin_up/sgin_up.dart';
 
 
 class Login extends StatefulWidget {
-    Login({Key? key}) : super(key: key);
+    const Login({super.key});
 
   @override
   _LoginState createState() => _LoginState();
@@ -39,7 +37,7 @@ class _LoginState extends State<Login> {
   late String password;
   bool remember = false;
 
-  Language _language = Language();
+  final Language _language = Language();
   @override
 
 
@@ -67,19 +65,20 @@ class _LoginState extends State<Login> {
                     :  Colors.transparent,
                 fontSize: 15,)),
           leading: IconButton(
-            onPressed: (){},
+            onPressed: (){Navigator.pop(context);},
             icon: Icon( Icons.arrow_back,
               color:Theme.of(context).brightness == Brightness.dark
-                  ?  Colors.transparent
-                  :  Colors.transparent,
+                  ?  kwhait
+                  :  kblueColor,
 
             ),
           ),
+
         ),
 
         body: Consumer<LoginProvider>(builder: (context, loginpro, child) {
           return loginpro.isloading
-              ? Center(
+              ? const Center(
             child: CircularProgressIndicator(),
           )
               :
@@ -198,18 +197,20 @@ class _LoginState extends State<Login> {
                                                  if(loginpro.islogin){
                                                   await AwesomeDialog(
                                                      dialogBackgroundColor: Theme.of(context).brightness == Brightness.dark
-                                                         ? Color.fromRGBO(41, 45, 33, 1)
+                                                         ? const Color.fromRGBO(41, 45, 33, 1)
                                                          : kwhait,
                                                      context: context,
                                                      dialogType: DialogType.noHeader,
                                                      animType: AnimType.topSlide,
-                                                     showCloseIcon: true,
+                                                    showCloseIcon: false,
+                                                    dismissOnBackKeyPress: false,
+                                                    dismissOnTouchOutside: false,
                                                      title: _language.tHello(),
                                                      desc: _language.tWelcome() + InitSharedPreferences.getNameUser()!,
                                                      descTextStyle: const TextStyle(
                                                          fontWeight: FontWeight.bold),
                                                      btnOkOnPress: () {
-                                                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>nav()));
+                                                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>const nav()));
                                                      },
                                                      btnOkColor: kblueColor,
                                                      btnOkIcon: Icons.check_circle,

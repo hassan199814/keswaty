@@ -10,7 +10,7 @@ import 'package:keswaty/view/Login_Resiter/Forget_Password/ForgetPasswordWidgets
 import 'package:keswaty/view/about_project/con_us.dart';
 
 class ValidatingAnswer extends StatefulWidget {
-   ValidatingAnswer({Key? key,required this.sginUpModel}) : super(key: key);
+   ValidatingAnswer({super.key,required this.sginUpModel});
 
 
   SginUpModel sginUpModel;
@@ -33,7 +33,7 @@ class _ValidatingAnswerState extends State<ValidatingAnswer> {
   bool remember = false;
 
 
-  Language _language = Language();
+  final Language _language = Language();
 
 
   @override
@@ -47,13 +47,13 @@ class _ValidatingAnswerState extends State<ValidatingAnswer> {
       child: Scaffold(
         backgroundColor:
         Theme.of(context).brightness == Brightness.dark
-            ?  Color.fromRGBO(33, 37, 25, 1)
-            :  Color.fromRGBO(240, 242, 245, 1),
+            ?  const Color.fromRGBO(33, 37, 25, 1)
+            :  const Color.fromRGBO(240, 242, 245, 1),
 
         appBar: AppBar(
           backgroundColor: Theme.of(context).brightness == Brightness.dark
-              ?  Color.fromRGBO(33, 37, 25, 1)
-              :  Color.fromRGBO(240, 242, 245, 1),
+              ?  const Color.fromRGBO(33, 37, 25, 1)
+              :  const Color.fromRGBO(240, 242, 245, 1),
           elevation: 0,
           // title:  Text(_language.tAddpost(),
           //     style: TextStyle(
@@ -76,18 +76,18 @@ class _ValidatingAnswerState extends State<ValidatingAnswer> {
             children: [
               SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
                       Text(
                         _language.tValidateAnswer(),
                         style : headingStyle,
                       ),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       Text(
                         _language.tValidateHelp(),
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: kblack38,
                         ),
                       ),
@@ -98,7 +98,7 @@ class _ValidatingAnswerState extends State<ValidatingAnswer> {
                         key: _formkey,
                         child: Column(
                           children: [
-                            SizedBox(height: 60),
+                            const SizedBox(height: 60),
                             SizedBox(
                               width: 345,
                               child: TextFormField(
@@ -109,11 +109,11 @@ class _ValidatingAnswerState extends State<ValidatingAnswer> {
                                     labelText: _language.tquestion(),
                                     helperText: "",
                                     // hintText: _language.tEnterRestoreAnswer(),hintStyle: TextStyle(fontSize: 12),
-                                    suffixIcon: Icon(Icons.lock, color:kblack38)
+                                    suffixIcon: const Icon(Icons.lock, color:kblack38)
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             SizedBox(
@@ -131,13 +131,13 @@ class _ValidatingAnswerState extends State<ValidatingAnswer> {
                                   decoration:  InputDecoration(
                                       labelText: _language.tanswer(),
                                       helperText: "",
-                                      hintText: _language.tEnterRestoreAnswer(),hintStyle: TextStyle(fontSize: 12),
-                                      suffixIcon: Icon(Icons.key, color:kblack38)
+                                      hintText: _language.tEnterRestoreAnswer(),hintStyle: const TextStyle(fontSize: 12),
+                                      suffixIcon: const Icon(Icons.key, color:kblack38)
                                   ),
                                 ),
                             ),
-                            SizedBox(height: 40),
-                            Container(
+                            const SizedBox(height: 40),
+                            SizedBox(
                               width: 350,
                               child: DefaultButton(
                                 bkground: kblueColor,
@@ -160,9 +160,9 @@ class _ValidatingAnswerState extends State<ValidatingAnswer> {
                                           btnOkColor: greenColor,
                                           btnCancelColor: kblack38,
                                           btnOkIcon: Icons.check,
-                                          buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                          buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                           btnOkOnPress: (){
-                                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>con_us()));
+                                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>const con_us()));
                                           },
                                         btnCancelOnPress: (){
 
@@ -173,11 +173,11 @@ class _ValidatingAnswerState extends State<ValidatingAnswer> {
                                   }
 
                                 },
-                                text: _language.Reset(),txtstyle: TextStyle(fontSize: 20,color: kwhait),
-                                icon: Icon(Icons.settings_backup_restore_sharp, color: kwhait ),
+                                text: _language.Reset(),txtstyle: const TextStyle(fontSize: 20,color: kwhait),
+                                icon: const Icon(Icons.settings_backup_restore_sharp, color: kwhait ),
                               ),
                             ),
-                            SizedBox(height: 60),
+                            const SizedBox(height: 60),
 
                           ],
                         ),

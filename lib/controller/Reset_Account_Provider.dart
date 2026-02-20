@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:keswaty/data/ini_shard.dart';
 import 'package:keswaty/data/models/base/api_response.dart';
 import 'package:keswaty/data/models/sginup_model.dart';
-import 'package:keswaty/data/repository/inset_sginup_repo.dart';
-import 'package:keswaty/data/repository/login_repo.dart';
 import 'package:keswaty/data/repository/reset_accunt_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

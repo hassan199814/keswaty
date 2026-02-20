@@ -11,7 +11,7 @@ import 'package:keswaty/Widgets/langage.dart';
             .hasMatch(this);
       }
 
-      bool isWhitespace() => this.trim().isEmpty;
+      bool isWhitespace() => trim().isEmpty;
       bool isValidDouble() => double.tryParse(this) != null;
       bool isValidInt() => int.tryParse(this) != null;
 
@@ -19,8 +19,8 @@ import 'package:keswaty/Widgets/langage.dart';
 
     Container buildDivider() {
       return Container(
-        padding: EdgeInsets.only(right: 15,left: 15),
-        child: Divider(
+        padding: const EdgeInsets.only(right: 15,left: 15),
+        child: const Divider(
           height: 20,
           color: kblack38,
         ),
@@ -28,8 +28,8 @@ import 'package:keswaty/Widgets/langage.dart';
     }
     Container buildDivider1() {
       return Container(
-        padding: EdgeInsets.only(right: 0,left: 20),
-        child: Divider(
+        padding: const EdgeInsets.only(right: 0,left: 20),
+        child: const Divider(
           color: kblack,
         ),
       );
@@ -37,7 +37,7 @@ import 'package:keswaty/Widgets/langage.dart';
     Container buildDividerWithText() {
       return Container(
         padding: const EdgeInsets.only(right: 0,left: 20),
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Divider(
@@ -57,26 +57,26 @@ import 'package:keswaty/Widgets/langage.dart';
     }
 
     VerticalDivider buildVerticalDivider() {
-      return VerticalDivider(
+      return const VerticalDivider(
         color: kblack38,
         width: 15,
 
       );
     }
 
-    final headingStyle = TextStyle(
+    const headingStyle = TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,
         color: kblueColor,
         height: 1.5
     );
 
-    final TextStyleGray = TextStyle(
+    const TextStyleGray = TextStyle(
         color: kblack38,
       );
 
 
-    final OtpInputDecoration = InputDecoration(
+    const OtpInputDecoration = InputDecoration(
       contentPadding: EdgeInsets.symmetric(
         vertical: 15,
       ),
@@ -87,7 +87,7 @@ import 'package:keswaty/Widgets/langage.dart';
     OutlineInputBorder outlineInputBorder() {
       return OutlineInputBorder(
       borderRadius: BorderRadius.circular(15),
-      borderSide: BorderSide(color: kblack38),
+      borderSide: const BorderSide(color: kblack38),
     );
     }
 

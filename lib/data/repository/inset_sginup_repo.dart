@@ -27,7 +27,7 @@ class InsertSginUpRepo{
       return ApiResponse.withSuccess(response);
     }catch(e){
 
-      return ApiResponse.withError(e);
+      return ApiResponse. withError(e);
     }
 
   }

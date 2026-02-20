@@ -1,12 +1,10 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:keswaty/String_Extensions.dart';
 import 'package:keswaty/Widgets/DefaultButton.dart';
 import 'package:keswaty/Widgets/colors.dart';
 import 'package:keswaty/Widgets/langage.dart';
 import 'package:keswaty/controller/insert_sginup_provider.dart';
-import 'package:keswaty/data/ini_shard.dart';
 import 'package:keswaty/data/models/sginup_model.dart';
 import 'package:keswaty/main.dart';
 import 'package:keswaty/view/Login_Resiter/Login/login.dart';
@@ -19,7 +17,7 @@ import '../Forget_Password/ForgetPasswordWidgets/NoAccountText.dart';
 
 
 class SginUpPage extends StatefulWidget {
-  const SginUpPage({Key? key}) : super(key: key);
+  const SginUpPage({super.key});
 
   @override
   State<SginUpPage> createState() => _SginUpPageState();
@@ -52,21 +50,23 @@ class _SginUpPageState extends State<SginUpPage> {
   final List<String> errors =[];
 
   void addError({required String error}){
-    if(!error.contains(error))
+    if(!error.contains(error)) {
       setState(() {
         errors.add(error);
       });
+    }
   }
 
   void removError({required String error}){
-    if(!error.contains(error))
+    if(!error.contains(error)) {
       setState(() {
         errors.remove(error);
       });
+    }
   }
 //----------------------
 
-  Language _language = Language();
+  final Language _language = Language();
 
   @override
   Widget build(BuildContext context) {
@@ -76,14 +76,14 @@ class _SginUpPageState extends State<SginUpPage> {
       child: Scaffold(
         backgroundColor:
         Theme.of(context).brightness == Brightness.dark
-            ?  Color.fromRGBO(33, 37, 25, 1)
-            :  Color.fromRGBO(240, 242, 245, 1),
+            ?  const Color.fromRGBO(33, 37, 25, 1)
+            :  const Color.fromRGBO(240, 242, 245, 1),
 
         appBar: AppBar(
           backgroundColor:
           Theme.of(context).brightness == Brightness.dark
-              ?  Color.fromRGBO(33, 37, 25, 1)
-              :  Color.fromRGBO(240, 242, 245, 1),
+              ?  const Color.fromRGBO(33, 37, 25, 1)
+              :  const Color.fromRGBO(240, 242, 245, 1),
 
           // elevation: 0,
           // title:  Text(_language.tAddpost(),
@@ -113,13 +113,13 @@ class _SginUpPageState extends State<SginUpPage> {
               children: [
 
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Column(
                     children: [
                       Column(
                         children: [
 
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
 
                           Text(
                             _language.RegisterAccount(),
@@ -129,17 +129,24 @@ class _SginUpPageState extends State<SginUpPage> {
 
                           // SginUpForm(),
 
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
 
                         ],
                       ),
 
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
-                      Container(
+                      SizedBox(
                           width: screenWidth,
                           child: TextFormField(
+                            autovalidateMode: AutovalidateMode.onUserInteraction
+                            ,
                             onChanged: (value) {
+                              setState(() {
+                                if(userPro.errlist.containsKey('UserName')){
+                                  userPro.errlist.remove('UserName');
+                                }
+                              });
                               userName = value;
                             },
                             validator: (s) {
@@ -151,22 +158,35 @@ class _SginUpPageState extends State<SginUpPage> {
                             decoration:  InputDecoration(
                                 labelText: _language.tFullname(),
                                 helperText: "",
-                                hintText: _language.tEnteryourname(),hintStyle: TextStyle(fontSize: 10),
-                                suffixIcon: Icon(
+                                errorText: userPro.errlist.containsKey('UserName')?userPro.errlist['UserName'][0]!.toString().replaceAll(' no ', ''):null,
+                                hintText: _language.tEnteryourname(),hintStyle: const TextStyle(fontSize: 10),
+                                suffixIcon: const Icon(
                                     Icons.person_outline_sharp, color: kblack38)
                             ),
                           )
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       SizedBox(
                           width: screenWidth,
                           child: TextFormField(
+                            autovalidateMode: AutovalidateMode.onUserInteraction
+                            ,
                             onChanged: (value) {
+                              setState(() {
+                                if(userPro.errlist.containsKey('PhoneNo')){
+                                  userPro.errlist.remove('PhoneNo');
+                                }
+                              });
+
                               phoneNo = value;
                             },
                             validator: (s) {
                               if (!s!.isValidInt()) {
                                 return _language.tPleaseenterphonenumber();
+                              }
+
+                              if(userPro.errlist.containsKey('PhoneNo')){
+                                return userPro.errlist['PhoneNo'][0]!.toString()??null;
                               }
                               return null;
                             },
@@ -174,39 +194,54 @@ class _SginUpPageState extends State<SginUpPage> {
                             // maxLengthEnforcement: MaxLengthEnforcement.enforced,
                             decoration:  InputDecoration(
                                 labelText: _language.tPhonnumber(),
+                                errorText: userPro.errlist.containsKey('PhoneNo')?userPro.errlist['PhoneNo'][0]!.toString().replaceAll(' no ', ''):null,
                                 helperText: "",
-                                hintText: _language.tenterphonenumber(),hintStyle: TextStyle(fontSize: 10),
-                                suffixIcon: Icon(Icons.phone, color: kblack38)
+                                hintText: _language.tenterphonenumber(),hintStyle: const TextStyle(fontSize: 10),
+                                suffixIcon: const Icon(Icons.phone, color: kblack38)
 
                             ),
                           )
                       ),
-                      SizedBox(height: 10),
-                      Container(
+                      const SizedBox(height: 10),
+                      SizedBox(
                           width: screenWidth,
                           child: TextFormField(
+                            autovalidateMode: AutovalidateMode.onUserInteraction
+                            ,
                             onChanged: (value) {
+                              setState(() {
+                                if(userPro.errlist.containsKey('Email')){
+                                  userPro.errlist.remove('Email');
+                                }
+                              });
+
+                              print(userPro.errlist);
                               email = value;
+
                             },
                             keyboardType: TextInputType.emailAddress,
                             validator: (s) {
                               if (!s!.isValidEmail()) {
                                 return KinvalidEmailError;
                               }
+                              if(userPro.errlist.containsKey('Email')){
+                                return userPro.errlist['Email'][0]!.toString()??null;
+                              }
                               return null;
                             },
                             decoration:  InputDecoration(
+                              errorText: userPro.errlist.containsKey('Email')?userPro.errlist['Email'][0]!.toString():null,
                                 labelText: _language.temail(),
                                 helperText: "",
-                                hintText: _language.tEnterYourEmail(),hintStyle: TextStyle(fontSize: 10),
-                                suffixIcon: Icon(
+                                hintText: _language.tEnterYourEmail(),hintStyle: const TextStyle(fontSize: 10),
+                                suffixIcon: const Icon(
                                     Icons.email_outlined, color: kblack38)
                             ),
 
                           )
                       ),
-                      SizedBox(height: 10),
-                      Container(
+                      const SizedBox(height: 10),
+                      SizedBox(
                           width: screenWidth,
                           child: TextFormField(
                             onSaved: (newValue) => password = newValue!,
@@ -218,7 +253,7 @@ class _SginUpPageState extends State<SginUpPage> {
                               else if (value.length >= 8) {
                                 removError(error: KShortPassError);
                               }
-                              return null;
+                              return;
                             },
                             validator: (value) {
                               if (value!.isEmpty) {
@@ -238,7 +273,7 @@ class _SginUpPageState extends State<SginUpPage> {
                             decoration: InputDecoration(
                               labelText: _language.tpassword(),
                               helperText: "",
-                              hintText: _language.teEnteryourpassword(),hintStyle: TextStyle(fontSize: 10),
+                              hintText: _language.teEnteryourpassword(),hintStyle: const TextStyle(fontSize: 10),
 
                               suffixIcon: IconButton(
                                 onPressed: () =>
@@ -253,8 +288,8 @@ class _SginUpPageState extends State<SginUpPage> {
                             ),
                           )
                       ),
-                      SizedBox(height: 10),
-                      Container(
+                      const SizedBox(height: 10),
+                      SizedBox(
                           width: screenWidth,
                           child: TextFormField(
                             onChanged: (value) {
@@ -269,14 +304,14 @@ class _SginUpPageState extends State<SginUpPage> {
                             decoration:  InputDecoration(
                                 labelText: _language.taddress(),
                                 helperText: "",
-                                hintText: _language.teEnterAddress(),hintStyle: TextStyle(fontSize: 10),
-                                suffixIcon: Icon(
+                                hintText: _language.teEnterAddress(),hintStyle: const TextStyle(fontSize: 10),
+                                suffixIcon: const Icon(
                                     Icons.location_on_outlined, color: kblack38)
                             ),
                           )
                       ),
-                      SizedBox(height: 10),
-                      Container(
+                      const SizedBox(height: 10),
+                      SizedBox(
                           width: screenWidth,
                           child: TextFormField(
                             onChanged: (value) {
@@ -291,14 +326,14 @@ class _SginUpPageState extends State<SginUpPage> {
                             decoration:  InputDecoration(
                                 labelText: _language.tquestion(),
                                 helperText: "",
-                                hintText: _language.EntertheQuestion(),hintStyle: TextStyle(fontSize: 10),
-                                suffixIcon: Icon(
+                                hintText: _language.EntertheQuestion(),hintStyle: const TextStyle(fontSize: 10),
+                                suffixIcon: const Icon(
                                     Icons.location_on_outlined, color: kblack38)
                             ),
                           )
                       ),
-                      SizedBox(height: 10),
-                      Container(
+                      const SizedBox(height: 10),
+                      SizedBox(
                           width: screenWidth,
                           child: TextFormField(
                             onChanged: (value) {
@@ -313,13 +348,13 @@ class _SginUpPageState extends State<SginUpPage> {
                             decoration:  InputDecoration(
                                 labelText: _language.tanswer(),
                                 helperText: "",
-                                hintText: _language.tEnterAnswer(),hintStyle: TextStyle(fontSize: 10),
-                                suffixIcon: Icon(
+                                hintText: _language.tEnterAnswer(),hintStyle: const TextStyle(fontSize: 10),
+                                suffixIcon: const Icon(
                                     Icons.location_on_outlined, color: kblack38)
                             ),
                           )
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
 
                       // Consumer<InsertUserProvider>(builder: (context, value, child) {
@@ -328,7 +363,9 @@ class _SginUpPageState extends State<SginUpPage> {
                       Consumer<InsertSginUpProvider>(builder: (context, value, child) {
                         return
 
-                        Container(
+                        userPro.isloading?
+                           const Center(child: CircularProgressIndicator(),):
+                           SizedBox(
 
 
                             width: screenWidth,
@@ -352,26 +389,56 @@ class _SginUpPageState extends State<SginUpPage> {
 
 
                                   );
-                                  setState(()  {
+                                  setState(() async  {
 
-                                     Provider.of<InsertSginUpProvider>(context, listen: false).insert_response(sginUpModel);
+                                  await   Provider.of<InsertSginUpProvider>(context, listen: false).insert_response(sginUpModel);
+                                    if(userPro.iserror){
+                                      AwesomeDialog(
+                                        dialogBackgroundColor: Theme
+                                            .of(context)
+                                            .brightness == Brightness.dark
+                                            ? const Color.fromRGBO(
+                                            41, 45, 33, 1)
+                                            : kwhait,
+                                        context: context,
+                                        dialogType: DialogType.error,
+                                        animType: AnimType.topSlide,
+                                        showCloseIcon: true,
+                                        title: "",
+                                        desc: userPro.message_error.replaceAll(' no ', ' '),
+                                        descTextStyle: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                        btnOkColor: kblueColor,
+                                        btnOkIcon: Icons.check_circle,
+                                      ).show();
+                                    }else {
+                                      AwesomeDialog(
+                                        dialogBackgroundColor: Theme
+                                            .of(context)
+                                            .brightness == Brightness.dark
+                                            ? const Color.fromRGBO(
+                                            41, 45, 33, 1)
+                                            : kwhait,
+                                        context: context,
+                                        dialogType: DialogType.noHeader,
+                                        animType: AnimType.topSlide,
+                                        showCloseIcon: false,
+                                        dismissOnBackKeyPress: false,
+                                        dismissOnTouchOutside: false,
 
-                                    AwesomeDialog(
-                                      dialogBackgroundColor: Theme.of(context).brightness == Brightness.dark ? Color.fromRGBO(41, 45, 33, 1) : kwhait,
-                                      context: context,
-                                      dialogType: DialogType.noHeader,
-                                      animType: AnimType.topSlide,
-                                      showCloseIcon: true,
-                                      title: "",
-                                      desc:_language.RegistrDon(),
-                                      descTextStyle: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                      btnOkOnPress: () {
-                                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>Login()));
-                                      },
-                                      btnOkColor: kblueColor,
-                                      btnOkIcon: Icons.check_circle,
-                                    ).show();
+                                        title: "",
+                                        desc: _language.RegistrDon(),
+                                        descTextStyle: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                        btnOkOnPress: () {
+                                          Navigator.of(context).pushReplacement(
+                                              MaterialPageRoute(builder: (
+                                                  _) => const Login()));
+                                        },
+                                        btnOkColor: kblueColor,
+                                        btnOkIcon: Icons.check_circle,
+                                      ).show();
+                                    }
 
 
                                   });
@@ -407,22 +474,22 @@ class _SginUpPageState extends State<SginUpPage> {
 
                               },
                               text: _language.Registration(),
-                              txtstyle: TextStyle(fontSize: 15, color: kwhait),
-                              icon: Icon(Icons.add, color: kwhait),)
+                              txtstyle: const TextStyle(fontSize: 15, color: kwhait),
+                              icon: const Icon(Icons.add, color: kwhait),)
                         );
                       }),
 
-                      SizedBox(height: 30,),
+                      const SizedBox(height: 30,),
 
 
 
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       NoAccountText(
 
                         text1: _language.Bycontinuingconfirm(),
                         text2: "",
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                     ],
                   ),
                 ),

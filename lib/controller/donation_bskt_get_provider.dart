@@ -456,7 +456,7 @@ class DonationBsktGetProvider extends ChangeNotifier{
 
 
   List<File>? imageFileList = [];
-  List<dynamic>? _documents = [];
+  final List<dynamic> _documents = [];
 
   void deleteImage(int index) {
     imageFileList?.removeAt(index);
@@ -470,7 +470,6 @@ class DonationBsktGetProvider extends ChangeNotifier{
       
       final images = await picker.pickMultiImage(
           maxWidth: 600, maxHeight: 600, imageQuality: 50);
-      if (images == null) return;
       for (XFile image in images) {
         var imagesTemporary = File(image.path);
         imageFileList!.add(imagesTemporary);
@@ -500,7 +499,7 @@ class DonationBsktGetProvider extends ChangeNotifier{
 
 
 
-  Future<void> uploadImage(String bskt_id,String type) async {
+  Future<void> uploadImage(String bsktId,String type) async {
     for(int i=0;i<imageFileList!.length;i++){
 
 
@@ -509,7 +508,7 @@ class DonationBsktGetProvider extends ChangeNotifier{
     FormData formData = FormData.fromMap({
       "file":
       await MultipartFile.fromFile(imageFileList![i].path, filename:fileName),
-      'id':bskt_id,
+      'id':bsktId,
       'type':type,
     });
     var response = await  Dio().post("https://keswaty.com/api/donation/type/create", data: formData);

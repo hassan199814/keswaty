@@ -20,7 +20,7 @@ class MainGellaryRepo {
       dioClient?.updateHeader("token");
       // Response response = await dioClient!.get("https://keswaty.com/api/donation?id=$clnt_id");
 
-      Response response = await dioClient!.get("${AppConstants.GALLARY}");
+      Response response = await dioClient!.get(AppConstants.GALLARY);
       print(response);
       // Response response = await dioClient!.get(AppConstants.INSERT_LOSTFOUND_URL,queryParameters: lostsFounds.toJson());
       // Response response = await dioClient!.post(AppConstants.LOGIN_URL,data: {
@@ -43,7 +43,7 @@ class MainGellaryRepo {
       dioClient?.updateHeader("token");
       // Response response = await dioClient!.get("https://keswaty.com/api/donation?id=$clnt_id");
 
-      Response response = await dioClient!.get("${AppConstants.GET_NEWS}");
+      Response response = await dioClient!.get(AppConstants.GET_NEWS);
       print(response);
       // Response response = await dioClient!.get(AppConstants.INSERT_LOSTFOUND_URL,queryParameters: lostsFounds.toJson());
       // Response response = await dioClient!.post(AppConstants.LOGIN_URL,data: {

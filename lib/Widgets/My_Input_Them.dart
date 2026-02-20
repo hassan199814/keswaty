@@ -39,7 +39,7 @@ class MyInputTheme {
   
   OutlineInputBorder _buildBorder(Color color){
     return OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(5)),
+      borderRadius: const BorderRadius.all(Radius.circular(5)),
       borderSide: BorderSide(
         color: color,
         width: 1.0,
@@ -49,12 +49,12 @@ class MyInputTheme {
 
 
   InputDecorationTheme theme() => InputDecorationTheme(
-    contentPadding: EdgeInsets.all(15),
+    contentPadding: const EdgeInsets.all(15),
     isDense: true,
     
     floatingLabelBehavior: FloatingLabelBehavior.always,
     
-    constraints: BoxConstraints(maxWidth: 150),
+    constraints: const BoxConstraints(maxWidth: 150),
     
     //Border
     enabledBorder: _buildBorder(kblack38),

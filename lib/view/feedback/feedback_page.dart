@@ -1,6 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:keswaty/String_Extensions.dart';
 import 'package:keswaty/Widgets/DefaultButton.dart';
 import 'package:keswaty/Widgets/colors.dart';
@@ -8,11 +7,10 @@ import 'package:keswaty/Widgets/langage.dart';
 import 'package:keswaty/data/ini_shard.dart';
 import 'package:keswaty/main.dart';
 
-import 'package:provider/provider.dart';
 
 
 class FeedbackPage extends StatefulWidget {
-  const FeedbackPage({Key? key}) : super(key: key);
+  const FeedbackPage({super.key});
 
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();
@@ -27,6 +25,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
   TextEditingController passwordcontroller = TextEditingController() ;
   TextEditingController addresscontroller = TextEditingController() ;
 
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -46,7 +45,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
   //late DateTime? adding_time;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Language _language = Language();
+  final Language _language = Language();
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +57,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
         child: Scaffold(
             backgroundColor:
             Theme.of(context).brightness == Brightness.dark
-                ?  Color.fromRGBO(33, 37, 25, 1)
-                :  Color.fromRGBO(240, 242, 245, 1),
+                ?  const Color.fromRGBO(33, 37, 25, 1)
+                :  const Color.fromRGBO(240, 242, 245, 1),
 
             appBar: AppBar(
               backgroundColor: Theme.of(context).brightness == Brightness.dark
-                  ?  Color.fromRGBO(33, 37, 25, 1)
-                  :  Color.fromRGBO(240, 242, 245, 1),
+                  ?  const Color.fromRGBO(33, 37, 25, 1)
+                  :  const Color.fromRGBO(240, 242, 245, 1),
               elevation: 0,
               title:  Text(_language.tFeedback(),
                   style: TextStyle(
@@ -88,22 +87,22 @@ class _FeedbackPageState extends State<FeedbackPage> {
           // Consumer<InsertFeedbackProvider>(builder: (context, feedBack, child) {
           //   return feedBack.isloading ? Center(child: CircularProgressIndicator(),) :
             ListView(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
                 children: [
 
 
 
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   Text(
                       _language.tFeedbackPage(),
                       textAlign: TextAlign.center, style: TextStyleGray),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Form(
                     key: _formKey,
                       child: Column(
                         children: [
 
-                          Container(
+                          SizedBox(
                               width: screenWidth,
                               child: TextFormField(
                                 controller: namecontroller,
@@ -112,14 +111,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                     labelText: _language.tFullname(),
                                     helperText: "",
                                     hintText: "",
-                                    suffixIcon: Icon(
+                                    suffixIcon: const Icon(
                                         Icons.person_outline_sharp, color: kblack38)
                                 ),
                               )
                           ),
 
-                          SizedBox(height: 10),
-                          Container(
+                          const SizedBox(height: 10),
+                          SizedBox(
                               width: screenWidth,
                               child: TextFormField(
                                 controller: phoneontroller,
@@ -129,14 +128,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                     labelText: _language.tphone(),
                                     helperText: "",
                                     hintText: "",
-                                    suffixIcon: Icon(Icons.phone, color: kblack38)
+                                    suffixIcon: const Icon(Icons.phone, color: kblack38)
 
                                 ),
                               ),
                           ),
 
-                          SizedBox(height: 10),
-                          Container(
+                          const SizedBox(height: 10),
+                          SizedBox(
                               width: screenWidth,
                               child: TextFormField(
                                 controller: emailcontroller,
@@ -146,20 +145,21 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                     labelText: _language.temail(),
                                     helperText: "",
                                     hintText: "",
-                                    suffixIcon: Icon(Icons.email_outlined, color: kblack38)
+                                    suffixIcon: const Icon(Icons.email_outlined, color: kblack38)
                                 ),
 
                               )
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
 
 
-                          Container(width: screenWidth,
+                          SizedBox(width: screenWidth,
                               child: TextFormField(
                                 validator: (s) {
                                   if (!s!.isNotEmpty) {
                                     return _language.tPleaseEnterNots();
                                   }
+                                  return null;
                                 },
                                 onChanged: (value) {
                                   Nots = value;
@@ -172,12 +172,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                     label: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.description_outlined,
                                           color: kblueColor,
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(left: 8.0),
+                                          padding: const EdgeInsets.only(left: 8.0),
                                           child: Text(_language.tNotes()),
                                         )
                                       ],
@@ -187,12 +187,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
                           ),
 
-                          SizedBox(height: 0,),
+                          const SizedBox(height: 0,),
 
 
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
 
-                          Container(width: screenWidth,
+                          SizedBox(width: screenWidth,
                             child: DefaultButton(
                               bkground: kblueColor,
                               press: () {
@@ -221,7 +221,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                       desc: _language.tAlertNote(),
                                       btnOkColor: kblueColor,
                                       btnOkIcon: Icons.check,
-                                      buttonsBorderRadius: BorderRadius.all(Radius.circular(10)),
+                                      buttonsBorderRadius: const BorderRadius.all(Radius.circular(10)),
                                       btnOkOnPress: (){
                                         FocusScope.of(context).unfocus();
 
@@ -232,8 +232,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                 }
 
                               },
-                              text: _language.tsend(),txtstyle: TextStyle(fontSize: 17,color: kwhait),
-                              icon: Icon(Icons.add_circle_outline, color: Colors.white),
+                              text: _language.tsend(),txtstyle: const TextStyle(fontSize: 17,color: kwhait),
+                              icon: const Icon(Icons.add_circle_outline, color: Colors.white),
                             ),
 
 
